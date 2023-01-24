@@ -1,0 +1,27 @@
+html {
+    font-size: 16px;
+    position: relative;
+    font-family: sans-serif;
+
+}
+
+main {
+
+    position: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#board {
+    width: 40rem;
+    height: 40rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    margin: 0 auto;
+}
