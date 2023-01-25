@@ -1,4 +1,5 @@
 
+/* #region  columns */
 let column1 = [];
 let column2 = [];
 let column3 = [];
@@ -8,12 +9,17 @@ let column6 = [];
 let column7 = [];
 let column8 = [];
 let column9 = [];
+let columnArray = [column1, column2, column3, column4, column5, column6, column7, column8, column9];
+/* #endregion */
+
+let noteToggle = false;
 
 let cellsArray = document.getElementsByClassName('cell');
 
 for (let i = 0; i < cellsArray.length; i++) {
 
-    switch(cellsArray[i].id[1]) {
+    //adds cells into appropriate column arrays
+    switch (cellsArray[i].id[1]) {
         case '1':
             column1.push(cellsArray[i]);
             break;
@@ -23,7 +29,7 @@ for (let i = 0; i < cellsArray.length; i++) {
         case '3':
             column3.push(cellsArray[i]);
             cellsArray[i].style.borderRight = '6px solid black';
-            break;     
+            break;
         case '4':
             column4.push(cellsArray[i]);
             break;
@@ -33,7 +39,7 @@ for (let i = 0; i < cellsArray.length; i++) {
         case '6':
             column6.push(cellsArray[i]);
             cellsArray[i].style.borderRight = '6px solid black';
-            break;         
+            break;
         case '7':
             column7.push(cellsArray[i]);
             break;
@@ -42,10 +48,11 @@ for (let i = 0; i < cellsArray.length; i++) {
             break;
         case '9':
             column9.push(cellsArray[i]);
-            break;                            
+            break;
     }
 
-    $(cellsArray[i]).on('click', function() {
+    //toggles selected class for cells on click
+    $(cellsArray[i]).on('click', function () {
         for (let j = 0; j < cellsArray.length; j++) {
             if (cellsArray[j].dataset.isSelected == 'true') {
                 cellsArray[j].dataset.isSelected = 'false';

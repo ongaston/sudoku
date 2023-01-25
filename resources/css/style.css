@@ -37,11 +37,26 @@ main {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border: 2px solid black;
 }
 
 .cell:hover {
     cursor: pointer;
+}
+
+.note {
+    height: 1.481481rem;
+    width: 1.481481rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.note-row {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .selected {
