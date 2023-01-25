@@ -12,10 +12,54 @@ let column9 = [];
 let cellsArray = document.getElementsByClassName('cell');
 
 for (let i = 0; i < cellsArray.length; i++) {
- if (cellsArray[i].id[1] == '3' || (cellsArray[i].id[1] == '6')) {
-        cellsArray[i].style.borderRight = '6px solid black';
+
+    switch(cellsArray[i].id[1]) {
+        case '1':
+            column1.push(cellsArray[i]);
+            break;
+        case '2':
+            column2.push(cellsArray[i]);
+            break;
+        case '3':
+            column3.push(cellsArray[i]);
+            cellsArray[i].style.borderRight = '6px solid black';
+            break;     
+        case '4':
+            column4.push(cellsArray[i]);
+            break;
+        case '5':
+            column5.push(cellsArray[i]);
+            break;
+        case '6':
+            column6.push(cellsArray[i]);
+            cellsArray[i].style.borderRight = '6px solid black';
+            break;         
+        case '7':
+            column7.push(cellsArray[i]);
+            break;
+        case '8':
+            column8.push(cellsArray[i]);
+            break;
+        case '9':
+            column9.push(cellsArray[i]);
+            break;                            
     }
+
+    $(cellsArray[i]).on('click', function() {
+        for (let j = 0; j < cellsArray.length; j++) {
+            if (cellsArray[j].dataset.isSelected == 'true') {
+                cellsArray[j].dataset.isSelected = 'false';
+                cellsArray[j].classList.remove('selected');
+            }
+        }
+        cellsArray[i].classList.add('selected');
+        cellsArray[i].dataset.isSelected = 'true';
+
+    })
+
 }
+
+
 
 
 

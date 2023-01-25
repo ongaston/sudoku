@@ -20,6 +20,7 @@ main {
     border-color: black;
     border-style: solid;
     flex-direction: column;
+    margin-top: 4rem;
 }
 
 .row {
@@ -37,4 +38,16 @@ main {
     justify-content: center;
     align-items: center;
     border: 2px solid black;
+}
+
+.cell:hover {
+    cursor: pointer;
+}
+
+.selected {
+    border: 4px solid cornflowerblue;
+    background-color: rgb(211, 219, 236);
+    z-index: 11;
+    height: 4.194rem;
+    width: 4.194rem;
 }
