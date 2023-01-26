@@ -1,3 +1,5 @@
+import { globalToggle, noteInput, answerInput, selectedCell } from "./keyboard.js";
+
 
 /* #region  columns */
 let column1 = [];
@@ -75,4 +77,27 @@ rowC.style.borderBottom = '6px solid black';
 let rowF = document.getElementById('rowF');
 rowF.style.borderBottom = '6px solid black';
 
+
+
+//number input stuff
+
+let numberButtons = document.getElementsByClassName('number-input');
+
+for (let i = 0; i < numberButtons.length; i++) {
+
+    $(numberButtons[i]).on('click', function() {
+        let notesCollection = $(selectedCell).find('.note');
+        console.log(notesCollection);
+        let key = numberButtons[i].innerText;
+        key = Number(key);
+
+        if (globalToggle == true) {
+            noteInput(key, notesCollection);
+        } else if (globalToggle == false) {
+            answerInput(key, notesCollection);
+        }
+
+    })
+
+}
 

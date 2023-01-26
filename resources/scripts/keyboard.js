@@ -83,3 +83,5 @@ function answerInput(num, notesCollection) {
     }
 
 }
+
+export { globalToggle, noteInput, answerInput, selectedCell };
