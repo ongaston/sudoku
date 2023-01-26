@@ -3,10 +3,17 @@ html {
     font-family: sans-serif;
     text-align: center;
     position: relative;
+    background-color: rgb(4, 41, 48);
 }
 
-main {
-    position: inline-flex;
+:root {
+    --main-teal: rgb(4, 41, 48);
+    --light-teal: rgb(6, 66, 78);
+    --off-white: rgb(214, 202, 185);
+}
+
+main, body {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -16,9 +23,8 @@ main {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border-width: 7px;
-    border-color: black;
-    border-style: solid;
+    border-radius: 3px;
+    border: 7px double black;
     flex-direction: column;
     margin-top: 4rem;
 }
@@ -39,10 +45,13 @@ main {
     align-items: center;
     flex-direction: column;
     border: 2px solid black;
+    background-color: antiquewhite;
 }
 
 .cell:hover {
     cursor: pointer;
+    background-color: var(--off-white);
+    font-weight: bold;
 }
 
 .note {
@@ -66,3 +75,43 @@ main {
     height: 4.194rem;
     width: 4.194rem;
 }
+
+.answer {
+    position: absolute;
+    font-size: 3.5rem;
+}
+
+#controls {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    flex-direction: column;
+    border: 4px solid black;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
+
+#numbers-container {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.number-input {
+    font-size: 3rem;
+    margin: 0 1rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--main-teal);
+    border: 3px outset black;
+    border-radius: 3px;
+    color: antiquewhite;
+    box-shadow: 2px 2px 1px black;
+}
+
+.number-input:hover {
+    cursor: pointer;
+    background-color: var(--light-teal);
+}
+
