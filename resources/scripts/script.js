@@ -12,7 +12,6 @@ let column9 = [];
 let columnArray = [column1, column2, column3, column4, column5, column6, column7, column8, column9];
 /* #endregion */
 
-let noteToggle = false;
 
 let cellsArray = document.getElementsByClassName('cell');
 
@@ -52,22 +51,22 @@ for (let i = 0; i < cellsArray.length; i++) {
     }
 
     //toggles selected class for cells on click
-    $(cellsArray[i]).on('click', function () {
-        for (let j = 0; j < cellsArray.length; j++) {
-            if (cellsArray[j].dataset.isSelected == 'true') {
-                cellsArray[j].dataset.isSelected = 'false';
-                cellsArray[j].classList.remove('selected');
-            }
-        }
-        cellsArray[i].classList.add('selected');
-        cellsArray[i].dataset.isSelected = 'true';
+    if (cellsArray[i].classList[1] !== 'given') {
+        $(cellsArray[i]).on('click', function () {
 
-    })
+            for (let j = 0; j < cellsArray.length; j++) {
+                if (cellsArray[j].dataset.isSelected == 'true') {
+                    cellsArray[j].dataset.isSelected = 'false';
+                    cellsArray[j].classList.remove('selected');
+                }
+            }
+            cellsArray[i].classList.add('selected');
+            cellsArray[i].dataset.isSelected = 'true';
+
+        })
+    }
 
 }
-
-
-
 
 
 let rowC = document.getElementById('rowC');
@@ -75,3 +74,5 @@ rowC.style.borderBottom = '6px solid black';
 
 let rowF = document.getElementById('rowF');
 rowF.style.borderBottom = '6px solid black';
+
+

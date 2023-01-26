@@ -9,7 +9,10 @@ html {
 :root {
     --main-teal: rgb(4, 41, 48);
     --light-teal: rgb(6, 66, 78);
+    --dark-teal: rgb(1, 16, 19);
     --off-white: rgb(214, 202, 185);
+    --light-cornflower: rgb(199, 211, 238);
+    --lighter-cornflower: rgb(211, 219, 236);
 }
 
 main, body {
@@ -17,6 +20,10 @@ main, body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.hidden {
+    display: none;
 }
 
 #board {
@@ -54,6 +61,14 @@ main, body {
     font-weight: bold;
 }
 
+.given {
+    background-color: var(--off-white);
+}
+
+.given:hover {
+    font-weight: normal;
+}
+
 .note {
     height: 1.481481rem;
     width: 1.481481rem;
@@ -70,16 +85,24 @@ main, body {
 
 .selected {
     border: 4px solid cornflowerblue;
-    background-color: rgb(211, 219, 236);
+    background-color: var(--light-cornflower);
     z-index: 11;
     height: 4.194rem;
     width: 4.194rem;
+}
+
+.selected:hover {
+    border: 4px solid cornflowerblue;
+    background-color: var(--lighter-cornflower);
 }
 
 .answer {
     position: absolute;
     font-size: 3.5rem;
 }
+
+
+/*controls menu*/
 
 #controls {
     display: inline-flex;
@@ -93,10 +116,11 @@ main, body {
     background-color: antiquewhite;
 }
 
-#numbers-container {
+#numbers-container, #other-controls {
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 }
 
 .number-input {
@@ -107,11 +131,41 @@ main, body {
     border: 3px outset black;
     border-radius: 3px;
     color: antiquewhite;
-    box-shadow: 2px 2px 1px black;
+
 }
 
-.number-input:hover {
+.number-input:hover, #reset-button:hover {
     cursor: pointer;
     background-color: var(--light-teal);
+    box-shadow: 1px 1px 1px black;
 }
 
+#other-controls {
+    margin-top: 1.5rem;
+}
+
+#reset-button, #note-mode {
+    font-size: 18px;
+    font-weight: bold;
+    border: 3px outset black;
+    border-radius: 3px;
+    background-color: var(--main-teal);
+    color: antiquewhite;
+    padding: 0.5rem 0.5rem;
+}
+
+#note-mode:hover {
+    background-color: var(--light-teal);
+    box-shadow: 1px 1px 1px black;
+}
+
+#note-toggle:hover {
+    cursor: pointer;
+}
+
+.number-input:active, #reset-button:active {
+    background-color: var(--dark-teal);
+    box-shadow: -1px -1px 1px var(--dark-teal);
+    color: var(--off-white);
+    border-color: var(--light-teal);
+}
