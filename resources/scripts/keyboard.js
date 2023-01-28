@@ -17,12 +17,16 @@ $(noteToggle).on('click', function() {
 $(document).on('keypress', function(e) {
     let key = e.originalEvent.key;
     key = Number(key);
-    if (Number.isNaN(key)) {
+    if (Number.isNaN(key) && e.originalEvent.shiftKey == false) {
         return;
     }
     let notesCollection = $(selectedCell).find('.note');
 
-    if (globalToggle == true) {
+    if (globalToggle) {
+        noteInput(key, notesCollection);
+    }else if (e.originalEvent.shiftKey) {
+        key = e.originalEvent.code[5];
+        key = Number(key);
         noteInput(key, notesCollection);
     } else if (globalToggle == false) {
         answerInput(key, notesCollection);
