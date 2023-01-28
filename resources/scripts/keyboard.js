@@ -36,8 +36,8 @@ function noteInput(num, notesCollection) {
 
     let noteIndex = num - 1;
     let selectedNote = notesCollection[noteIndex];
-    console.log(notesCollection);
-    console.log(selectedNote);
+    //console.log(notesCollection);
+    //console.log(selectedNote);
 
     if (selectedNote.innerText == '') {
         selectedNote.innerText = num.toString();
