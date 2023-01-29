@@ -1,3 +1,4 @@
+import { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH } from "./script.js";
 
 let cellsArray = document.getElementsByClassName('cell');
 let selectedCell = document.getElementsByClassName('selected');
@@ -70,6 +71,21 @@ function answerInput(num, notesCollection) {
         //console.log(answerSpot)
         answerSpot[0].innerText = num.toString();
 
+        let remove = '.note' + num.toString();
+        let columnNumber = selectedCell[0].dataset.column;
+        columnNumber = eval(columnNumber);
+        let removeNote = $(columnNumber).find(remove);
+        for (let i = 0; i < removeNote.length; i++) {
+            removeNote[i].innerText = '';
+        }
+
+        let rowNumber = selectedCell[0].dataset.row;
+        rowNumber = eval(rowNumber);
+        let removeRow = $(rowNumber).find(remove);
+        for (let i = 0; i < removeRow.length; i++) {
+            removeRow[i].innerText = '';
+        }
+
     } else if (num.toString() == answerSpot[0].innerText) {
 
         selectedCell[0].dataset.isFilled = 'false';
@@ -83,6 +99,14 @@ function answerInput(num, notesCollection) {
     } else if (num.toString() !== answerSpot[0].innerText) {
 
         answerSpot[0].innerText = num.toString();
+
+        let remove = '.note' + num.toString();
+        let columnNumber = selectedCell[0].dataset.column;
+        columnNumber = eval(columnNumber);
+        let removeNote = $(columnNumber).find(remove);
+        for (let i = 0; i < removeNote.length; i++) {
+            removeNote[i].innerText = '';
+        }
 
     }
 
