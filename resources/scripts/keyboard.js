@@ -108,6 +108,15 @@ function answerInput(num, notesCollection) {
             removeNote[i].innerText = '';
         }
 
+        let rowNumber = selectedCell[0].dataset.row;
+        rowNumber = eval(rowNumber);
+        let removeRow = $(rowNumber).find(remove);
+        for (let i = 0; i < removeRow.length; i++) {
+            removeRow[i].innerText = '';
+        }
+
+        //Add code to remove notes in same block
+
     }
 
 }
