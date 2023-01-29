@@ -170,10 +170,42 @@ main, body {
     border-color: var(--light-teal);
 }
 
+#mobile-check {
+    display: none;
+}
+
 @media only screen and (max-width: 480px) {
 
     html {
-        font-size: 4px;
+        font-size: 8.75px;
+    }
+
+    #board {
+        margin: 50% auto 0;
+        border: 5px solid black;
+        position: relative;
+        right: 1rem;
+    }
+
+    .note {
+        font-size: 10px;
+    }
+
+    #controls {
+        padding: 2rem 0;
+        position: relative;
+        right: 1rem;
+    }
+
+    .number-input {
+        margin: 0 0.5rem;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    #mobile-check {
+        display: block;
     }
 
 }
