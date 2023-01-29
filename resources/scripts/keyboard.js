@@ -86,6 +86,16 @@ function answerInput(num, notesCollection) {
             removeRow[i].innerText = '';
         }
 
+        let blockNumber = selectedCell[0].dataset.block;
+        for (let i = 0; i < cellsArray.length; i++) {
+            if (cellsArray[i].dataset.block == blockNumber) {
+                let removeBlock = $(cellsArray[i]).find(remove);
+                for (let j = 0; j < removeBlock.length; j++) {
+                    removeBlock[j].innerText = '';
+                }
+            }
+        }
+
     } else if (num.toString() == answerSpot[0].innerText) {
 
         selectedCell[0].dataset.isFilled = 'false';
@@ -115,7 +125,15 @@ function answerInput(num, notesCollection) {
             removeRow[i].innerText = '';
         }
 
-        //Add code to remove notes in same block
+        let blockNumber = selectedCell[0].dataset.block;
+        for (let i = 0; i < cellsArray.length; i++) {
+            if (cellsArray[i].dataset.block == blockNumber) {
+                let removeBlock = $(cellsArray[i]).find(remove);
+                for (let j = 0; j < removeBlock.length; j++) {
+                    removeBlock[j].innerText = '';
+                }
+            }
+        }
 
     }
 
