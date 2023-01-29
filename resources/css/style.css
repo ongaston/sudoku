@@ -181,7 +181,7 @@ main, body {
     }
 
     #board {
-        margin: 50% auto 0;
+        margin: 30% auto 0;
         border: 5px solid black;
         position: relative;
         right: 1rem;
