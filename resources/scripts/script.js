@@ -14,6 +14,18 @@ let column9 = [];
 let columnArray = [column1, column2, column3, column4, column5, column6, column7, column8, column9];
 /* #endregion */
 
+/* #region  blocks */
+let block1 = [];
+let block2 = [];
+let block3 = [];
+let block4 = [];
+let block5 = [];
+let block6 = [];
+let block7 = [];
+let block8 = [];
+let block9 = [];
+let blockArray = [block1, block2, block3, block4, block5, block6, block7, block8, block9];
+/* #endregion */
 
 
 let cellsArray = document.getElementsByClassName('cell');
@@ -92,6 +104,17 @@ for (let i = 0; i < cellsArray.length; i++) {
             break;
     }
 
+    //sorts cells into appropriate block arrays
+    let blockNumber = cellsArray[i].dataset.block;
+    blockNumber = eval(blockNumber);
+    for (let j = 0; j < blockArray.length; j++) {
+
+        if (blockNumber == blockArray[j]) {
+            blockArray[j].push(cellsArray[i]);
+        }
+
+    }
+
     //toggles selected class for cells on click
     if (cellsArray[i].classList[1] !== 'given') {
         $(cellsArray[i]).on('click', function () {
@@ -109,6 +132,7 @@ for (let i = 0; i < cellsArray.length; i++) {
     }
 
 }
+console.log(blockArray);
 
 /* #region  rows */
 let rowA = document.getElementById('rowA');
@@ -157,4 +181,4 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-export {columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowArray};
+export { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
