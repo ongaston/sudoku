@@ -187,7 +187,7 @@ function noteCheck() {
     for (let i = 0; i < rowArray.length; i++) {
         let currentRow = rowArray[i];
 
-        
+        console.log('test')
         for (let j = 0; j < currentRow.length; j++) {
 
             let currentNum = j + 1;
