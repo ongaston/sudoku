@@ -154,7 +154,6 @@ function answerInput(num, notesCollection) {
 //check notes for conflicts
 
 function noteCheck() {
-
     for (let i = 0; i < columnArray.length; i++) {
 
         let currentColumn = columnArray[i];
@@ -187,7 +186,6 @@ function noteCheck() {
     for (let i = 0; i < rowArray.length; i++) {
         let currentRow = rowArray[i];
 
-        console.log('test')
         for (let j = 0; j < currentRow.length; j++) {
 
             let currentNum = j + 1;
@@ -241,4 +239,4 @@ function noteCheck() {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell };
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck };

@@ -1,4 +1,4 @@
-import { globalToggle, noteInput, answerInput, selectedCell } from "./keyboard.js";
+import { globalToggle, noteInput, answerInput, selectedCell, noteCheck } from "./keyboard.js";
 
 
 /* #region  columns */
@@ -196,14 +196,14 @@ for (let i = 0; i < numberButtons.length; i++) {
 
     $(numberButtons[i]).on('click', function () {
         let notesCollection = $(selectedCell).find('.note');
-        console.log(notesCollection);
         let key = numberButtons[i].innerText;
         key = Number(key);
 
-        if (globalToggle == true) {
+        if (globalToggle) {
             noteInput(key, notesCollection);
         } else if (globalToggle == false) {
             answerInput(key, notesCollection);
+            noteCheck();
         }
 
     })
