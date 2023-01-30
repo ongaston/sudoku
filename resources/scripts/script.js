@@ -135,26 +135,53 @@ for (let i = 0; i < cellsArray.length; i++) {
 
 
 /* #region  rows */
-let rowA = document.getElementById('rowA');
-
-let rowB = document.getElementById('rowB');
-
-let rowC = document.getElementById('rowC');
-rowC.style.borderBottom = '6px solid black';
-
-let rowD = document.getElementById('rowD');
-
-let rowE = document.getElementById('rowE');
-
-let rowF = document.getElementById('rowF');
-rowF.style.borderBottom = '6px solid black';
-
-let rowG = document.getElementById('rowG');
-
-let rowH = document.getElementById('rowH');
-
-let rowI = document.getElementById('rowI');
-
+let rowA = [];
+let rowACells = document.getElementsByClassName('rowA');
+for (let i = 0; i < rowACells.length; i++) {
+    rowA.push(rowACells[i]);
+}
+let rowB = [];
+let rowBCells = document.getElementsByClassName('rowB');
+for (let i = 0; i < rowBCells.length; i++) {
+    rowB.push(rowBCells[i]);
+}
+let rowC = [];
+let rowCCells = document.getElementsByClassName('rowC');
+rowCCells.style.borderBottom = '6px solid black';
+for (let i = 0; i < rowCCells.length; i++) {
+    rowC.push(rowCCells[i]);
+}
+let rowD = [];
+let rowDCells = document.getElementsByClassName('rowD');
+for (let i = 0; i < rowDCells.length; i++) {
+    rowD.push(rowDCells[i]);
+}
+let rowE = [];
+let rowECells = document.getElementsByClassName('rowE');
+for (let i = 0; i < rowECells.length; i++) {
+    rowE.push(rowECells[i]);
+}
+let rowF = [];
+let rowFCells = document.getElementsByClassName('rowF');
+rowFCells.style.borderBottom = '6px solid black';
+for (let i = 0; i < rowFCells.length; i++) {
+    rowF.push(rowFCells[i]);
+}
+let rowG = [];
+let rowGCells = document.getElementsByClassName('rowG');
+for (let i = 0; i < rowGCells.length; i++) {
+    rowG.push(rowGCells[i]);
+}
+let rowH = [];
+let rowHCells = document.getElementsByClassName('rowH');
+for (let i = 0; i < rowHCells.length; i++) {
+    rowH.push(rowHCells[i]);
+}
+let rowI = [];
+let rowICells = document.getElementsByClassName('rowI');
+for (let i = 0; i < rowICells.length; i++) {
+    rowI.push(rowICells[i]);
+}
 let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG];
 /* #endregion */
 
