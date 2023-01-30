@@ -132,7 +132,7 @@ for (let i = 0; i < cellsArray.length; i++) {
     }
 
 }
-console.log(blockArray);
+
 
 /* #region  rows */
 let rowA = document.getElementById('rowA');

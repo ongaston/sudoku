@@ -34,6 +34,7 @@ $(document).on('keypress', function (e) {
         //answer input
     } else if (globalToggle == false) {
         answerInput(key, notesCollection);
+        conflictCheck();
     }
 })
 
@@ -160,7 +161,55 @@ function conflictCheck() {
     let currentRow = selectedCell[0].dataset.row;
     currentRow = eval(currentRow);
 
-    let currentBlock = selectedCell.dataset.block;
+    let currentBlock = selectedCell[0].dataset.block;
+    currentBlock = eval(currentBlock);
+
+    for (let i = 1; i <= 9; i++) {
+
+        let cellIndex = i - 1;
+
+        let columnCount = 0;
+        let rowCount = 0;
+        let blockCount = 0;
+
+        for (let j = 1; j <= 9; j++) {
+
+            let noteIndex = j - 1;
+            console.log(currentRow);
+            console.log(cellIndex);
+            console.log(currentRow[cellIndex])
+
+            if (currentColumn[cellIndex][noteIndex] == i) {
+
+                columnCount += 1;
+
+            } else if (currentRow[cellIndex][noteIndex] == i) {
+
+                rowCount += 1;
+
+            } else if (currentBlock[cellIndex][noteIndex] == i) {
+
+                blockCount += 1;
+
+            }
+
+        }
+
+        if (columnCount == 1) {
+            console.log('test')
+            let targetNote = '.note' + i.toString();
+            let targetClass = $(currentColumn).find(targetNote);
+            for (let j = 0; j < targetClass.length; j++) {
+
+                if (targetClass[j].innerText !== '') {
+                    console.log(targetClass[j]);
+                }
+
+            }
+
+        }
+
+    }
 
 
 }
