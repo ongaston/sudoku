@@ -18,7 +18,7 @@ $(noteToggle).on('click', function () {
 $(document).on('keypress', function (e) {
     let key = e.originalEvent.key;
     key = Number(key);
-    if (Number.isNaN(key) && e.originalEvent.shiftKey == false) {
+    if ((Number.isNaN(key) && e.originalEvent.shiftKey == false) || key == 0) {
         return;
     }
     let notesCollection = $(selectedCell).find('.note');
@@ -34,7 +34,7 @@ $(document).on('keypress', function (e) {
         //answer input
     } else if (globalToggle == false) {
         answerInput(key, notesCollection);
-        conflictCheck();
+        noteCheck();
     }
 })
 
@@ -153,64 +153,91 @@ function answerInput(num, notesCollection) {
 
 //check notes for conflicts
 
-function conflictCheck() {
+function noteCheck() {
 
-    let currentColumn = selectedCell[0].dataset.column;
-    currentColumn = eval(currentColumn);
+    for (let i = 0; i < columnArray.length; i++) {
 
-    let currentRow = selectedCell[0].dataset.row;
-    currentRow = eval(currentRow);
+        let currentColumn = columnArray[i];
 
-    let currentBlock = selectedCell[0].dataset.block;
-    currentBlock = eval(currentBlock);
+        for (let j = 0; j < currentColumn.length; j++) {
 
-    for (let i = 1; i <= 9; i++) {
+            let currentNum = j + 1;
+            let noteCheck = '.note' + currentNum.toString();
+            let remainingNote = $(currentColumn).find(noteCheck);
+            let filledCheck = 'p:contains(' + currentNum.toString() + ')';
+            remainingNote = $(remainingNote).find(filledCheck);
+            remainingNote = Array.from(remainingNote);
+            remainingNote = remainingNote.filter(function(e) {
 
-        let cellIndex = i - 1;
+                if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                    return false;
+                } 
+                return e;
+            })
 
-        let columnCount = 0;
-        let rowCount = 0;
-        let blockCount = 0;
-
-        for (let j = 1; j <= 9; j++) {
-
-            let noteIndex = j - 1;
-            console.log(currentRow);
-            console.log(cellIndex);
-            console.log(currentRow[cellIndex])
-
-            if (currentColumn[cellIndex][noteIndex] == i) {
-
-                columnCount += 1;
-
-            } else if (currentRow[cellIndex][noteIndex] == i) {
-
-                rowCount += 1;
-
-            } else if (currentBlock[cellIndex][noteIndex] == i) {
-
-                blockCount += 1;
-
-            }
-
-        }
-
-        if (columnCount == 1) {
-            console.log('test')
-            let targetNote = '.note' + i.toString();
-            let targetClass = $(currentColumn).find(targetNote);
-            for (let j = 0; j < targetClass.length; j++) {
-
-                if (targetClass[j].innerText !== '') {
-                    console.log(targetClass[j]);
-                }
-
+            if (remainingNote.length == 1) {
+                remainingNote[0].style.color = 'cornflowerblue';
+                remainingNote[0].style.fontWeight = 'bold';
             }
 
         }
 
     }
 
+    for (let i = 0; i < rowArray.length; i++) {
+        let currentRow = rowArray[i];
+
+        
+        for (let j = 0; j < currentRow.length; j++) {
+
+            let currentNum = j + 1;
+            let noteCheck = '.note' + currentNum.toString();
+            let remainingNote = $(currentRow).find(noteCheck);
+            let filledCheck = 'p:contains(' + currentNum.toString() + ')';
+            remainingNote = $(remainingNote).find(filledCheck);
+            remainingNote = Array.from(remainingNote);
+            remainingNote = remainingNote.filter(function(e) {
+
+                if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                    return false;
+                } 
+                return e;
+            })
+
+            if (remainingNote.length == 1) {
+                remainingNote[0].style.color = 'cornflowerblue';
+                remainingNote[0].style.fontWeight = 'bold';
+            }
+
+        }
+    }
+
+    for (let i = 0; i < blockArray.length; i++) {
+        let currentBlock = blockArray[i];
+
+        for (let j = 0; j < currentBlock.length; j++) {
+
+            let currentNum = j + 1;
+            let noteCheck = '.note' + currentNum.toString();
+            let remainingNote = $(currentBlock).find(noteCheck);
+            let filledCheck = 'p:contains(' + currentNum.toString() + ')';
+            remainingNote = $(remainingNote).find(filledCheck);
+            remainingNote = Array.from(remainingNote);
+            remainingNote = remainingNote.filter(function(e) {
+
+                if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                    return false;
+                } 
+                return e;
+            })
+
+            if (remainingNote.length == 1) {
+                remainingNote[0].style.color = 'cornflowerblue';
+                remainingNote[0].style.fontWeight = 'bold';
+            }
+
+        }
+    }
 
 }
 

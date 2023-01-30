@@ -136,49 +136,51 @@ for (let i = 0; i < cellsArray.length; i++) {
 
 /* #region  rows */
 let rowA = [];
-let rowACells = document.getElementsByClassName('rowA');
+let rowACells = document.getElementById('rowA').children;
 for (let i = 0; i < rowACells.length; i++) {
     rowA.push(rowACells[i]);
 }
 let rowB = [];
-let rowBCells = document.getElementsByClassName('rowB');
+let rowBCells = document.getElementById('rowB').children;
 for (let i = 0; i < rowBCells.length; i++) {
     rowB.push(rowBCells[i]);
 }
 let rowC = [];
-let rowCCells = document.getElementsByClassName('rowC');
-rowCCells.style.borderBottom = '6px solid black';
+let rowCCells = document.getElementById('rowC').children;
+let rowCElement = document.getElementById('rowC');
+rowCElement.style.borderBottom = '6px solid black';
 for (let i = 0; i < rowCCells.length; i++) {
     rowC.push(rowCCells[i]);
 }
 let rowD = [];
-let rowDCells = document.getElementsByClassName('rowD');
+let rowDCells = document.getElementById('rowD').children;
 for (let i = 0; i < rowDCells.length; i++) {
     rowD.push(rowDCells[i]);
 }
 let rowE = [];
-let rowECells = document.getElementsByClassName('rowE');
+let rowECells = document.getElementById('rowE').children;
 for (let i = 0; i < rowECells.length; i++) {
     rowE.push(rowECells[i]);
 }
 let rowF = [];
-let rowFCells = document.getElementsByClassName('rowF');
-rowFCells.style.borderBottom = '6px solid black';
+let rowFCells = document.getElementById('rowF').children;
+let rowFElement = document.getElementById('rowF');
+rowFElement.style.borderBottom = '6px solid black';
 for (let i = 0; i < rowFCells.length; i++) {
     rowF.push(rowFCells[i]);
 }
 let rowG = [];
-let rowGCells = document.getElementsByClassName('rowG');
+let rowGCells = document.getElementById('rowG').children;
 for (let i = 0; i < rowGCells.length; i++) {
     rowG.push(rowGCells[i]);
 }
 let rowH = [];
-let rowHCells = document.getElementsByClassName('rowH');
+let rowHCells = document.getElementById('rowH').children;
 for (let i = 0; i < rowHCells.length; i++) {
     rowH.push(rowHCells[i]);
 }
 let rowI = [];
-let rowICells = document.getElementsByClassName('rowI');
+let rowICells = document.getElementById('rowI').children;
 for (let i = 0; i < rowICells.length; i++) {
     rowI.push(rowICells[i]);
 }
