@@ -86,10 +86,10 @@ $(document).on('keydown', function (e) {
 function noteInput(num, notesCollection) {
 
     let noteIndex = num - 1;
-    let selectedNote = notesCollection[noteIndex];
+    let selectedNote = notesCollection[noteIndex].children[0];
     //console.log(notesCollection);
     //console.log(selectedNote);
-
+    console.log(selectedNote)
     if (selectedNote.innerText == '') {
         selectedNote.innerText = num.toString();
     } else if (selectedNote.innerText !== '') {
@@ -108,6 +108,7 @@ function answerInput(num, notesCollection) {
     if (selectedCell[0].dataset.isFilled == 'false') {
 
         selectedCell[0].dataset.isFilled = 'true';
+        selectedCell[0].dataset.value = num.toString();
 
 
         for (let i = 0; i < notesCollection.length; i++) {
@@ -148,6 +149,7 @@ function answerInput(num, notesCollection) {
     } else if (num.toString() == answerSpot[0].innerText) {
 
         selectedCell[0].dataset.isFilled = 'false';
+        selectedCell[0].dataset.value = '';
 
         for (let i = 0; i < notesCollection.length; i++) {
             notesCollection[i].style.display = 'inline-flex';
@@ -159,6 +161,7 @@ function answerInput(num, notesCollection) {
     } else if (num.toString() !== answerSpot[0].innerText) {
 
         answerSpot[0].innerText = num.toString();
+        selectedCell[0].dataset.value = num.toString();
 
         let remove = '.note' + num.toString();
         /* #region  remove column notes */

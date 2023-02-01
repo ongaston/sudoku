@@ -32,7 +32,6 @@ $(window).on('load', function() {
 
 })
 
-
 $(resetButton).on('click', function() {
     //removes filled in answers and shows hidden note objects again
     for (let i = 0; i < blankCells.length; i++) {
@@ -60,7 +59,7 @@ $(resetButton).on('click', function() {
                 
                 for (let p = 0; p < notesCollection.length; p++) {
 
-                    notesCollection[p].innerText = defaultNotes[j][p + 1]; 
+                    notesCollection[p].innerHTML = '<p>' + defaultNotes[j][p + 1] + '</p>'; 
 
                 }
 
