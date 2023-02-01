@@ -1,21 +1,22 @@
 html {
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     text-align: center;
     position: relative;
-    background-color: rgb(4, 41, 48);
+    background-color: var(--main-teal);
 }
 
 :root {
-    --main-teal: rgb(4, 41, 48);
-    --light-teal: rgb(6, 66, 78);
+    --main-teal: rgb(2, 23, 27);
+    --light-teal: rgb(7, 49, 58);
     --dark-teal: rgb(1, 16, 19);
     --off-white: rgb(214, 202, 185);
     --light-cornflower: rgb(199, 211, 238);
     --lighter-cornflower: rgb(211, 219, 236);
 }
 
-main, body {
+main,
+body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +32,7 @@ main, body {
     justify-content: center;
     align-items: center;
     border-radius: 3px;
-    border: 7px double black;
+    border: 7px double var(--off-white);
     flex-direction: column;
     margin-top: 4rem;
 }
@@ -102,8 +103,7 @@ main, body {
 }
 
 
-/*controls menu*/
-
+/* #region controls */
 #controls {
     display: inline-flex;
     justify-content: center;
@@ -116,7 +116,8 @@ main, body {
     background-color: antiquewhite;
 }
 
-#numbers-container, #other-controls {
+#numbers-container,
+#other-controls {
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
@@ -134,7 +135,8 @@ main, body {
 
 }
 
-.number-input:hover, #reset-button:hover {
+.number-input:hover,
+#reset-button:hover {
     cursor: pointer;
     background-color: var(--light-teal);
     box-shadow: 1px 1px 1px black;
@@ -144,7 +146,8 @@ main, body {
     margin-top: 1.5rem;
 }
 
-#reset-button, #note-mode {
+#reset-button,
+#note-mode {
     font-size: 18px;
     font-weight: bold;
     border: 3px outset black;
@@ -163,7 +166,8 @@ main, body {
     cursor: pointer;
 }
 
-.number-input:active, #reset-button:active {
+.number-input:active,
+#reset-button:active {
     background-color: var(--dark-teal);
     box-shadow: -1px -1px 1px var(--dark-teal);
     color: var(--off-white);
@@ -174,17 +178,18 @@ main, body {
     display: none;
 }
 
+/* #endregion */
+
 @media only screen and (max-width: 480px) {
 
     html {
-        font-size: 8.75px;
+        font-size: 8px;
     }
 
     #board {
-        margin: 0 auto;
-        border: 5px solid black;
+        margin: 10% auto 0;
+        border: 5px solid var(--off-white);
         position: relative;
-        right: 1rem;
     }
 
     .note {
@@ -199,6 +204,11 @@ main, body {
 
     .number-input {
         margin: 0 0.5rem;
+    }
+
+    .selected {
+        width: 3.944rem;
+        height: 3.944rem;
     }
 
 }
