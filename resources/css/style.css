@@ -126,7 +126,7 @@ body {
 .number-input {
     font-size: 3rem;
     margin: 0 0.5rem;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 1rem;
     background-color: var(--main-teal);
     border: 2px solid var(--off-white);
     border-radius: 2px;
