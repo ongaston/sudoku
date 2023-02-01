@@ -38,6 +38,41 @@ $(document).on('keypress', function (e) {
     }
 })
 
+$(document).on('keydown', function(e) {
+
+    let key = e.originalEvent.key;
+    let notesCollection = $(selectedCell).find('.note');
+
+    if (key == 'Backspace') {
+
+        let answerSpot = $(selectedCell).find('h1');
+
+        if (selectedCell[0].dataset.isFilled == 'true') {
+
+            selectedCell[0].dataset.isFilled = 'false';
+
+            for (let i = 0; i < notesCollection.length; i++) {
+
+                notesCollection[i].style.display = 'inline-flex';
+
+            }
+
+            answerSpot[0].innerText = '';
+
+        } else {
+
+            for (let i = 0; i < notesCollection.length; i++) {
+
+                notesCollection[i].children[0].innerText = '';
+
+            }
+
+        }
+
+    }
+
+})
+
 
 //note mode function
 
