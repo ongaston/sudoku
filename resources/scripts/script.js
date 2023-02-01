@@ -123,10 +123,24 @@ for (let i = 0; i < cellsArray.length; i++) {
                 if (cellsArray[j].dataset.isSelected == 'true') {
                     cellsArray[j].dataset.isSelected = 'false';
                     cellsArray[j].classList.remove('selected');
+
+                    if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+
+                        cellsArray[i].style.borderRight = '6px solid black';
+                        //cellsArray[i].style.width = '4.444rem';
+        
+                    }
                 }
             }
             cellsArray[i].classList.add('selected');
             cellsArray[i].dataset.isSelected = 'true';
+            
+            if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+
+                cellsArray[i].style.borderRight = '8px solid black';
+                //cellsArray[i].style.width = '4.444rem';
+
+            }
 
         })
     }

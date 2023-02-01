@@ -538,11 +538,25 @@ function arrowMove(key) {
 
     }
 
+    if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
+
+        selectedCell[0].style.borderRight = '6px solid black';
+        //cellsArray[i].style.width = '4.444rem';
+
+    }
+
     selectedCell[0].dataset.isSelected = 'false';
     selectedCell[0].classList.remove('selected');
 
     newCell.classList.add('selected');
     newCell.dataset.isSelected = 'true';
+
+        if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
+
+        selectedCell[0].style.borderRight = '8px solid black';
+        //cellsArray[i].style.width = '4.444rem';
+
+    }
 
 }
 
