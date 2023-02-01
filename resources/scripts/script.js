@@ -184,7 +184,7 @@ let rowICells = document.getElementById('rowI').children;
 for (let i = 0; i < rowICells.length; i++) {
     rowI.push(rowICells[i]);
 }
-let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG];
+let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
 /* #endregion */
 
 
@@ -210,4 +210,4 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-export { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
+export { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };

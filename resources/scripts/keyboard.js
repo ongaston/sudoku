@@ -1,4 +1,4 @@
-import { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
+import { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 
 let cellsArray = document.getElementsByClassName('cell');
 let selectedCell = document.getElementsByClassName('selected');
@@ -38,7 +38,7 @@ $(document).on('keypress', function (e) {
     }
 })
 
-$(document).on('keydown', function(e) {
+$(document).on('keydown', function (e) {
 
     let key = e.originalEvent.key;
     let notesCollection = $(selectedCell).find('.note');
@@ -71,6 +71,13 @@ $(document).on('keydown', function(e) {
 
     }
 
+    if ((key == 'ArrowUp' || key == 'ArrowDown') || (key == 'ArrowLeft' || key == 'ArrowRight')) {
+
+        e.preventDefault();
+        arrowMove(key);
+
+    }
+
 })
 
 
@@ -90,7 +97,6 @@ function noteInput(num, notesCollection) {
     }
 
 }
-
 
 //answer input function
 
@@ -201,11 +207,11 @@ function noteCheck() {
             let filledCheck = 'p:contains(' + currentNum.toString() + ')';
             remainingNote = $(remainingNote).find(filledCheck);
             remainingNote = Array.from(remainingNote);
-            remainingNote = remainingNote.filter(function(e) {
+            remainingNote = remainingNote.filter(function (e) {
 
                 if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
                     return false;
-                } 
+                }
                 return e;
             })
 
@@ -229,11 +235,11 @@ function noteCheck() {
             let filledCheck = 'p:contains(' + currentNum.toString() + ')';
             remainingNote = $(remainingNote).find(filledCheck);
             remainingNote = Array.from(remainingNote);
-            remainingNote = remainingNote.filter(function(e) {
+            remainingNote = remainingNote.filter(function (e) {
 
                 if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
                     return false;
-                } 
+                }
                 return e;
             })
 
@@ -256,11 +262,11 @@ function noteCheck() {
             let filledCheck = 'p:contains(' + currentNum.toString() + ')';
             remainingNote = $(remainingNote).find(filledCheck);
             remainingNote = Array.from(remainingNote);
-            remainingNote = remainingNote.filter(function(e) {
+            remainingNote = remainingNote.filter(function (e) {
 
                 if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
                     return false;
-                } 
+                }
                 return e;
             })
 
@@ -271,6 +277,272 @@ function noteCheck() {
 
         }
     }
+
+}
+
+//arrow key navigation
+
+function arrowMove(key) {
+
+    /* #region  declarations */
+    let newCell;
+    const rowIndexFunction = (e) => e == eval(selectedCell[0].dataset.row);
+    let selectedRowIndex = rowArray.findIndex(rowIndexFunction);
+    let newRowIndex;
+    let newRow;
+
+    const columnIndexFunction = (e) => e == eval(selectedCell[0].dataset.column);
+    let selectedColumnIndex = columnArray.findIndex(columnIndexFunction);
+    let newColumnIndex;
+    let newColumn;
+
+    /* #endregion */
+    /* #region  cells */
+    let e2 = document.getElementById('e2');
+    let f6 = document.getElementById('f6');
+    let i3 = document.getElementById('i3');
+    let i8 = document.getElementById('i8');
+
+    let b2 = document.getElementById('b2');
+    let c6 = document.getElementById('c6');
+    let f3 = document.getElementById('f3');
+    let e8 = document.getElementById('e8');
+
+    let e4 = document.getElementById('e4');
+    let g7 = document.getElementById('g7');
+    let h2 = document.getElementById('h2');
+
+    let b5 = document.getElementById('b5');
+    let g1 = document.getElementById('g1');
+    let h5 = document.getElementById('h5');
+    /* #endregion */
+
+    switch (key) {
+
+        case 'ArrowUp':
+            if (selectedRowIndex == 0) {
+                newRowIndex = 8;
+            } else {
+                newRowIndex = selectedRowIndex - 1;
+            }
+            newRow = rowArray[newRowIndex];
+
+            for (let i = 0; i < cellsArray.length; i++) {
+
+                if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] !== 'given') {
+
+                    newCell = cellsArray[i];
+
+                } else if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] == 'given') {
+
+                    switch (selectedCell[0]) {
+
+                        case e2:
+                            newCell = b2;
+                            break;
+                        case f6:
+                            newCell = c6;
+                            break;
+                        case i3:
+                            newCell = f3;
+                            break;
+                        case i8:
+                            newCell = e8;
+                            break;
+                        default:
+                            if (newRowIndex == 0) {
+                                newRowIndex = 8;
+                            } else {
+                                newRowIndex -= 1;
+                            }
+                            newRow = rowArray[newRowIndex];
+                            for (let j = 0; j < cellsArray.length; j++) {
+                                if ((cellsArray[j].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[j].dataset.row) == newRow) && cellsArray[j].classList[1] !== 'given') {
+
+                                    newCell = cellsArray[j];
+
+                                }
+                            }
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            break;
+        case 'ArrowDown':
+            if (selectedRowIndex == 8) {
+                newRowIndex = 0;
+            } else {
+                newRowIndex = selectedRowIndex + 1;
+            }
+            newRow = rowArray[newRowIndex];
+
+            for (let i = 0; i < cellsArray.length; i++) {
+
+                if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] !== 'given') {
+
+                    newCell = cellsArray[i];
+
+                } else if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] == 'given') {
+
+                    switch (selectedCell[0]) {
+
+                        case b2:
+                            newCell = e2;
+                            break;
+                        case c6:
+                            newCell = f6;
+                            break;
+                        case f3:
+                            newCell = i3;
+                            break;
+                        case e8:
+                            newCell = i8;
+                            break;
+                        default:
+                            if (newRowIndex == 8) {
+                                newRowIndex = 0;
+                            } else {
+                                newRowIndex += 1;
+                            }
+                            newRow = rowArray[newRowIndex];
+                            for (let j = 0; j < cellsArray.length; j++) {
+                                if ((cellsArray[j].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[j].dataset.row) == newRow) && cellsArray[j].classList[1] !== 'given') {
+
+                                    newCell = cellsArray[j];
+
+                                }
+                            }
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            break;
+        case 'ArrowRight':
+            if (selectedColumnIndex == 8) {
+                newColumnIndex = 0;
+            } else {
+                newColumnIndex = selectedColumnIndex + 1;
+            }
+            newColumn = columnArray[newColumnIndex];
+
+            for (let i = 0; i < cellsArray.length; i++) {
+
+                if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] !== 'given') {
+
+                    newCell = cellsArray[i];
+
+                } else if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] == 'given') {
+
+                    switch (selectedCell[0]) {
+
+                        case b2:
+                            newCell = b5;
+                            break;
+                        case e4:
+                            newCell = e8;
+                            break;
+                        case g7:
+                            newCell = g1;
+                            break;
+                        case h2:
+                            newCell = h5;
+                            break;
+                        default:
+                            if (newColumnIndex == 8) {
+                                newColumnIndex = 0;
+                            } else {
+                                newColumnIndex += 1;
+                            }
+                            newColumn = columnArray[newColumnIndex];
+                            for (let j = 0; j < cellsArray.length; j++) {
+                                if ((cellsArray[j].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[j].dataset.column) == newColumn) && cellsArray[j].classList[1] !== 'given') {
+
+                                    newCell = cellsArray[j];
+
+                                }
+                            }
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            break;
+        case 'ArrowLeft':
+            if (selectedColumnIndex == 0) {
+                newColumnIndex = 8;
+            } else {
+                newColumnIndex = selectedColumnIndex - 1;
+            }
+            newColumn = columnArray[newColumnIndex];
+
+            for (let i = 0; i < cellsArray.length; i++) {
+
+                if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] !== 'given') {
+
+                    newCell = cellsArray[i];
+
+                } else if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] == 'given') {
+
+                    switch (selectedCell[0]) {
+
+                        case b5:
+                            newCell = b2;
+                            break;
+                        case e8:
+                            newCell = e4;
+                            break;
+                        case g1:
+                            newCell = g7;
+                            break;
+                        case h5:
+                            newCell = h2;
+                            break;
+                        default:
+                            if (newColumnIndex == 0) {
+                                newColumnIndex = 8;
+                            } else {
+                                newColumnIndex -= 1;
+                            }
+                            newColumn = columnArray[newColumnIndex];
+                            for (let j = 0; j < cellsArray.length; j++) {
+                                if ((cellsArray[j].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[j].dataset.column) == newColumn) && cellsArray[j].classList[1] !== 'given') {
+
+                                    newCell = cellsArray[j];
+
+                                }
+                            }
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            break;
+
+    }
+
+    selectedCell[0].dataset.isSelected = 'false';
+    selectedCell[0].classList.remove('selected');
+
+    newCell.classList.add('selected');
+    newCell.dataset.isSelected = 'true';
 
 }
 
