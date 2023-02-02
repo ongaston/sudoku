@@ -5,6 +5,7 @@ let selectedCell = document.getElementsByClassName('selected');
 
 let noteToggle = document.getElementById('note-toggle');
 let globalToggle = false;
+let noteRemovalToggle = document.getElementById('note-removal');
 
 
 $(noteToggle).on('click', function () {
@@ -117,33 +118,9 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = num.toString();
 
-        /* #region  remove notes in column */
-        let remove = '.note' + num.toString();
-        let columnNumber = selectedCell[0].dataset.column;
-        columnNumber = eval(columnNumber);
-        let removeNote = $(columnNumber).find(remove);
-        for (let i = 0; i < removeNote.length; i++) {
-            removeNote[i].innerText = '';
+        if (noteRemovalToggle.checked == true) {
+            removeNotes(num);
         }
-        /* #endregion */
-
-        /* #region  remove notes in row */
-        let rowNumber = selectedCell[0].dataset.row;
-        rowNumber = eval(rowNumber);
-        let removeRow = $(rowNumber).find(remove);
-        for (let i = 0; i < removeRow.length; i++) {
-            removeRow[i].innerText = '';
-        }
-        /* #endregion */
-
-        /* #region  remove notes in block */
-        let blockNumber = selectedCell[0].dataset.block;
-        blockNumber = eval(blockNumber);
-        let removeBlock = $(blockNumber).find(remove);
-        for (let i = 0; i < removeBlock.length; i++) {
-            removeBlock[i].innerText = '';
-        }
-        /* #endregion */
 
         //remove answer and show notes again
     } else if (num.toString() == answerSpot[0].innerText) {
@@ -163,33 +140,9 @@ function answerInput(num, notesCollection) {
         answerSpot[0].innerText = num.toString();
         selectedCell[0].dataset.value = num.toString();
 
-        let remove = '.note' + num.toString();
-        /* #region  remove column notes */
-        let columnNumber = selectedCell[0].dataset.column;
-        columnNumber = eval(columnNumber);
-        let removeNote = $(columnNumber).find(remove);
-        for (let i = 0; i < removeNote.length; i++) {
-            removeNote[i].innerText = '';
+        if (noteRemovalToggle.checked == true) {
+            removeNotes(num);
         }
-        /* #endregion */
-
-        /* #region  remove row notes */
-        let rowNumber = selectedCell[0].dataset.row;
-        rowNumber = eval(rowNumber);
-        let removeRow = $(rowNumber).find(remove);
-        for (let i = 0; i < removeRow.length; i++) {
-            removeRow[i].innerText = '';
-        }
-        /* #endregion */
-
-        /* #region  remove block notes */
-        let blockNumber = selectedCell[0].dataset.block;
-        blockNumber = eval(blockNumber);
-        let removeBlock = $(blockNumber).find(remove);
-        for (let i = 0; i < removeBlock.length; i++) {
-            removeBlock[i].innerText = '';
-        }
-        /* #endregion */
 
     }
 
@@ -561,4 +514,38 @@ function arrowMove(key) {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck };
+//auto remove notes function
+
+function removeNotes(num, cell=selectedCell[0]) {
+
+        /* #region  remove notes in column */
+        let remove = '.note' + num.toString();
+        let columnNumber = cell.dataset.column;
+        columnNumber = eval(columnNumber);
+        let removeNote = $(columnNumber).find(remove);
+        for (let i = 0; i < removeNote.length; i++) {
+            removeNote[i].innerText = '';
+        }
+        /* #endregion */
+
+        /* #region  remove notes in row */
+        let rowNumber = cell.dataset.row;
+        rowNumber = eval(rowNumber);
+        let removeRow = $(rowNumber).find(remove);
+        for (let i = 0; i < removeRow.length; i++) {
+            removeRow[i].innerText = '';
+        }
+        /* #endregion */
+
+        /* #region  remove notes in block */
+        let blockNumber = cell.dataset.block;
+        blockNumber = eval(blockNumber);
+        let removeBlock = $(blockNumber).find(remove);
+        for (let i = 0; i < removeBlock.length; i++) {
+            removeBlock[i].innerText = '';
+        }
+        /* #endregion */
+
+}
+
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes };
