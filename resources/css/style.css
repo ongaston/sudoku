@@ -55,8 +55,10 @@ body {
 #settings-title {
     color: antiquewhite;
     font-size: 2rem;
-    padding: 0.5rem 0 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-decoration: underline;
+    text-underline-offset: 1rem;
 }
 
 #close-settings {
@@ -304,6 +306,26 @@ body {
 
     #mobile-check {
         display: block;
+    }
+
+    #note-mode {
+        margin-right: 7rem;;
+    }
+
+    #note-mode,
+    #reset-button {
+        font-size: 14px;
+    }
+
+    #settings-title {
+        font-size: 2.5rem;
+    }
+
+    #color-notes,
+    #timer-container,
+    #note-removal-container,
+    #blue-container {
+        font-size: 1.8rem;
     }
 
 
