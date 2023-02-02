@@ -28,6 +28,10 @@ body {
     display: none;
 }
 
+label:hover {
+    cursor: pointer;
+}
+
 /* #region settings menu */
 #settings-overlay {
     width: 100%;
@@ -86,7 +90,11 @@ body {
 #timer-container:hover,
 #note-removal-container:hover,
 #blue-container:hover,
-#close-settings:hover {
+#close-settings:hover,
+#color-toggle:hover,
+#timer:hover,
+#note-removal:hover,
+#blue-highlight:hover {
     cursor: pointer;
     color: var(--light-antique);
 }
