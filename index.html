@@ -12,16 +12,43 @@
 
     <body>
 
-        <header>
-            
-            <nav id='nav-bar'>
+        <div id='settings-overlay'></div>
 
-                
+        <div id='settings-menu'>
 
-            </nav>
+            <span id='close'><i class='fa-solid fa-times fa-xl' id='close-settings'></i></span>
 
+            <h1 id='settings-title'>Settings</h1>
 
-        </header>
+            <div id='color-notes'>
+
+                <input id='color-toggle' type='checkbox'>
+                <label for='color-toggle'>Color Notes</label>
+
+            </div>
+
+            <div id='timer-container'>
+
+                <input id='timer' type='checkbox'>
+                <label for='timer'>Show Timer</label>
+
+            </div>
+
+            <div id='note-removal-container'>
+
+                <input id='note-removal' type='checkbox' checked='true'>
+                <label for='note-removal'>Auto Note Removal</label>
+
+            </div>
+
+            <div id='blue-container'>
+
+                <input id='blue-highlight' type='checkbox' checked='true'>
+                <label for='blue-highlight'>Highlight Answers</label>
+
+            </div>
+
+        </div>
 
         <main>
 
@@ -1488,6 +1515,8 @@
 
                     </div>
 
+                    <span id='gear'><i class='fa-solid fa-gear fa-xl' id='settings-button'></i></span>
+
                 </div>
 
             </div>
@@ -1497,9 +1526,11 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src='./resources/scripts/utilities.js' type='module'></script>
         <script src='./resources/scripts/script.js' type='module'></script>
         <script src='./resources/scripts/keyboard.js' type='module'></script>
         <script src='./resources/scripts/reset.js' type='module'></script>
+        <script src='./resources/scripts/settings.js' type='module'></script>
     </body>
 
 </html>

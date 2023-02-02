@@ -13,6 +13,7 @@ html {
     --off-white: rgb(214, 202, 185);
     --light-cornflower: rgb(199, 211, 238);
     --lighter-cornflower: rgb(211, 219, 236);
+    --light-antique: rgb(250, 242, 231);
 }
 
 main,
@@ -27,6 +28,78 @@ body {
     display: none;
 }
 
+/* #region settings menu */
+#settings-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--light-teal);
+    opacity: 0.2;
+    z-index: 9;
+    display: none;
+}
+
+#settings-menu {
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    position: absolute;
+    justify-content: center;
+    width: 50%;
+    padding: 0 3rem 3rem;
+    background-color: var(--dark-teal);
+    z-index: 10;
+    opacity: 100%;
+}
+
+#settings-title {
+    color: antiquewhite;
+    font-size: 2rem;
+    padding: 0.5rem 0 1.5rem;
+    text-decoration: underline;
+}
+
+#close-settings {
+    color: antiquewhite;
+    position: relative;
+    left: 97%;
+    padding-top: 1rem;
+}
+
+#close {
+    position: relative;
+    left: 97%;
+}
+
+#color-notes,
+#timer-container,
+#note-removal-container,
+#blue-container {
+    padding: 0.5rem 0;
+    color: antiquewhite;
+    font-size: 18px;
+}
+
+#color-notes:hover,
+#timer-container:hover,
+#note-removal-container:hover,
+#blue-container:hover,
+#close-settings:hover {
+    cursor: pointer;
+    color: var(--light-antique);
+}
+
+#color-toggle,
+#timer,
+#note-removal,
+#blue-highlight {
+    margin-right: 0.5rem;
+}
+
+/* #endregion */
+
+
+/* #region gameboard */
 #board {
     display: inline-flex;
     justify-content: center;
@@ -102,6 +175,8 @@ body {
     font-size: 3.5rem;
 }
 
+/* #endregion */
+
 
 /* #region controls */
 #controls {
@@ -113,6 +188,7 @@ body {
     border: 1px solid var(--light-teal);
     border-radius: 5px;
     background-color: var(--dark-teal);
+    position: static;
 }
 
 #numbers-container,
@@ -161,6 +237,10 @@ body {
     padding: 0.3rem 0.5rem;
 }
 
+#note-mode {
+    margin-right: 25.5rem;
+}
+
 #note-mode:hover {
     background-color: var(--light-teal);
     box-shadow: 1px 1px 1px black;
@@ -180,6 +260,15 @@ body {
 
 #mobile-check {
     display: none;
+}
+
+#settings-button {
+    color: var(--off-white);
+}
+
+#settings-button:hover {
+    cursor: pointer;
+    color: antiquewhite;
 }
 
 /* #endregion */
@@ -213,11 +302,9 @@ body {
         height: 3.944rem;
     }
 
-}
-
-@media only screen and (max-width: 480px) {
     #mobile-check {
         display: block;
     }
+
 
 }
