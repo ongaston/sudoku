@@ -6,6 +6,7 @@ let selectedCell = document.getElementsByClassName('selected');
 let noteToggle = document.getElementById('note-toggle');
 let globalToggle = false;
 let noteRemovalToggle = document.getElementById('note-removal');
+let blueToggle = document.getElementById('blue-highlight');
 
 
 $(noteToggle).on('click', function () {
@@ -35,7 +36,9 @@ $(document).on('keypress', function (e) {
         //answer input
     } else if (globalToggle == false) {
         answerInput(key, notesCollection);
-        noteCheck();
+        if (blueToggle.checked == true) {
+            noteCheck();
+        }
     }
 })
 
