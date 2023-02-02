@@ -33,6 +33,15 @@ $(window).on('load', function() {
 })
 
 $(resetButton).on('click', function() {
+
+    let secondsElement = document.getElementById('seconds');
+    let minutesElement = document.getElementById('minutes');
+    let hoursElement = document.getElementById('hours');
+
+    secondsElement.innerText = '00';
+    minutesElement.innerText = '00';
+    hoursElement.innerText = '00';
+
     //removes filled in answers and shows hidden note objects again
     for (let i = 0; i < blankCells.length; i++) {
 

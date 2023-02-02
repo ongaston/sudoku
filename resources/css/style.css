@@ -32,6 +32,14 @@ label:hover {
     cursor: pointer;
 }
 
+#counter-container {
+    position: absolute;
+    bottom: 93%;
+    padding: 0.5rem 0;
+    color: antiquewhite;
+    font-size: 18px;
+}
+
 /* #region settings menu */
 #settings-overlay {
     width: 100%;
