@@ -20,6 +20,10 @@ let counterContainer = document.getElementById('counter-container');
 let hoursElement = document.getElementById('hours');
 let minutesElement = document.getElementById('minutes');
 let secondsElement = document.getElementById('seconds');
+
+let blueInfoSign = document.getElementById('info-sign-container');
+let blueInfo = document.getElementById('blue-info');
+let hoverToggle = false;
 /* #endregion */
 
 $(settingsButton).on('click', function () {
@@ -133,3 +137,35 @@ $(blueToggle).on('click', function() {
     }
 
 })
+
+setTimeout(() => { 
+    let infoSymbol = blueInfoSign.children[0].children[0];
+    $(infoSymbol).hover(
+        function() {
+            blueInfo.style.display = 'inline-flex';
+        }, function() {
+    
+        }
+    )
+}, 2000);
+
+$(blueInfo).hover(
+    function() {
+        hoverToggle = true;
+    }, function() {
+        hoverToggle = false;
+        blueInfo.style.display = 'none';
+    }
+)
+
+$(blueInfoSign).hover(
+    function() {
+
+    }, function() {
+        setTimeout(() => {
+            if (!hoverToggle) {
+                blueInfo.style.display = 'none';
+            }
+    }, 100)
+    }
+)
