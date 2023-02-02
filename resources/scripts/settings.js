@@ -6,6 +6,8 @@ import {removeNotes, noteCheck} from './keyboard.js';
 let cellArray = document.getElementsByClassName('cell');
 cellArray = Array.from(cellArray);
 
+let mobileCheck = document.getElementById('mobile-check');
+
 let settingsButton = document.getElementById('gear');
 let closeSettings = document.getElementById('close');
 let settingsUnderlay = document.getElementById('settings-overlay');
@@ -40,6 +42,10 @@ $(closeSettings).on('click', function () {
     rotateToggle(settingsButton, 0, '0deg');
     inlineToggle(settingsMenu);
     settingsUnderlay.style.display = 'none';
+    if (hoverToggle) {
+        hoverToggle = false;
+        blueInfo.style.display = 'none';
+    }
 
 })
 
@@ -138,34 +144,53 @@ $(blueToggle).on('click', function() {
 
 })
 
-setTimeout(() => { 
-    let infoSymbol = blueInfoSign.children[0].children[0];
-    $(infoSymbol).hover(
+if ($(mobileCheck).css('display') !== 'block') {
+
+    setTimeout(() => { 
+        let infoSymbol = blueInfoSign.children[0].children[0];
+        $(infoSymbol).hover(
+            function() {
+                blueInfo.style.display = 'inline-flex';
+            }, function() {
+        
+            }
+        )
+    }, 2000);
+
+    $(blueInfo).hover(
         function() {
-            blueInfo.style.display = 'inline-flex';
+            hoverToggle = true;
         }, function() {
-    
+            hoverToggle = false;
+            blueInfo.style.display = 'none';
         }
     )
-}, 2000);
 
-$(blueInfo).hover(
-    function() {
-        hoverToggle = true;
-    }, function() {
-        hoverToggle = false;
-        blueInfo.style.display = 'none';
+    $(blueInfoSign).hover(
+        function() {
+
+        }, function() {
+            setTimeout(() => {
+                if (!hoverToggle) {
+                    blueInfo.style.display = 'none';
+                }
+        }, 100)
+        }
+    )
     }
-)
 
-$(blueInfoSign).hover(
-    function() {
+if ($(mobileCheck).css('display') == 'block') {
 
-    }, function() {
-        setTimeout(() => {
-            if (!hoverToggle) {
-                blueInfo.style.display = 'none';
-            }
-    }, 100)
-    }
-)
+    $(blueInfoSign).on('click', function() {
+
+        if (hoverToggle == false) {
+            hoverToggle = true;
+            blueInfo.style.display = 'inline-flex';
+        } else if (hoverToggle) {
+            hoverToggle = false;
+            blueInfo.style.display = 'none';
+        }
+
+    })
+
+}
