@@ -153,6 +153,12 @@ label:hover {
     cursor: default;
 }
 
+#close-blue-span {
+    position: absolute;
+    top: 7%;
+    left: 88%;
+}
+
 /* #endregion */
 
 

@@ -181,7 +181,32 @@ if ($(mobileCheck).css('display') !== 'block') {
 
 if ($(mobileCheck).css('display') == 'block') {
 
+    $(settingsUnderlay).on('click', function() {
+
+        hoverToggle = false;
+        blueInfo.style.display = 'none';
+
+    })
+
     $(blueInfoSign).on('click', function() {
+
+        let closeBlueSpan = document.createElement('span');
+        let closeBlue = document.createElement('i');
+
+        closeBlueSpan.setAttribute('id', 'close-blue-span');
+        closeBlue.setAttribute('class', 'fa-solid fa-times');
+        closeBlue.setAttribute('id', 'close-blue');
+
+        $(closeBlue).appendTo(closeBlueSpan);
+        $(closeBlueSpan).prependTo(blueInfo);
+
+        $(closeBlueSpan).on('click', function() {
+            hoverToggle = false;
+            blueInfo.style.display = 'none';
+            $(closeBlue).remove();
+            $(closeBlueSpan).remove();
+        })
+
 
         if (hoverToggle == false) {
             hoverToggle = true;
