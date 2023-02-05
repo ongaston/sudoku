@@ -185,6 +185,8 @@ if ($(mobileCheck).css('display') == 'block') {
 
         hoverToggle = false;
         blueInfo.style.display = 'none';
+        inlineToggle(settingsMenu);
+        settingsUnderlay.style.display = 'none';
 
     })
 
