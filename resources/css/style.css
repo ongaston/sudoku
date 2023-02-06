@@ -34,6 +34,7 @@ label:hover,
     cursor: pointer;
 }
 
+/* #region timer and pause */
 #counter-container {
     position: absolute;
     bottom: 93%;
@@ -43,13 +44,69 @@ label:hover,
     display: inline-flex;
 }
 
-#counter-container > p {
+#counter-container>p {
     margin-left: 1.5rem;
 }
 
 #pause {
     margin-left: 1rem;
 }
+
+#pause-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--light-teal);
+    z-index: 9;
+    display: none;
+    opacity: 85%;
+}
+
+#pause-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--dark-teal);
+    z-index: 12;
+    opacity: 100%;
+    width: 40%;
+    padding: 0 3rem 3rem;
+    position: absolute;
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
+    border-radius: 3px;
+}
+
+#pause-title {
+
+    padding: 2rem 0;
+    box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
+
+}
+
+#resume {
+    color: antiquewhite;
+    background-color: var(--main-teal);
+    width: 50%;
+    margin: 1.5rem auto 0;
+    padding: 0.7rem 0;
+    border: 1px solid var(--light-teal);
+    border-radius: 50px;
+    box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
+}
+
+#resume:hover {
+    cursor: pointer;
+    color: var(--light-antique);
+    background-color: var(--light-teal);
+    border: 1px solid var(--main-teal);
+}
+
+#resume:active {
+    color: var(--light-antique);
+    background-color: var(--dark-teal);
+    border: 1px solid var(--light-teal);
+}
+
+/* #endregion */
 
 /* #region settings menu */
 #settings-overlay {
@@ -76,7 +133,8 @@ label:hover,
     box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
 }
 
-#settings-title {
+#settings-title,
+#pause-title {
     color: antiquewhite;
     font-size: 2rem;
     padding-bottom: 1.5rem;
@@ -171,7 +229,6 @@ label:hover,
 }
 
 /* #endregion */
-
 
 /* #region gameboard */
 #board {
@@ -336,7 +393,7 @@ label:hover,
     display: none;
 }
 
-#settings-button{
+#settings-button {
     color: var(--off-white);
 }
 
@@ -389,7 +446,8 @@ label:hover,
     }
 
     #note-mode {
-        margin-right: 7rem;;
+        margin-right: 7rem;
+        ;
     }
 
     #note-mode,

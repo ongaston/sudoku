@@ -24,7 +24,10 @@ let minutesElement = document.getElementById('minutes');
 let secondsElement = document.getElementById('seconds');
 let pauseButton = document.getElementById('pause');
 let timerInterval;
-let pauseToggle = false;
+
+let pauseOverlay = document.getElementById('pause-overlay');
+let pauseMenu = document.getElementById('pause-menu');
+let resume = document.getElementById('resume');
 
 let blueInfoSign = document.getElementById('info-sign-container');
 let blueInfo = document.getElementById('blue-info');
@@ -102,17 +105,19 @@ function timerFunction() {
 
 timerInterval = setInterval(timerFunction, 1000);
 
-$(pause).on('click', function() {
+$(pauseButton).on('click', function() {
 
-    if (pauseToggle == false) {
-        clearInterval(timerInterval);
-        pause.innerHTML = '<i class="fa-solid fa-play fa-sm"></i>';
-        pauseToggle = true;
-    } else {
-        timerInterval = setInterval(timerFunction, 1000);
-        pause.innerHTML = '<i class="fa-solid fa-pause fa-sm"></i>';
-        pauseToggle = false;
-    }
+    clearInterval(timerInterval);
+    pauseOverlay.style.display = 'block';
+    pauseMenu.style.display = 'block';
+
+})
+
+$(resume).on('click', function() {
+
+    timerInterval = setInterval(timerFunction, 1000);
+    pauseOverlay.style.display = 'none';
+    pauseMenu.style.display = 'none';
 
 })
 
