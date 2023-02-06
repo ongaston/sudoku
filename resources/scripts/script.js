@@ -1,4 +1,5 @@
-import { globalToggle, noteInput, answerInput, selectedCell, noteCheck } from "./keyboard.js";
+import { globalToggle, noteInput, answerInput, selectedCell, noteCheck, modifyBoardCollection } from "./keyboard.js";
+import { getBoard } from "./undo.js";
 
 
 /* #region  columns */
@@ -26,125 +27,6 @@ let block8 = [];
 let block9 = [];
 let blockArray = [block1, block2, block3, block4, block5, block6, block7, block8, block9];
 /* #endregion */
-
-
-let cellsArray = document.getElementsByClassName('cell');
-
-for (let i = 0; i < cellsArray.length; i++) {
-
-    //adds cells into appropriate column arrays
-    switch (cellsArray[i].id[1]) {
-        case '1':
-            column1.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column1');
-            break;
-        case '2':
-            column2.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column2');
-            break;
-        case '3':
-            column3.push(cellsArray[i]);
-            cellsArray[i].style.borderRight = '6px solid black';
-            cellsArray[i].setAttribute('data-column', 'column3');
-            break;
-        case '4':
-            column4.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column4');
-            break;
-        case '5':
-            column5.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column5');
-            break;
-        case '6':
-            column6.push(cellsArray[i]);
-            cellsArray[i].style.borderRight = '6px solid black';
-            cellsArray[i].setAttribute('data-column', 'column6');
-            break;
-        case '7':
-            column7.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column7');
-            break;
-        case '8':
-            column8.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column8');
-            break;
-        case '9':
-            column9.push(cellsArray[i]);
-            cellsArray[i].setAttribute('data-column', 'column9');
-            break;
-    }
-
-    switch (cellsArray[i].id[0]) {
-        case 'a':
-            cellsArray[i].setAttribute('data-row', 'rowA');
-            break;
-        case 'b':
-            cellsArray[i].setAttribute('data-row', 'rowB');
-            break;
-        case 'c':
-            cellsArray[i].setAttribute('data-row', 'rowC');
-            break;
-        case 'd':
-            cellsArray[i].setAttribute('data-row', 'rowD');
-            break;
-        case 'e':
-            cellsArray[i].setAttribute('data-row', 'rowE');
-            break;
-        case 'f':
-            cellsArray[i].setAttribute('data-row', 'rowF');
-            break;
-        case 'g':
-            cellsArray[i].setAttribute('data-row', 'rowG');
-            break;
-        case 'h':
-            cellsArray[i].setAttribute('data-row', 'rowH');
-            break;
-        case 'i':
-            cellsArray[i].setAttribute('data-row', 'rowI');
-            break;
-    }
-
-    //sorts cells into appropriate block arrays
-    let blockNumber = cellsArray[i].dataset.block;
-    blockNumber = eval(blockNumber);
-    for (let j = 0; j < blockArray.length; j++) {
-
-        if (blockNumber == blockArray[j]) {
-            blockArray[j].push(cellsArray[i]);
-        }
-
-    }
-
-    //toggles selected class for cells on click
-    if (cellsArray[i].classList[1] !== 'given') {
-        $(cellsArray[i]).on('click', function () {
-
-            for (let j = 0; j < cellsArray.length; j++) {
-                if (cellsArray[j].dataset.isSelected == 'true') {
-                    cellsArray[j].dataset.isSelected = 'false';
-                    cellsArray[j].classList.remove('selected');
-
-                    if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
-
-                        cellsArray[i].style.borderRight = '6px solid black';
-        
-                    }
-                }
-            }
-            cellsArray[i].classList.add('selected');
-            cellsArray[i].dataset.isSelected = 'true';
-            
-            if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
-
-                cellsArray[i].style.borderRight = '8px solid black';
-
-            }
-
-        })
-    }
-
-}
-
 
 /* #region  rows */
 let rowA = [];
@@ -200,6 +82,191 @@ let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
 /* #endregion */
 
 
+let originalBoard;
+let cellsArray = document.getElementsByClassName('cell');
+
+function resetGrid() {
+
+    cellsArray = document.getElementsByClassName('cell');
+
+    for (let i = 0; i < cellsArray.length; i++) {
+
+        //adds cells into appropriate column arrays
+        switch (cellsArray[i].id[1]) {
+            case '1':
+                column1.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column1');
+                break;
+            case '2':
+                column2.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column2');
+                break;
+            case '3':
+                column3.push(cellsArray[i]);
+                cellsArray[i].style.borderRight = '6px solid black';
+                cellsArray[i].setAttribute('data-column', 'column3');
+                break;
+            case '4':
+                column4.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column4');
+                break;
+            case '5':
+                column5.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column5');
+                break;
+            case '6':
+                column6.push(cellsArray[i]);
+                cellsArray[i].style.borderRight = '6px solid black';
+                cellsArray[i].setAttribute('data-column', 'column6');
+                break;
+            case '7':
+                column7.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column7');
+                break;
+            case '8':
+                column8.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column8');
+                break;
+            case '9':
+                column9.push(cellsArray[i]);
+                cellsArray[i].setAttribute('data-column', 'column9');
+                break;
+        }
+    
+        switch (cellsArray[i].id[0]) {
+            case 'a':
+                cellsArray[i].setAttribute('data-row', 'rowA');
+                break;
+            case 'b':
+                cellsArray[i].setAttribute('data-row', 'rowB');
+                break;
+            case 'c':
+                cellsArray[i].setAttribute('data-row', 'rowC');
+                break;
+            case 'd':
+                cellsArray[i].setAttribute('data-row', 'rowD');
+                break;
+            case 'e':
+                cellsArray[i].setAttribute('data-row', 'rowE');
+                break;
+            case 'f':
+                cellsArray[i].setAttribute('data-row', 'rowF');
+                break;
+            case 'g':
+                cellsArray[i].setAttribute('data-row', 'rowG');
+                break;
+            case 'h':
+                cellsArray[i].setAttribute('data-row', 'rowH');
+                break;
+            case 'i':
+                cellsArray[i].setAttribute('data-row', 'rowI');
+                break;
+        }
+    
+        //sorts cells into appropriate block arrays
+        let blockNumber = cellsArray[i].dataset.block;
+        blockNumber = eval(blockNumber);
+        for (let j = 0; j < blockArray.length; j++) {
+    
+            if (blockNumber == blockArray[j]) {
+                blockArray[j].push(cellsArray[i]);
+            }
+    
+        }
+    
+        //toggles selected class for cells on click
+        if (cellsArray[i].classList[1] !== 'given') {
+            $(cellsArray[i]).on('click', function () {
+    
+                for (let j = 0; j < cellsArray.length; j++) {
+                    if (cellsArray[j].dataset.isSelected == 'true') {
+                        cellsArray[j].dataset.isSelected = 'false';
+                        cellsArray[j].classList.remove('selected');
+    
+                        if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+    
+                            cellsArray[i].style.borderRight = '6px solid black';
+            
+                        }
+                    }
+                }
+                cellsArray[i].classList.add('selected');
+                cellsArray[i].dataset.isSelected = 'true';
+                
+                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+    
+                    cellsArray[i].style.borderRight = '8px solid black';
+    
+                }
+    
+            })
+        }
+    
+    }
+
+    
+    /* #region  rows */
+    rowA = [];
+    rowACells = document.getElementById('rowA').children;
+    for (let i = 0; i < rowACells.length; i++) {
+        rowA.push(rowACells[i]);
+    }
+    rowB = [];
+    rowBCells = document.getElementById('rowB').children;
+    for (let i = 0; i < rowBCells.length; i++) {
+        rowB.push(rowBCells[i]);
+    }
+    rowC = [];
+    rowCCells = document.getElementById('rowC').children;
+    rowCElement = document.getElementById('rowC');
+    rowCElement.style.borderBottom = '6px solid black';
+    for (let i = 0; i < rowCCells.length; i++) {
+        rowC.push(rowCCells[i]);
+    }
+    rowD = [];
+    rowDCells = document.getElementById('rowD').children;
+    for (let i = 0; i < rowDCells.length; i++) {
+        rowD.push(rowDCells[i]);
+    }
+    rowE = [];
+    rowECells = document.getElementById('rowE').children;
+    for (let i = 0; i < rowECells.length; i++) {
+        rowE.push(rowECells[i]);
+    }
+    rowF = [];
+    rowFCells = document.getElementById('rowF').children;
+    rowFElement = document.getElementById('rowF');
+    rowFElement.style.borderBottom = '6px solid black';
+    for (let i = 0; i < rowFCells.length; i++) {
+        rowF.push(rowFCells[i]);
+    }
+    rowG = [];
+    rowGCells = document.getElementById('rowG').children;
+    for (let i = 0; i < rowGCells.length; i++) {
+        rowG.push(rowGCells[i]);
+    }
+    rowH = [];
+    rowHCells = document.getElementById('rowH').children;
+    for (let i = 0; i < rowHCells.length; i++) {
+        rowH.push(rowHCells[i]);
+    }
+    rowI = [];
+    rowICells = document.getElementById('rowI').children;
+    for (let i = 0; i < rowICells.length; i++) {
+        rowI.push(rowICells[i]);
+    }
+    rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
+    /* #endregion */
+
+
+}
+
+$(window).on('load', function() {
+    
+    resetGrid();
+
+})
+
 //number input stuff
 
 let numberButtons = document.getElementsByClassName('number-input');
@@ -210,6 +277,9 @@ for (let i = 0; i < numberButtons.length; i++) {
         let notesCollection = $(selectedCell).find('.note');
         let key = numberButtons[i].innerText;
         key = Number(key);
+
+        originalBoard = getBoard();
+        modifyBoardCollection(originalBoard);
 
         if (globalToggle) {
             noteInput(key, notesCollection);
@@ -222,4 +292,6 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-export { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
+
+
+export { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };

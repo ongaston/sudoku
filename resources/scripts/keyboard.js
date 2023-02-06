@@ -1,4 +1,4 @@
-import { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
+import { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 import { undo, getBoard } from './undo.js';
 
 let cellsArray = document.getElementsByClassName('cell');
@@ -12,6 +12,7 @@ let blueToggle = document.getElementById('blue-highlight');
 
 let undoButton = document.getElementById('undo');
 let originalBoard;
+let boardCollection = [];
 
 
 $(noteToggle).on('click', function () {
@@ -31,6 +32,11 @@ $(document).on('keypress', function (e) {
     let notesCollection = $(selectedCell).find('.note');
 
     originalBoard = getBoard();
+    boardCollection.push(originalBoard);
+    undoButton.style.color = 'rgb(214, 202, 185)';
+    if (boardCollection.length > 20) {
+        boardCollection = boardCollection.slice(1);
+    }
 
     //note mode input
     if (globalToggle) {
@@ -48,8 +54,6 @@ $(document).on('keypress', function (e) {
         }
     }
 })
-
-
 
 $(document).on('keydown', function (e) {
 
@@ -93,11 +97,16 @@ $(document).on('keydown', function (e) {
 
 })
 
-
 $(undoButton).on('click', function() {
 
-    undo(originalBoard, newBoard);
-
+    let arrayLength = boardCollection.length;
+    let mostRecentBoard = boardCollection[arrayLength - 1];
+    undo(mostRecentBoard);
+    boardCollection.pop();
+    if (boardCollection.length == 0) {
+        undoButton.style.color = 'rgb(179, 168, 154)';
+    }
+    resetGrid();
 })
 
 
@@ -109,7 +118,6 @@ function noteInput(num, notesCollection) {
     let selectedNote = notesCollection[noteIndex].children[0];
     //console.log(notesCollection);
     //console.log(selectedNote);
-    console.log(selectedNote)
     if (selectedNote.innerText == '') {
         selectedNote.innerText = num.toString();
     } else if (selectedNote.innerText !== '') {
@@ -567,4 +575,16 @@ function removeNotes(num, cell=selectedCell[0]) {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes };
+//board collection modify
+
+function modifyBoardCollection(value) {
+
+    boardCollection.push(value);
+    undoButton.style.color = 'rgb(214, 202, 185)';
+    if (boardCollection.length > 20) {
+        boardCollection = boardCollection.slice(1);
+    }
+
+}
+
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection };
