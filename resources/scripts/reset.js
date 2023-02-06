@@ -3,7 +3,7 @@
 let resetButton = document.getElementById('reset-button');
 let cellArrayDOM = document.getElementsByClassName('cell');
 let cellArray = Array.from(cellArrayDOM);
-let blankCells = cellArray.filter(function(e) {
+let blankCells = cellArray.filter(function (e) {
     if (e.classList[1] == 'given') {
         return false;
     }
@@ -12,7 +12,7 @@ let blankCells = cellArray.filter(function(e) {
 
 let defaultNotes = [];
 
-$(window).on('load', function() {
+$(window).on('load', function () {
 
     for (let i = 0; i < blankCells.length; i++) {
 
@@ -23,7 +23,7 @@ $(window).on('load', function() {
         for (let j = 0; j < notesCollection.length; j++) {
 
             noteArray.push(notesCollection[j].innerText);
-            
+
 
         }
 
@@ -32,8 +32,9 @@ $(window).on('load', function() {
 
 })
 
-$(resetButton).on('click', function() {
+$(resetButton).on('click', function () {
 
+    /* #region  timer stuff */
     let secondsElement = document.getElementById('seconds');
     let minutesElement = document.getElementById('minutes');
     let hoursElement = document.getElementById('hours');
@@ -41,6 +42,7 @@ $(resetButton).on('click', function() {
     secondsElement.innerText = '00';
     minutesElement.innerText = '00';
     hoursElement.innerText = '00';
+    /* #endregion */
 
     //removes filled in answers and shows hidden note objects again
     for (let i = 0; i < blankCells.length; i++) {
@@ -65,10 +67,10 @@ $(resetButton).on('click', function() {
         for (let j = 0; j < defaultNotes.length; j++) {
 
             if (blankCells[i].id == defaultNotes[j][0]) {
-                
+
                 for (let p = 0; p < notesCollection.length; p++) {
 
-                    notesCollection[p].innerHTML = '<p>' + defaultNotes[j][p + 1] + '</p>'; 
+                    notesCollection[p].innerHTML = '<p>' + defaultNotes[j][p + 1] + '</p>';
 
                 }
 

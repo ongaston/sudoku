@@ -11,6 +11,7 @@ html {
     --light-teal: rgb(5, 32, 37);
     --dark-teal: rgb(1, 16, 19);
     --off-white: rgb(214, 202, 185);
+    --dark-off-white: rgb(179, 168, 154);
     --light-cornflower: rgb(199, 211, 238);
     --lighter-cornflower: rgb(211, 219, 236);
     --light-antique: rgb(250, 242, 231);
@@ -301,7 +302,7 @@ label:hover {
 }
 
 #note-mode {
-    margin-right: 25.5rem;
+    margin-right: 20.5rem;
 }
 
 #note-mode:hover {
@@ -325,11 +326,17 @@ label:hover {
     display: none;
 }
 
-#settings-button {
+#settings-button{
     color: var(--off-white);
 }
 
-#settings-button:hover {
+#undo {
+    margin: 0 0.5rem;
+    color: var(--dark-off-white);
+}
+
+#settings-button:hover,
+#undo:hover {
     cursor: pointer;
     color: antiquewhite;
 }

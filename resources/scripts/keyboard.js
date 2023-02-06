@@ -1,12 +1,17 @@
 import { columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
+import { undo, getBoard } from './undo.js';
 
 let cellsArray = document.getElementsByClassName('cell');
+let cellArray = Array.from(cellsArray);
 let selectedCell = document.getElementsByClassName('selected');
 
 let noteToggle = document.getElementById('note-toggle');
 let globalToggle = false;
 let noteRemovalToggle = document.getElementById('note-removal');
 let blueToggle = document.getElementById('blue-highlight');
+
+let undoButton = document.getElementById('undo');
+let originalBoard;
 
 
 $(noteToggle).on('click', function () {
@@ -25,6 +30,8 @@ $(document).on('keypress', function (e) {
     }
     let notesCollection = $(selectedCell).find('.note');
 
+    originalBoard = getBoard();
+
     //note mode input
     if (globalToggle) {
         noteInput(key, notesCollection);
@@ -41,6 +48,8 @@ $(document).on('keypress', function (e) {
         }
     }
 })
+
+
 
 $(document).on('keydown', function (e) {
 
@@ -81,6 +90,13 @@ $(document).on('keydown', function (e) {
         arrowMove(key);
 
     }
+
+})
+
+
+$(undoButton).on('click', function() {
+
+    undo(originalBoard, newBoard);
 
 })
 
