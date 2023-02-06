@@ -121,6 +121,12 @@ $(resume).on('click', function() {
 
 })
 
+$(pauseOverlay).on('click', function() {
+    timerInterval = setInterval(timerFunction, 1000);
+    pauseOverlay.style.display = 'none';
+    pauseMenu.style.display = 'none';
+})
+
 $(timerToggle).on('click', function() {
 
     if (timerToggle.checked == true) {
