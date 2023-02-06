@@ -293,6 +293,4 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-
-
 export { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };

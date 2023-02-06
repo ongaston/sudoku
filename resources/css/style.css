@@ -29,7 +29,8 @@ body {
     display: none;
 }
 
-label:hover {
+label:hover,
+#pause:hover {
     cursor: pointer;
 }
 
@@ -39,6 +40,15 @@ label:hover {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
+    display: inline-flex;
+}
+
+#counter-container > p {
+    margin-left: 1.5rem;
+}
+
+#pause {
+    margin-left: 1rem;
 }
 
 /* #region settings menu */

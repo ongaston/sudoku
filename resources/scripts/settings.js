@@ -22,6 +22,9 @@ let counterContainer = document.getElementById('counter-container');
 let hoursElement = document.getElementById('hours');
 let minutesElement = document.getElementById('minutes');
 let secondsElement = document.getElementById('seconds');
+let pauseButton = document.getElementById('pause');
+let timerInterval;
+let pauseToggle = false;
 
 let blueInfoSign = document.getElementById('info-sign-container');
 let blueInfo = document.getElementById('blue-info');
@@ -97,7 +100,21 @@ function timerFunction() {
 
 }
 
-setInterval(timerFunction, 1000);
+timerInterval = setInterval(timerFunction, 1000);
+
+$(pause).on('click', function() {
+
+    if (pauseToggle == false) {
+        clearInterval(timerInterval);
+        pause.innerHTML = '<i class="fa-solid fa-play fa-sm"></i>';
+        pauseToggle = true;
+    } else {
+        timerInterval = setInterval(timerFunction, 1000);
+        pause.innerHTML = '<i class="fa-solid fa-pause fa-sm"></i>';
+        pauseToggle = false;
+    }
+
+})
 
 $(timerToggle).on('click', function() {
 
