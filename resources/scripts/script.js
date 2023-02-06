@@ -298,6 +298,8 @@ $(frog).on('click', function() {
         fontSize: '20px'
     }, 3000, 'swing');
 
+    $(gay).remove();
+
 })
 
 //number input stuff
