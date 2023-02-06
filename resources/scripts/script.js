@@ -183,9 +183,9 @@ function resetGrid() {
                         cellsArray[j].dataset.isSelected = 'false';
                         cellsArray[j].classList.remove('selected');
     
-                        if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && cellsArray[j].classList[1] !== 'selected') {
     
-                            cellsArray[i].style.borderRight = '6px solid black';
+                            cellsArray[j].style.borderRight = '6px solid black';
             
                         }
                     }
@@ -196,6 +196,7 @@ function resetGrid() {
                 if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
     
                     cellsArray[i].style.borderRight = '8px solid black';
+
     
                 }
     
