@@ -368,7 +368,7 @@ label:hover,
 }
 
 #note-mode {
-    margin-right: 20.5rem;
+    margin-right: 13.5rem;
 }
 
 #note-mode:hover {
@@ -405,6 +405,24 @@ label:hover,
 #undo:hover {
     cursor: pointer;
     color: antiquewhite;
+}
+
+#frog,
+#drink {
+    color: antiquewhite;
+}
+
+#drink {
+    margin-right: 5rem;
+}
+
+#youre-gay {
+    position: absolute;
+    color: var(--dark-teal);
+    font-weight: bold;
+    font-size: 30px;
+    top: 88%;
+    opacity: 0%;
 }
 
 /* #endregion */

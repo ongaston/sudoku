@@ -1,6 +1,6 @@
 import { globalToggle, noteInput, answerInput, selectedCell, noteCheck, modifyBoardCollection } from "./keyboard.js";
 import { getBoard } from "./undo.js";
-
+import { rotateToggle } from "./utilities.js";
 
 /* #region  columns */
 let column1 = [];
@@ -81,8 +81,9 @@ for (let i = 0; i < rowICells.length; i++) {
 let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
 /* #endregion */
 
-
+let frog = document.getElementById('frog');
 let originalBoard;
+let board = document.getElementById('board');
 let cellsArray = document.getElementsByClassName('cell');
 
 function resetGrid() {
@@ -265,6 +266,37 @@ function resetGrid() {
 $(window).on('load', function() {
     
     resetGrid();
+
+})
+
+$(frog).on('click', function() {
+
+    $(frog).animate({
+        rotate: '360deg'
+    }, 400);
+
+    setTimeout(() => {
+        $(frog).animate({
+            rotate: '0deg'
+        }, 0);
+    })
+
+    let gay = document.createElement('h1');
+    gay.setAttribute('id', 'youre-gay');
+    gay.innerText = "You're Gay!";
+    $(gay).appendTo(board);
+
+    $(gay).animate({
+        top: '78%',
+        opacity: '100%',
+        fontSize: '40px'
+    }, 500, 'swing')
+
+    $(gay).animate({
+        top: '20%',
+        opacity: '0%',
+        fontSize: '20px'
+    }, 3000, 'swing');
 
 })
 
