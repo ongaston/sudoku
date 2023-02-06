@@ -298,7 +298,12 @@ $(frog).on('click', function() {
         fontSize: '20px'
     }, 3000, 'swing');
 
-    $(gay).remove();
+    setTimeout(() => {
+
+        $(gay).remove();
+
+
+    }, 3500)
 
 })
 
