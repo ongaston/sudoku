@@ -94,7 +94,7 @@ let noteHighlightContainer = document.getElementById('note-highlight-container')
 
 function highlightSame(num) {
 
-
+    
 
 }
 
@@ -195,8 +195,9 @@ function resetGrid() {
                     if (cellsArray[j].dataset.isSelected == 'true') {
                         cellsArray[j].dataset.isSelected = 'false';
                         cellsArray[j].classList.remove('selected');
+                        cellsArray[j].classList.remove('selected-given');
     
-                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && cellsArray[j].classList[1] !== 'selected') {
+                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
     
                             cellsArray[j].style.borderRight = '6px solid black';
             
@@ -206,7 +207,34 @@ function resetGrid() {
                 cellsArray[i].classList.add('selected');
                 cellsArray[i].dataset.isSelected = 'true';
                 
-                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && cellsArray[i].classList[1] == 'selected') {
+                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
+    
+                    cellsArray[i].style.borderRight = '8px solid black';
+
+    
+                }
+    
+            })
+        } else {
+            $(cellsArray[i]).on('click', function () {
+    
+                for (let j = 0; j < cellsArray.length; j++) {
+                    if (cellsArray[j].dataset.isSelected == 'true') {
+                        cellsArray[j].dataset.isSelected = 'false';
+                        cellsArray[j].classList.remove('selected');
+                        cellsArray[j].classList.remove('selected-given');
+    
+                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
+    
+                            cellsArray[j].style.borderRight = '6px solid black';
+            
+                        }
+                    }
+                }
+                cellsArray[i].classList.add('selected-given');
+                cellsArray[i].dataset.isSelected = 'true';
+                
+                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
     
                     cellsArray[i].style.borderRight = '8px solid black';
 

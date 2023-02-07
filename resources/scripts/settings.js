@@ -176,7 +176,6 @@ if ($(mobileCheck).css('display') !== 'block') {
 
     setTimeout(() => { 
         let infoSymbol = blueInfoSign.children[0].children[0];
-        console.log(infoSymbol)
         $(infoSymbol).hover(
             function() {
                 blueInfo.style.display = 'inline-flex';

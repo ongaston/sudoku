@@ -5,6 +5,7 @@ import { undo, getBoard } from './undo.js';
 let cellsArray = document.getElementsByClassName('cell');
 let cellArray = Array.from(cellsArray);
 let selectedCell = document.getElementsByClassName('selected');
+let selectedGiven = document.getElementsByClassName('selected-given');
 
 let noteToggle = document.getElementById('note-toggle');
 let globalToggle = false;
@@ -16,6 +17,12 @@ let originalBoard;
 let boardCollection = [];
 /* #endregion */
 
+
+for (let i = 0; i < cellArray.length; i++) {
+    $(cellArray[i]).on('change', function() {
+        console.log('test')
+    })
+}
 
 $(noteToggle).on('click', function () {
     if (noteToggle.checked == true) {
@@ -269,38 +276,27 @@ function noteCheck() {
 
 function arrowMove(key) {
 
+    let chosenCell;
+    if (selectedCell.length > selectedGiven.length) {
+        chosenCell = selectedCell[0];
+    } else {
+        chosenCell = selectedGiven[0];
+    }
+
     /* #region  declarations */
     let newCell;
-    const rowIndexFunction = (e) => e == eval(selectedCell[0].dataset.row);
+    const rowIndexFunction = (e) => e == eval(chosenCell.dataset.row);
     let selectedRowIndex = rowArray.findIndex(rowIndexFunction);
     let newRowIndex;
     let newRow;
 
-    const columnIndexFunction = (e) => e == eval(selectedCell[0].dataset.column);
+    const columnIndexFunction = (e) => e == eval(chosenCell.dataset.column);
     let selectedColumnIndex = columnArray.findIndex(columnIndexFunction);
     let newColumnIndex;
     let newColumn;
 
     /* #endregion */
-    /* #region  cells */
-    let e2 = document.getElementById('e2');
-    let f6 = document.getElementById('f6');
-    let i3 = document.getElementById('i3');
-    let i8 = document.getElementById('i8');
 
-    let b2 = document.getElementById('b2');
-    let c6 = document.getElementById('c6');
-    let f3 = document.getElementById('f3');
-    let e8 = document.getElementById('e8');
-
-    let e4 = document.getElementById('e4');
-    let g7 = document.getElementById('g7');
-    let h2 = document.getElementById('h2');
-
-    let b5 = document.getElementById('b5');
-    let g1 = document.getElementById('g1');
-    let h5 = document.getElementById('h5');
-    /* #endregion */
 
     switch (key) {
 
@@ -314,44 +310,9 @@ function arrowMove(key) {
 
             for (let i = 0; i < cellsArray.length; i++) {
 
-                if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] !== 'given') {
+                if ((cellsArray[i].dataset.column == chosenCell.dataset.column && eval(cellsArray[i].dataset.row) == newRow)) {
 
                     newCell = cellsArray[i];
-
-                } else if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] == 'given') {
-
-                    switch (selectedCell[0]) {
-
-                        case e2:
-                            newCell = b2;
-                            break;
-                        case f6:
-                            newCell = c6;
-                            break;
-                        case i3:
-                            newCell = f3;
-                            break;
-                        case i8:
-                            newCell = e8;
-                            break;
-                        default:
-                            if (newRowIndex == 0) {
-                                newRowIndex = 8;
-                            } else {
-                                newRowIndex -= 1;
-                            }
-                            newRow = rowArray[newRowIndex];
-                            for (let j = 0; j < cellsArray.length; j++) {
-                                if ((cellsArray[j].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[j].dataset.row) == newRow) && cellsArray[j].classList[1] !== 'given') {
-
-                                    newCell = cellsArray[j];
-
-                                }
-                            }
-
-                            break;
-
-                    }
 
                 }
 
@@ -368,46 +329,11 @@ function arrowMove(key) {
 
             for (let i = 0; i < cellsArray.length; i++) {
 
-                if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] !== 'given') {
+                if ((cellsArray[i].dataset.column == chosenCell.dataset.column && eval(cellsArray[i].dataset.row) == newRow)) {
 
                     newCell = cellsArray[i];
 
-                } else if ((cellsArray[i].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[i].dataset.row) == newRow) && cellsArray[i].classList[1] == 'given') {
-
-                    switch (selectedCell[0]) {
-
-                        case b2:
-                            newCell = e2;
-                            break;
-                        case c6:
-                            newCell = f6;
-                            break;
-                        case f3:
-                            newCell = i3;
-                            break;
-                        case e8:
-                            newCell = i8;
-                            break;
-                        default:
-                            if (newRowIndex == 8) {
-                                newRowIndex = 0;
-                            } else {
-                                newRowIndex += 1;
-                            }
-                            newRow = rowArray[newRowIndex];
-                            for (let j = 0; j < cellsArray.length; j++) {
-                                if ((cellsArray[j].dataset.column == selectedCell[0].dataset.column && eval(cellsArray[j].dataset.row) == newRow) && cellsArray[j].classList[1] !== 'given') {
-
-                                    newCell = cellsArray[j];
-
-                                }
-                            }
-
-                            break;
-
-                    }
-
-                }
+                } 
 
             }
 
@@ -422,44 +348,9 @@ function arrowMove(key) {
 
             for (let i = 0; i < cellsArray.length; i++) {
 
-                if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] !== 'given') {
+                if ((cellsArray[i].dataset.row == chosenCell.dataset.row && eval(cellsArray[i].dataset.column) == newColumn)) {
 
                     newCell = cellsArray[i];
-
-                } else if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] == 'given') {
-
-                    switch (selectedCell[0]) {
-
-                        case b2:
-                            newCell = b5;
-                            break;
-                        case e4:
-                            newCell = e8;
-                            break;
-                        case g7:
-                            newCell = g1;
-                            break;
-                        case h2:
-                            newCell = h5;
-                            break;
-                        default:
-                            if (newColumnIndex == 8) {
-                                newColumnIndex = 0;
-                            } else {
-                                newColumnIndex += 1;
-                            }
-                            newColumn = columnArray[newColumnIndex];
-                            for (let j = 0; j < cellsArray.length; j++) {
-                                if ((cellsArray[j].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[j].dataset.column) == newColumn) && cellsArray[j].classList[1] !== 'given') {
-
-                                    newCell = cellsArray[j];
-
-                                }
-                            }
-
-                            break;
-
-                    }
 
                 }
 
@@ -476,46 +367,13 @@ function arrowMove(key) {
 
             for (let i = 0; i < cellsArray.length; i++) {
 
-                if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] !== 'given') {
+                if ((cellsArray[i].dataset.row == chosenCell.dataset.row && eval(cellsArray[i].dataset.column) == newColumn)) {
 
                     newCell = cellsArray[i];
 
-                } else if ((cellsArray[i].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[i].dataset.column) == newColumn) && cellsArray[i].classList[1] == 'given') {
+                } 
 
-                    switch (selectedCell[0]) {
-
-                        case b5:
-                            newCell = b2;
-                            break;
-                        case e8:
-                            newCell = e4;
-                            break;
-                        case g1:
-                            newCell = g7;
-                            break;
-                        case h5:
-                            newCell = h2;
-                            break;
-                        default:
-                            if (newColumnIndex == 0) {
-                                newColumnIndex = 8;
-                            } else {
-                                newColumnIndex -= 1;
-                            }
-                            newColumn = columnArray[newColumnIndex];
-                            for (let j = 0; j < cellsArray.length; j++) {
-                                if ((cellsArray[j].dataset.row == selectedCell[0].dataset.row && eval(cellsArray[j].dataset.column) == newColumn) && cellsArray[j].classList[1] !== 'given') {
-
-                                    newCell = cellsArray[j];
-
-                                }
-                            }
-
-                            break;
-
-                    }
-
-                }
+                
 
             }
 
@@ -523,21 +381,30 @@ function arrowMove(key) {
 
     }
 
-    if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
+    if ((chosenCell.dataset.column == 'column3' || chosenCell.dataset.column == 'column6') && (chosenCell.classList[1] !== 'selected' || chosenCell.classList[2] !== 'selected-given')) {
 
-        selectedCell[0].style.borderRight = '6px solid black';
+        chosenCell.style.borderRight = '6px solid black';
 
     }
 
-    selectedCell[0].dataset.isSelected = 'false';
-    selectedCell[0].classList.remove('selected');
+    chosenCell.dataset.isSelected = 'false';
+    chosenCell.classList.remove('selected');
+    chosenCell.classList.remove('selected-given');
 
-    newCell.classList.add('selected');
+    if (newCell.classList[1] !== 'given') {
+
+        newCell.classList.add('selected');
+
+    } else {
+
+        newCell.classList.add('selected-given');
+
+    }
     newCell.dataset.isSelected = 'true';
 
-    if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
+    if ((newCell.dataset.column == 'column3' || newCell.dataset.column == 'column6') && (newCell.classList[1] == 'selected' || newCell.classList[2] == 'selected-given')) {
 
-        selectedCell[0].style.borderRight = '8px solid black';
+        newCell.style.borderRight = '8px solid black';
 
     }
 
