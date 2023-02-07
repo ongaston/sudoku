@@ -85,6 +85,18 @@ let frog = document.getElementById('frog');
 let originalBoard;
 let board = document.getElementById('board');
 let cellsArray = document.getElementsByClassName('cell');
+let cellArray = Array.from(cellsArray);
+let highlightToggle = document.getElementById('highlight');
+let noteHighlightToggle = document.getElementById('note-highlight');
+let noteHighlightContainer = document.getElementById('note-highlight-container');
+
+
+
+function highlightSame(num) {
+
+
+
+}
 
 function resetGrid() {
 
@@ -281,7 +293,7 @@ $(frog).on('click', function() {
         }, 0);
     })
 
-    let gay = document.createElement('h1');
+    /*let gay = document.createElement('h1');
     gay.setAttribute('id', 'youre-gay');
     gay.innerText = "You're Gay!";
     $(gay).appendTo(board);
@@ -303,7 +315,7 @@ $(frog).on('click', function() {
         $(gay).remove();
 
 
-    }, 3500)
+    }, 3500)*/
 
 })
 

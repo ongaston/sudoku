@@ -36,17 +36,45 @@
 
             </div>-->
 
+            <div id='highlight-container'>
+
+
+                <label for='highlight' class='container'>Highlight Instances of Selected Number
+                    <input id='highlight' type='checkbox' checked='true'>
+                    <span class='checkmark'></span>
+                </label>
+
+            </div>
+
+            
+            <div id='note-highlight-container'>
+
+
+                <label for='note-highlight' class='container'>Highlight Notes of Selected Number
+                    <input id='note-highlight' type='checkbox' checked='true'>
+                    <span class='checkmark' id='note-highlight-span'></span>
+                </label>
+
+            </div>
+
+
             <div id='timer-container'>
 
-                <input id='timer' type='checkbox' checked='true'>
-                <label for='timer'>Show Timer</label>
+
+                <label for='timer' class='container'>Show Timer
+                    <input id='timer' type='checkbox' checked='true'>
+                    <span class='checkmark'></span>
+                </label>
 
             </div>
 
             <div id='note-removal-container'>
 
-                <input id='note-removal' type='checkbox' checked='true'>
-                <label for='note-removal'>Auto Note Removal</label>
+
+                <label for='note-removal' class='container'>Auto Note Removal
+                    <input id='note-removal' type='checkbox' checked='true'>
+                    <span class='checkmark'></span>
+                </label>
 
             </div>
 
@@ -54,8 +82,11 @@
 
                 <div id='blue-check'>
 
-                    <input id='blue-highlight' type='checkbox' checked='true'>
-                    <label for='blue-highlight'>Highlight Answers</label>
+
+                    <label for='blue-highlight' class='container'>Highlight Answers
+                        <input id='blue-highlight' type='checkbox' checked='true'>
+                        <span class='checkmark'></span>
+                    </label>
 
                 </div>
 
@@ -85,7 +116,7 @@
 
             </div>
 
-            <div class='container' id='board'>
+            <div id='board'>
 
                 <div class='row' id='rowA'>
                     
@@ -1543,8 +1574,10 @@
 
                     <div id='note-mode'>
 
-                        <label for='note-toggle'>Note Mode</label>
+                        <label for='note-toggle' class='container'>Note Mode
                         <input id='note-toggle' type='checkbox'>
+                        <span class='checkmark'></span>
+                        </label>
 
                     </div>
 
@@ -1570,6 +1603,7 @@
         <script src='./resources/scripts/reset.js' type='module'></script>
         <script src='./resources/scripts/settings.js' type='module'></script>
         <script src='./resources/scripts/undo.js' type='module'></script>
+        <script src='./resources/scripts/checkbox.js' type='module'></script>
     </body>
 
 </html>

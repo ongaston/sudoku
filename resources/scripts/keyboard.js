@@ -1,6 +1,7 @@
 import { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 import { undo, getBoard } from './undo.js';
 
+/* #region  declarations */
 let cellsArray = document.getElementsByClassName('cell');
 let cellArray = Array.from(cellsArray);
 let selectedCell = document.getElementsByClassName('selected');
@@ -13,6 +14,7 @@ let blueToggle = document.getElementById('blue-highlight');
 let undoButton = document.getElementById('undo');
 let originalBoard;
 let boardCollection = [];
+/* #endregion */
 
 
 $(noteToggle).on('click', function () {
@@ -34,7 +36,7 @@ $(document).on('keypress', function (e) {
     originalBoard = getBoard();
     boardCollection.push(originalBoard);
     undoButton.style.color = 'rgb(214, 202, 185)';
-    if (boardCollection.length > 20) {
+    if (boardCollection.length > 10) {
         boardCollection = boardCollection.slice(1);
     }
 
@@ -97,7 +99,7 @@ $(document).on('keydown', function (e) {
 
 })
 
-$(undoButton).on('click', function() {
+$(undoButton).on('click', function () {
 
     let arrayLength = boardCollection.length;
     let mostRecentBoard = boardCollection[arrayLength - 1];
@@ -533,7 +535,7 @@ function arrowMove(key) {
     newCell.classList.add('selected');
     newCell.dataset.isSelected = 'true';
 
-        if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
+    if ((selectedCell[0].dataset.column == 'column3' || selectedCell[0].dataset.column == 'column6') && selectedCell[0].classList[1] == 'selected') {
 
         selectedCell[0].style.borderRight = '8px solid black';
 
@@ -543,35 +545,35 @@ function arrowMove(key) {
 
 //auto remove notes function
 
-function removeNotes(num, cell=selectedCell[0]) {
+function removeNotes(num, cell = selectedCell[0]) {
 
-        /* #region  remove notes in column */
-        let remove = '.note' + num.toString();
-        let columnNumber = cell.dataset.column;
-        columnNumber = eval(columnNumber);
-        let removeNote = $(columnNumber).find(remove);
-        for (let i = 0; i < removeNote.length; i++) {
-            removeNote[i].innerText = '';
-        }
-        /* #endregion */
+    /* #region  remove notes in column */
+    let remove = '.note' + num.toString();
+    let columnNumber = cell.dataset.column;
+    columnNumber = eval(columnNumber);
+    let removeNote = $(columnNumber).find(remove);
+    for (let i = 0; i < removeNote.length; i++) {
+        removeNote[i].innerText = '';
+    }
+    /* #endregion */
 
-        /* #region  remove notes in row */
-        let rowNumber = cell.dataset.row;
-        rowNumber = eval(rowNumber);
-        let removeRow = $(rowNumber).find(remove);
-        for (let i = 0; i < removeRow.length; i++) {
-            removeRow[i].innerText = '';
-        }
-        /* #endregion */
+    /* #region  remove notes in row */
+    let rowNumber = cell.dataset.row;
+    rowNumber = eval(rowNumber);
+    let removeRow = $(rowNumber).find(remove);
+    for (let i = 0; i < removeRow.length; i++) {
+        removeRow[i].innerText = '';
+    }
+    /* #endregion */
 
-        /* #region  remove notes in block */
-        let blockNumber = cell.dataset.block;
-        blockNumber = eval(blockNumber);
-        let removeBlock = $(blockNumber).find(remove);
-        for (let i = 0; i < removeBlock.length; i++) {
-            removeBlock[i].innerText = '';
-        }
-        /* #endregion */
+    /* #region  remove notes in block */
+    let blockNumber = cell.dataset.block;
+    blockNumber = eval(blockNumber);
+    let removeBlock = $(blockNumber).find(remove);
+    for (let i = 0; i < removeBlock.length; i++) {
+        removeBlock[i].innerText = '';
+    }
+    /* #endregion */
 
 }
 
@@ -581,7 +583,7 @@ function modifyBoardCollection(value) {
 
     boardCollection.push(value);
     undoButton.style.color = 'rgb(214, 202, 185)';
-    if (boardCollection.length > 20) {
+    if (boardCollection.length > 10) {
         boardCollection = boardCollection.slice(1);
     }
 

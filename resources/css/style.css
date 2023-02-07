@@ -15,6 +15,7 @@ html {
     --light-cornflower: rgb(199, 211, 238);
     --lighter-cornflower: rgb(211, 219, 236);
     --light-antique: rgb(250, 242, 231);
+    --lighter-teal: rgb(10, 51, 58);
 }
 
 main,
@@ -30,9 +31,66 @@ body {
 }
 
 label:hover,
-#pause:hover {
+#pause:hover,
+#frog:hover {
     cursor: pointer;
 }
+
+.container {
+    vertical-align: sub;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* #region checkmarks */
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    align-self: center;
+    background-color: var(--light-teal);
+    border: 1px solid var(--lighter-teal);
+    border-radius: 2px;
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
+}
+
+.container:hover .checkmark,
+.note-mode:hover .checkmark {
+    background-color: var(--lighter-teal);
+}
+
+.checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark::after {
+    display: block;
+}
+
+.container .checkmark::after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--main-teal);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* #endregion */
 
 /* #region timer and pause */
 #counter-container {
@@ -78,7 +136,7 @@ label:hover,
 #pause-title {
 
     padding: 2rem 0;
-    box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 30%);
 
 }
 
@@ -158,7 +216,9 @@ label:hover,
 #color-notes,
 #timer-container,
 #note-removal-container,
-#blue-container {
+#blue-container,
+#highlight-container,
+#note-highlight-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -176,15 +236,28 @@ label:hover,
 #color-toggle:hover,
 #timer:hover,
 #note-removal:hover,
-#blue-highlight:hover {
+#blue-highlight:hover,
+#highlight:hover,
+#highlight-container:hover,
+#note-highlight:hover,
+#note-highlight-container:hover {
     cursor: pointer;
     color: var(--light-antique);
+}
+
+#note-highlight-container {
+
+    margin-left: 2.5rem;
+    font-size: 15px;
+
 }
 
 #color-toggle,
 #timer,
 #note-removal,
-#blue-highlight {
+#blue-highlight,
+#highlight,
+#note-highlight {
     margin-right: 0.5rem;
 }
 
@@ -337,7 +410,7 @@ label:hover,
     border: 2px solid var(--off-white);
     border-radius: 2px;
     color: antiquewhite;
-
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
 }
 
 .number-input:hover {
@@ -365,14 +438,17 @@ label:hover,
     background-color: var(--main-teal);
     color: antiquewhite;
     padding: 0.3rem 0.5rem;
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
 }
 
 #note-mode {
-    margin-right: 13.5rem;
+    margin-right: 10.5rem;
+    margin-left: 2rem;
+    padding-left: 3rem;
+    padding-bottom: 0.5rem;
 }
 
 #note-mode:hover {
-    background-color: var(--light-teal);
     box-shadow: 1px 1px 1px black;
 }
 
@@ -479,7 +555,9 @@ label:hover,
     #color-notes,
     #timer-container,
     #note-removal-container,
-    #blue-container {
+    #blue-container,
+    #highlight-container,
+    #note-highlight-container {
         font-size: 1.8rem;
     }
 
@@ -499,6 +577,24 @@ label:hover,
     #resume {
         font-size: 10px;
         width: 40%;
+    }
+
+    .checkmark {
+        height: 10px;
+        width: 10px;
+        margin-top: 0.6rem;
+    }
+
+    .container .checkmark::after {
+        left: 3px;
+        top: 1px;
+        width: 2px;
+        height: 5px;
+        border: solid var(--main-teal);
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 
 
