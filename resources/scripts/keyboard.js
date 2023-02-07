@@ -1,4 +1,4 @@
-import { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
+import { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 import { undo, getBoard } from './undo.js';
 
 /* #region  declarations */
@@ -15,6 +15,8 @@ let blueToggle = document.getElementById('blue-highlight');
 let undoButton = document.getElementById('undo');
 let originalBoard;
 let boardCollection = [];
+
+let highlightToggle = document.getElementById('highlight');
 /* #endregion */
 
 
@@ -36,6 +38,8 @@ $(document).on('keypress', function (e) {
     let key = e.originalEvent.key;
     key = Number(key);
     if ((Number.isNaN(key) && e.originalEvent.shiftKey == false) || key == 0) {
+        return;
+    } else if (selectedGiven.length > selectedCell.length) {
         return;
     }
     let notesCollection = $(selectedCell).find('.note');
@@ -405,6 +409,12 @@ function arrowMove(key) {
     if ((newCell.dataset.column == 'column3' || newCell.dataset.column == 'column6') && (newCell.classList[1] == 'selected' || newCell.classList[2] == 'selected-given')) {
 
         newCell.style.borderRight = '8px solid black';
+
+    }
+
+    if (highlightToggle.checked) {
+
+        highlightSame();
 
     }
 

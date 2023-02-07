@@ -81,6 +81,7 @@ for (let i = 0; i < rowICells.length; i++) {
 let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
 /* #endregion */
 
+/* #region  declarations */
 let frog = document.getElementById('frog');
 let originalBoard;
 let board = document.getElementById('board');
@@ -89,12 +90,73 @@ let cellArray = Array.from(cellsArray);
 let highlightToggle = document.getElementById('highlight');
 let noteHighlightToggle = document.getElementById('note-highlight');
 let noteHighlightContainer = document.getElementById('note-highlight-container');
+/* #endregion */
 
 
+function highlightSame() {
 
-function highlightSame(num) {
+    let currentCell;
+    let selectedCells = document.getElementsByClassName('selected');
+    let selectedGiven = document.getElementsByClassName('selected-given');
+    let currentNum;
+    let noteArray = $(cellArray).find('.note');
 
+    if (selectedCells.length > selectedGiven.length) {
+        currentCell = selectedCells[0];
+    } else {
+        currentCell = selectedGiven[0];
+    }
+
+    let answerSpot = $(currentCell).find('h1');
+    if (answerSpot[0].innerText !== '') {
+
+        currentNum = answerSpot[0].innerText;
+
+    } else {
+        for (let i = 0; i < cellArray.length; i++) {
+            let cellAnswer = $(cellArray[i]).find('h1');
+            cellAnswer[0].style.color = 'black';
+            cellAnswer[0].style.fontWeight = 'normal';
+        }
+
+        for (let i = 0; i < noteArray.length; i++) {
+            noteArray[i].style.color = 'black';
+            noteArray[i].style.fontWeight = 'normal';
+        }
+        return;
+    }
+
+    for (let i = 0; i < cellArray.length; i++) {
+
+        let cellAnswer = $(cellArray[i]).find('h1');
+        if (cellAnswer[0].innerText == currentNum) {
+
+            cellAnswer[0].style.color = 'cornflowerblue';
+            cellAnswer[0].style.fontWeight = 'bold';
+
+        } else {
+            cellAnswer[0].style.color = 'black';
+            cellAnswer[0].style.fontWeight = 'normal';
+        }
+
+    }
+
+    if (noteHighlightToggle.checked) {
+
+        for (let i = 0; i < noteArray.length; i++) {
+
+            if (noteArray[i].innerText == currentNum) {
+                noteArray[i].style.color = 'cornflowerblue';
+                noteArray[i].style.fontWeight = 'bold';
+            } else {
+                noteArray[i].style.color = 'black';
+                noteArray[i].style.fontWeight = 'normal';
+            }
     
+        }
+
+    }
+
 
 }
 
@@ -145,7 +207,7 @@ function resetGrid() {
                 cellsArray[i].setAttribute('data-column', 'column9');
                 break;
         }
-    
+
         switch (cellsArray[i].id[0]) {
             case 'a':
                 cellsArray[i].setAttribute('data-row', 'rowA');
@@ -175,78 +237,86 @@ function resetGrid() {
                 cellsArray[i].setAttribute('data-row', 'rowI');
                 break;
         }
-    
+
         //sorts cells into appropriate block arrays
         let blockNumber = cellsArray[i].dataset.block;
         blockNumber = eval(blockNumber);
         for (let j = 0; j < blockArray.length; j++) {
-    
+
             if (blockNumber == blockArray[j]) {
                 blockArray[j].push(cellsArray[i]);
             }
-    
+
         }
-    
+
         //toggles selected class for cells on click
         if (cellsArray[i].classList[1] !== 'given') {
             $(cellsArray[i]).on('click', function () {
-    
+
                 for (let j = 0; j < cellsArray.length; j++) {
                     if (cellsArray[j].dataset.isSelected == 'true') {
                         cellsArray[j].dataset.isSelected = 'false';
                         cellsArray[j].classList.remove('selected');
                         cellsArray[j].classList.remove('selected-given');
-    
+
                         if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
-    
+
                             cellsArray[j].style.borderRight = '6px solid black';
-            
+
                         }
                     }
                 }
                 cellsArray[i].classList.add('selected');
                 cellsArray[i].dataset.isSelected = 'true';
-                
+
                 if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
-    
+
                     cellsArray[i].style.borderRight = '8px solid black';
 
-    
+
                 }
-    
+
+                if (highlightToggle) {
+                    highlightSame();
+                }
+
             })
         } else {
             $(cellsArray[i]).on('click', function () {
-    
+
                 for (let j = 0; j < cellsArray.length; j++) {
                     if (cellsArray[j].dataset.isSelected == 'true') {
                         cellsArray[j].dataset.isSelected = 'false';
                         cellsArray[j].classList.remove('selected');
                         cellsArray[j].classList.remove('selected-given');
-    
+
                         if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
-    
+
                             cellsArray[j].style.borderRight = '6px solid black';
-            
+
                         }
                     }
                 }
                 cellsArray[i].classList.add('selected-given');
                 cellsArray[i].dataset.isSelected = 'true';
-                
+
                 if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
-    
+
                     cellsArray[i].style.borderRight = '8px solid black';
 
-    
+
                 }
-    
+
+                if (highlightToggle) {
+                    highlightSame();
+                }
+
             })
         }
-    
+
     }
 
-    
+
     /* #region  rows */
     rowA = [];
     rowACells = document.getElementById('rowA').children;
@@ -303,13 +373,13 @@ function resetGrid() {
 
 }
 
-$(window).on('load', function() {
-    
+$(window).on('load', function () {
+
     resetGrid();
 
 })
 
-$(frog).on('click', function() {
+$(frog).on('click', function () {
 
     $(frog).animate({
         rotate: '360deg'
@@ -372,4 +442,4 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-export { resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
+export { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
