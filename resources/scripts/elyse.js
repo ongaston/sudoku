@@ -6,6 +6,13 @@ let board = document.getElementById('board');
 let cellArray = document.getElementsByClassName('cell');
 cellArray = Array.from(cellArray);
 let html = document.getElementsByTagName('html');
+let animatedContainer = document.getElementById('animated-elyse');
+let animationTimer;
+let bigContainer = document.getElementById('big-animated');
+
+let boardWidth = $(board).css('width');
+boardWidth = boardWidth.slice(0, boardWidth.length - 3);
+boardWidth = Number(boardWidth);
 
 $(elyseToggle).on('click', function () {
 
@@ -30,6 +37,34 @@ $(elyseToggle).on('click', function () {
         }
 
         html[0].style.cursor = 'url("./resources/media/cursor.png"), auto';
+        $(board).css({borderImage: 'url("./resources/media/border.png")', borderImageOutset: '10px', borderImageRepeat: 'space', borderImageWidth: '20px', borderImageSlice: '100%'});
+        animatedContainer.style.display = 'inline-flex';
+        bigContainer.style.display = 'inline-flex';
+        let bigWidth = boardWidth + boardWidth * 0.1;
+        let bigHeight = boardWidth - boardWidth * 0.2;
+        $(bigContainer).css({width: bigWidth, height: bigHeight});
+        $(animatedContainer).css({width: $(board).css('width')})
+
+        animationTimer = setInterval(() => {
+
+            $(animatedContainer).animate({
+                filter: 'hue-rotate(45deg)',
+                opacity: '0%'
+            }, 500);
+            $(animatedContainer).animate({
+                filter: 'hue-rotate(360deg)',
+                opacity: '100%'
+            }, 500);
+            $(bigContainer).animate({
+                filter: 'hue-rotate(45deg)',
+                opacity: '0%'
+            }, 500);
+            $(bigContainer).animate({
+                filter: 'hue-rotate(360deg)',
+                opacity: '100%'
+            }, 500);
+
+        }, 1000)
 
 
     } else {
@@ -41,6 +76,11 @@ $(elyseToggle).on('click', function () {
         }
 
         html[0].style.cursor = 'auto';
+        $(board).css('border', '7px double var(--off-white)');
+        animatedContainer.style.display = 'none';
+        bigContainer.style.display = 'none';
+
+        clearInterval(animationTimer);
     }
 
 })

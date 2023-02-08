@@ -43,6 +43,42 @@ label:hover,
     filter: grayscale(100%) contrast(50%);
 }
 
+#animated-elyse {
+    display: none;
+    position: absolute;
+    justify-content: space-around;
+    top: 4%;
+}
+
+.animated-container {
+    width: 30%;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.side {
+    flex-direction: column;
+    height: 17rem;
+}
+
+.side-elyse {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#big-animated {
+    display: none;
+    position: absolute;
+    justify-content: space-between;
+    margin-bottom: 10%;
+}
+
+.animated {
+    width: 25px;
+    height: auto;
+}
+
 .container {
     vertical-align: sub;
 }
@@ -337,6 +373,7 @@ label:hover,
     border: 7px double var(--off-white);
     flex-direction: column;
     margin-top: 4rem;
+    z-index: 10;
 }
 
 .row {
