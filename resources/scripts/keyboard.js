@@ -19,13 +19,6 @@ let boardCollection = [];
 let highlightToggle = document.getElementById('highlight');
 /* #endregion */
 
-
-for (let i = 0; i < cellArray.length; i++) {
-    $(cellArray[i]).on('change', function() {
-        console.log('test')
-    })
-}
-
 $(noteToggle).on('click', function () {
     if (noteToggle.checked == true) {
         globalToggle = true;

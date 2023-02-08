@@ -1,5 +1,6 @@
 
 
+/* #region  declarations */
 let checkInputs = document.getElementsByTagName('input');
 checkInputs = Array.from(checkInputs);
 let highlightToggle = document.getElementById('highlight');
@@ -8,6 +9,7 @@ let noteHighlightContainer = document.getElementById('note-highlight-container')
 let noteHighlightSpan = document.getElementById('note-highlight-span');
 let mobileCheck = document.getElementById('mobile-check');
 let noteModeLabel = document.getElementById('note-mode-label');
+/* #endregion */
 
 
 
@@ -25,15 +27,15 @@ for (let i = 0; i < checkInputs.length; i++) {
 
         checkSpan.style.marginLeft = '3.5rem';
 
-        $(highlightToggle).on('click', function() {
+        $(highlightToggle).on('click', function () {
             if (highlightToggle.checked) {
 
                 checkSpan.style.backgroundColor = 'rgb(214, 202, 185)';
-    
+
             } else {
-    
+
                 checkSpan.style.backgroundColor = 'rgb(5, 32, 37)';
-    
+
             }
         })
 
@@ -54,14 +56,14 @@ for (let i = 0; i < checkInputs.length; i++) {
     if (checkInputs[i].checked) {
 
         checkSpan.style.backgroundColor = 'rgb(214, 202, 185)';
-    
+
     } else {
-    
+
         checkSpan.style.backgroundColor = 'rgb(5, 32, 37)';
-    
+
     }
 
-    $(checkInputs[i]).on('change', function() {
+    $(checkInputs[i]).on('change', function () {
 
         if (checkInputs[i].checked) {
 
@@ -78,7 +80,7 @@ for (let i = 0; i < checkInputs.length; i++) {
 }
 
 
-$(highlightToggle).on('click', function() {
+$(highlightToggle).on('click', function () {
 
     if (!highlightToggle.checked) {
 
