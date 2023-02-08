@@ -78,6 +78,7 @@ label:hover,
 .animated {
     width: 25px;
     height: auto;
+    z-index: 10;
 }
 
 /* #endregion */
