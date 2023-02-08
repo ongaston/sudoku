@@ -76,7 +76,7 @@ $(elyseToggle).on('click', function () {
         }
 
         html[0].style.cursor = 'auto';
-        $(board).css('border', '7px double var(--off-white)');
+        $(board).css('border', '7px double rgb(214, 202, 185)');
         animatedContainer.style.display = 'none';
         bigContainer.style.display = 'none';
 
