@@ -1,6 +1,8 @@
-
+import { resetGrid } from "./script.js";
 
 let resetButton = document.getElementById('reset-button');
+let board = document.getElementById('board');
+let defaultBoard;
 let cellArrayDOM = document.getElementsByClassName('cell');
 let cellArray = Array.from(cellArrayDOM);
 let blankCells = cellArray.filter(function (e) {
@@ -13,6 +15,8 @@ let blankCells = cellArray.filter(function (e) {
 let defaultNotes = [];
 
 $(window).on('load', function () {
+
+    //defaultBoard = board.innerHTML;
 
     for (let i = 0; i < blankCells.length; i++) {
 
@@ -33,6 +37,9 @@ $(window).on('load', function () {
 })
 
 $(resetButton).on('click', function () {
+
+    //board.innerHTML = defaultBoard;
+    //resetGrid();
 
     /* #region  timer stuff */
     let secondsElement = document.getElementById('seconds');
