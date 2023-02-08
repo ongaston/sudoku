@@ -36,6 +36,17 @@
 
             </div>-->
 
+            <div id='elyse-container'>
+
+                <label for='elyse' class='container'>Elyse Mode
+                    <input id='elyse' type='checkbox'>
+                    <span class='checkmark'></span>
+                </label>
+
+            </div>
+
+            <img src='./resources/media/elyse.png' id='elyse-face' alt="elyse's face">
+
             <div id='highlight-container'>
 
 
@@ -115,6 +126,8 @@
                 <span id='pause'><i class='fa-solid fa-pause fa-sm'></i></span>
 
             </div>
+
+            <img src='./resources/media/background.jpg' id='elyse-background' alt='elyse'>
 
             <div id='board'>
 
@@ -1574,9 +1587,9 @@
 
                     <div id='note-mode'>
 
-                        <label for='note-toggle' class='container'>Note Mode
+                        <label for='note-toggle' class='container' id='note-mode-label'>Note Mode
                         <input id='note-toggle' type='checkbox'>
-                        <span class='checkmark'></span>
+                        <span class='checkmark' id='note-toggle-checkbox'></span>
                         </label>
 
                     </div>
@@ -1604,6 +1617,7 @@
         <script src='./resources/scripts/settings.js' type='module'></script>
         <script src='./resources/scripts/undo.js' type='module'></script>
         <script src='./resources/scripts/checkbox.js' type='module'></script>
+        <script src='./resources/scripts/elyse.js' type='module'></script>
     </body>
 
 </html>

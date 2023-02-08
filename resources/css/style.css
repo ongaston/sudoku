@@ -36,6 +36,13 @@ label:hover,
     cursor: pointer;
 }
 
+#elyse-background {
+    position: absolute;
+    display: none;
+    margin-bottom: 6rem;
+    filter: grayscale(100%) contrast(50%);
+}
+
 .container {
     vertical-align: sub;
 }
@@ -46,6 +53,11 @@ label:hover,
     cursor: pointer;
     height: 0;
     width: 0;
+}
+
+.transparent {
+    background-color: transparent !important;
+    color: var(--light-teal);
 }
 
 /* #region checkmarks */
@@ -173,7 +185,7 @@ label:hover,
     position: absolute;
     background-color: var(--light-teal);
     opacity: 0.2;
-    z-index: 9;
+    z-index: 11;
     display: none;
 }
 
@@ -218,7 +230,8 @@ label:hover,
 #note-removal-container,
 #blue-container,
 #highlight-container,
-#note-highlight-container {
+#note-highlight-container,
+#elyse-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -240,7 +253,9 @@ label:hover,
 #highlight:hover,
 #highlight-container:hover,
 #note-highlight:hover,
-#note-highlight-container:hover {
+#note-highlight-container:hover,
+#elyse-container:hover,
+#elyse:hover {
     cursor: pointer;
     color: var(--light-antique);
 }
@@ -257,8 +272,18 @@ label:hover,
 #note-removal,
 #blue-highlight,
 #highlight,
-#note-highlight {
+#note-highlight,
+#elyse {
     margin-right: 0.5rem;
+}
+
+#elyse-face {
+    width: 50px;
+    height: auto;
+    vertical-align: sub;
+    position: absolute;
+    margin-bottom: 6rem;
+    margin-left: 6rem;
 }
 
 #blue-info {
@@ -331,6 +356,7 @@ label:hover,
     flex-direction: column;
     border: 2px solid black;
     background-color: antiquewhite;
+    z-index: 10;
 }
 
 .cell:hover {
@@ -453,10 +479,15 @@ label:hover,
     margin-left: 2rem;
     padding-left: 3rem;
     padding-bottom: 0.5rem;
+    position: relative;
 }
 
 #note-mode:hover {
     box-shadow: 1px 1px 1px black;
+}
+
+#note-toggle-checkbox {
+    margin-right: 1rem;
 }
 
 #note-toggle:hover {
@@ -564,8 +595,15 @@ label:hover,
     #note-removal-container,
     #blue-container,
     #highlight-container,
-    #note-highlight-container {
+    #note-highlight-container,
+    #elyse-container {
         font-size: 1.8rem;
+    }
+
+    #elyse-face {
+        width: 35px;
+        margin-left: 10rem;
+        margin-bottom: 9rem;
     }
 
     #info-sign-container {
@@ -602,6 +640,10 @@ label:hover,
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+    }
+
+    #elyse-background {
+        margin-bottom: 9rem;
     }
 
 

@@ -7,6 +7,8 @@ let noteHighlightToggle = document.getElementById('note-highlight');
 let noteHighlightContainer = document.getElementById('note-highlight-container');
 let noteHighlightSpan = document.getElementById('note-highlight-span');
 let mobileCheck = document.getElementById('mobile-check');
+let noteModeLabel = document.getElementById('note-mode-label');
+
 
 
 if ($(mobileCheck).css('display') == 'block') {
@@ -39,13 +41,13 @@ for (let i = 0; i < checkInputs.length; i++) {
 
     } else if (checkInputs[i].id == 'note-toggle') {
 
-        checkSpan.style.marginLeft = '16.5rem';
+        /*checkSpan.style.marginLeft = '16.5rem';
 
         if ($(mobileCheck).css('display') == 'block') {
 
             checkSpan.style.marginLeft = '12rem';
 
-        }
+        }*/
 
     }
 

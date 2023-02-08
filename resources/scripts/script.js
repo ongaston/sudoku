@@ -90,6 +90,7 @@ let cellArray = Array.from(cellsArray);
 let highlightToggle = document.getElementById('highlight');
 let noteHighlightToggle = document.getElementById('note-highlight');
 let noteHighlightContainer = document.getElementById('note-highlight-container');
+let elyseToggle = document.getElementById('elyse');
 /* #endregion */
 
 
