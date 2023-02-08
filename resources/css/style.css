@@ -36,6 +36,7 @@ label:hover,
     cursor: pointer;
 }
 
+/* #region elyse */
 #elyse-background {
     position: absolute;
     display: none;
@@ -78,6 +79,8 @@ label:hover,
     width: 25px;
     height: auto;
 }
+
+/* #endregion */
 
 .container {
     vertical-align: sub;
@@ -231,7 +234,7 @@ label:hover,
     align-items: start;
     position: absolute;
     justify-content: center;
-    width: 50%;
+    min-width: 25%;
     padding: 0 3rem 3rem;
     background-color: var(--dark-teal);
     z-index: 12;
