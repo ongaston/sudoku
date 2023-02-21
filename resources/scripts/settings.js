@@ -49,6 +49,7 @@ let identifierToggle = document.getElementById('cell-identifiers');
 let columnIdentifiers = document.getElementById('column-identifiers');
 let rowIdentifiers = document.getElementById('row-identifiers');
 let identifiersContainer = document.getElementById('identifiers');
+let identifierSetting = document.getElementById('identifier-container');
 /* #endregion */
 
 $(window).on('load', function() {
@@ -78,6 +79,8 @@ $(window).on('load', function() {
         let identifiersTop = (board.offsetTop - 30).toString() + 'px';
         identifiersContainer.style.top = identifiersTop;
 
+    } else {
+        identifierSetting.remove();
     }
 })
 
