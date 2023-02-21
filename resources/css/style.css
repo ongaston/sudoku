@@ -152,6 +152,7 @@ label:hover,
     color: antiquewhite;
     font-size: 18px;
     display: inline-flex;
+    z-index: 12;
 }
 
 #counter-container>p {
@@ -271,7 +272,8 @@ label:hover,
 #blue-container,
 #highlight-container,
 #note-highlight-container,
-#elyse-container {
+#elyse-container, 
+#identifier-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -295,7 +297,9 @@ label:hover,
 #note-highlight:hover,
 #note-highlight-container:hover,
 #elyse-container:hover,
-#elyse:hover {
+#elyse:hover,
+#identifier-container:hover,
+#cell-identifiers {
     cursor: pointer;
     color: var(--light-antique);
 }
@@ -313,7 +317,8 @@ label:hover,
 #blue-highlight,
 #highlight,
 #note-highlight,
-#elyse {
+#elyse,
+#cell-identifiers {
     margin-right: 0.5rem;
 }
 
@@ -367,6 +372,33 @@ label:hover,
 }
 
 /* #endregion */
+
+#identifiers {
+    position: absolute;
+    display: none;
+}
+
+#column-identifiers,
+#row-identifiers {
+    display: inline-flex;
+    position: absolute;
+}
+
+#column-identifiers {
+    justify-content: space-around;
+}
+
+#row-identifiers {
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.identifier {
+    font-size: 18px;
+    color: antiquewhite;
+}
 
 /* #region gameboard */
 #board {

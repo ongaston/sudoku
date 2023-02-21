@@ -32,7 +32,54 @@ let resume = document.getElementById('resume');
 let blueInfoSign = document.getElementById('info-sign-container');
 let blueInfo = document.getElementById('blue-info');
 let hoverToggle = false;
+
+let board = document.getElementById('board');
+let boardWidth = $(board).css('width');
+boardWidth = boardWidth.slice(0, boardWidth.length - 3);
+boardWidth = Number(boardWidth);
+let boardHeight = $(board).css('height');
+boardHeight = boardHeight.slice(0, boardHeight.length - 3);
+boardHeight = Number(boardHeight);
+let boardOffsetLeft = board.offsetLeft;
+let boardOffsetTop = board.offsetTop;
+
+let rowAObject = document.getElementById('rowA');
+
+let identifierToggle = document.getElementById('cell-identifiers');
+let columnIdentifiers = document.getElementById('column-identifiers');
+let rowIdentifiers = document.getElementById('row-identifiers');
+let identifiersContainer = document.getElementById('identifiers');
 /* #endregion */
+
+$(window).on('load', function() {
+
+    $(rowIdentifiers).css('height', boardHeight);
+
+    if ($(mobileCheck).css('display') !== 'block') {
+
+        let identifiersRight = (board.offsetLeft - 30).toString() + 'px';
+        identifiersContainer.style.left = identifiersRight;
+
+        let columnTop = (board.offsetTop - 30).toString() + 'px';
+        columnIdentifiers.style.marginBottom = columnTop;
+
+        let cellWidth = $(cellArray[0]).css('width');
+        cellWidth = Number(cellWidth.slice(0, cellWidth.length - 3));
+
+        let rowAWidth = $(rowAObject).css('width');
+        $(columnIdentifiers).css('width', rowAWidth);
+
+        let fullBoardWidth = board.getBoundingClientRect();
+        fullBoardWidth = fullBoardWidth.width;
+        columnIdentifiers.style.marginLeft = ((fullBoardWidth - rowAWidth.slice(0, rowAWidth.length - 3)) / 2 + cellWidth / 2).toString() + 'px';
+
+        rowIdentifiers.style.marginTop = ((fullBoardWidth - rowAWidth.slice(0, rowAWidth.length - 3)) / 2 + cellWidth / 2).toString() + 'px';
+
+        let identifiersTop = (board.offsetTop - 30).toString() + 'px';
+        identifiersContainer.style.top = identifiersTop;
+
+    }
+})
 
 $(settingsButton).on('click', function () {
 
@@ -53,6 +100,24 @@ $(closeSettings).on('click', function () {
         blueInfo.style.display = 'none';
     }
 
+})
+
+$(identifierToggle).on('click', function() {
+    if (identifierToggle.checked) {
+
+        setTimeout(() => {
+            identifiersContainer.style.display = 'block';
+        }, 400)
+
+        $(counterContainer).animate({
+            bottom: '96%'
+        });
+    } else {
+        identifiersContainer.style.display = 'none';
+        $(counterContainer).animate({
+            bottom: '93%'
+        });
+    }
 })
 
 function timerFunction() {
