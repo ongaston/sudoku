@@ -11,6 +11,7 @@ let noteToggle = document.getElementById('note-toggle');
 let globalToggle = false;
 let noteRemovalToggle = document.getElementById('note-removal');
 let blueToggle = document.getElementById('blue-highlight');
+let resetButton = document.getElementById('reset-button');
 
 let undoButton = document.getElementById('undo');
 let originalBoard;
@@ -67,10 +68,14 @@ $(document).on('keydown', function (e) {
     let key = e.originalEvent.key;
     let notesCollection = $(selectedCell).find('.note');
     let controlToggled = false;
+    let shiftToggled = false;
 
     if (key == 'Control' && previousKey == 'Control') {
         $(noteToggle).trigger('click');
         controlToggled = true;
+    } else if (key == 'Shift' && previousKey == 'Shift') {
+        $(resetButton).trigger('click');
+        shiftToggled = true;
     }
 
     if (key == 'Backspace') {
@@ -108,7 +113,7 @@ $(document).on('keydown', function (e) {
 
     }
 
-    if (controlToggled) {
+    if (controlToggled || shiftToggled) {
         previousKey = '';
     } else {
         previousKey = e.originalEvent.key;
