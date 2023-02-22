@@ -56,6 +56,7 @@ $(resetButton).on('click', function () {
 
         let notesCollection = $(blankCells[i]).find('.note');
         let answerSpot = $(blankCells[i]).find('h1');
+        blankCells.dataset.removed = '';
 
         if (blankCells[i].dataset.isFilled == 'true') {
 
@@ -78,6 +79,7 @@ $(resetButton).on('click', function () {
                 for (let p = 0; p < notesCollection.length; p++) {
 
                     notesCollection[p].innerHTML = '<p>' + defaultNotes[j][p + 1] + '</p>';
+                    $(notesCollection[p]).removeClass('note-highlight');
 
                 }
 

@@ -41,6 +41,11 @@ label:hover,
     color: var(--light-teal);
 }
 
+.note-highlight {
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
 /* #region elyse */
 #elyse-background {
     position: absolute;

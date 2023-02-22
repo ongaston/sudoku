@@ -19,7 +19,16 @@ let boardCollection = [];
 
 let highlightToggle = document.getElementById('highlight');
 let previousKey;
+let noteArray = document.getElementsByClassName('note');
 /* #endregion */
+
+$(window).on('load', function() {
+
+    for (let i = 0; i < cellArray.length; i++) {
+        cellArray[i].setAttribute('data-removed', '');
+    }
+
+})
 
 $(noteToggle).on('click', function () {
     if (noteToggle.checked == true) {
@@ -49,11 +58,17 @@ $(document).on('keypress', function (e) {
     //note mode input
     if (globalToggle) {
         noteInput(key, notesCollection);
+        if (blueToggle.checked == true) {
+            noteCheck();
+        }
         //note input with shift key shortcut
     } else if (e.originalEvent.shiftKey) {
         key = e.originalEvent.code[5];
         key = Number(key);
         noteInput(key, notesCollection);
+        if (blueToggle.checked == true) {
+            noteCheck();
+        }
         //answer input
     } else if (globalToggle == false) {
         answerInput(key, notesCollection);
@@ -171,6 +186,7 @@ function answerInput(num, notesCollection) {
         answerSpot[0].innerText = num.toString();
 
         if (noteRemovalToggle.checked == true) {
+            replaceNote(num);
             removeNotes(num);
         }
 
@@ -186,6 +202,8 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = '';
 
+        replaceNote(num);
+
         //change answer if answer is already inputted
     } else if (num.toString() !== answerSpot[0].innerText) {
 
@@ -193,6 +211,7 @@ function answerInput(num, notesCollection) {
         selectedCell[0].dataset.value = num.toString();
 
         if (noteRemovalToggle.checked == true) {
+            replaceNote(num);
             removeNotes(num);
         }
 
@@ -203,6 +222,14 @@ function answerInput(num, notesCollection) {
 //check notes for conflicts
 
 function noteCheck() {
+
+    for (let i = 0; i < noteArray.length; i++) {
+
+        noteArray[i].children[0].removeAttribute('class');
+        //console.log(noteArray[i].children[0])
+
+    }
+
     for (let i = 0; i < columnArray.length; i++) {
 
         let currentColumn = columnArray[i];
@@ -224,8 +251,8 @@ function noteCheck() {
             })
 
             if (remainingNote.length == 1) {
-                remainingNote[0].style.color = 'cornflowerblue';
-                remainingNote[0].style.fontWeight = 'bold';
+                $(remainingNote[0]).addClass('note-highlight');
+
             }
 
         }
@@ -252,8 +279,7 @@ function noteCheck() {
             })
 
             if (remainingNote.length == 1) {
-                remainingNote[0].style.color = 'cornflowerblue';
-                remainingNote[0].style.fontWeight = 'bold';
+                $(remainingNote[0]).addClass('note-highlight');
             }
 
         }
@@ -279,8 +305,7 @@ function noteCheck() {
             })
 
             if (remainingNote.length == 1) {
-                remainingNote[0].style.color = 'cornflowerblue';
-                remainingNote[0].style.fontWeight = 'bold';
+                $(remainingNote[0]).addClass('note-highlight');
             }
 
         }
@@ -436,13 +461,18 @@ function arrowMove(key) {
 
 function removeNotes(num, cell = selectedCell[0]) {
 
+    let removedArray = [];
+
     /* #region  remove notes in column */
     let remove = '.note' + num.toString();
     let columnNumber = cell.dataset.column;
     columnNumber = eval(columnNumber);
     let removeNote = $(columnNumber).find(remove);
     for (let i = 0; i < removeNote.length; i++) {
-        removeNote[i].innerText = '';
+        if (removedArray.includes(removeNote[i].parentElement.parentElement.id) == false) {
+            removedArray.push(removeNote[i].parentElement.parentElement.id, removeNote[i].innerHTML + ' ');
+        }
+        removeNote[i].innerHTML = '<p></p>';
     }
     /* #endregion */
 
@@ -450,8 +480,13 @@ function removeNotes(num, cell = selectedCell[0]) {
     let rowNumber = cell.dataset.row;
     rowNumber = eval(rowNumber);
     let removeRow = $(rowNumber).find(remove);
+
     for (let i = 0; i < removeRow.length; i++) {
-        removeRow[i].innerText = '';
+
+        if (removedArray.includes(removeRow[i].parentElement.parentElement.id) == false) {
+            removedArray.push(removeRow[i].parentElement.parentElement.id, removeRow[i].innerHTML + ' ');
+        }
+        removeRow[i].innerHTML = '<p></p>';
     }
     /* #endregion */
 
@@ -460,9 +495,47 @@ function removeNotes(num, cell = selectedCell[0]) {
     blockNumber = eval(blockNumber);
     let removeBlock = $(blockNumber).find(remove);
     for (let i = 0; i < removeBlock.length; i++) {
-        removeBlock[i].innerText = '';
+        if (removedArray.includes(removeBlock[i].parentElement.parentElement.id) == false) {
+            removedArray.push(removeBlock[i].parentElement.parentElement.id, removeBlock[i].innerHTML + ' ');
+        }
+        removeBlock[i].innerHTML = '<p></p>';
     }
     /* #endregion */
+
+    let cellNote = $(cell).find(remove);
+    cellNote[0].innerHTML = '<p>' + num.toString() + '</p>';
+
+    cell.setAttribute('data-removed', removedArray);
+
+
+}
+
+function replaceNote(num, cell = selectedCell[0]) {
+
+
+    let removedArray = cell.dataset.removed.split(" ,");
+    removedArray = removedArray.map(x => new Array(x));
+
+    for (let i = 0; i < removedArray.length; i++) {
+        removedArray[i] = removedArray[i].toString().split(',');
+    }
+
+    console.log(removedArray);
+
+    for (let i = 0; i < cellArray.length; i++) {
+
+        for (let j = 0; j < removedArray.length; j++) {
+
+            if (cellArray[i].id == removedArray[j][0]) {
+
+                let remove = '.note' + num.toString();
+                $(cellArray[i]).find(remove)[0].innerHTML = '<p>' + removedArray[j][1] + '</p>';
+            }
+
+        }
+
+    }
+
 
 }
 
