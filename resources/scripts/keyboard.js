@@ -17,6 +17,7 @@ let originalBoard;
 let boardCollection = [];
 
 let highlightToggle = document.getElementById('highlight');
+let previousKey;
 /* #endregion */
 
 $(noteToggle).on('click', function () {
@@ -65,6 +66,12 @@ $(document).on('keydown', function (e) {
 
     let key = e.originalEvent.key;
     let notesCollection = $(selectedCell).find('.note');
+    let controlToggled = false;
+
+    if (key == 'Control' && previousKey == 'Control') {
+        $(noteToggle).trigger('click');
+        controlToggled = true;
+    }
 
     if (key == 'Backspace') {
 
@@ -98,6 +105,13 @@ $(document).on('keydown', function (e) {
 
         e.preventDefault();
         arrowMove(key);
+
+    }
+
+    if (controlToggled) {
+        previousKey = '';
+    } else {
+        previousKey = e.originalEvent.key;
 
     }
 
