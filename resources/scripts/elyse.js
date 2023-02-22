@@ -3,6 +3,7 @@
 let elyseToggle = document.getElementById('elyse');
 let elyseFace = document.getElementById('elyse-face');
 let elyseBackground = document.getElementById('elyse-background');
+let elyseContainer = document.getElementById('elyse-container');
 let board = document.getElementById('board');
 let cellArray = document.getElementsByClassName('cell');
 cellArray = Array.from(cellArray);
@@ -10,12 +11,32 @@ let html = document.getElementsByTagName('html');
 let animatedContainer = document.getElementById('animated-elyse');
 let animationTimer;
 let bigContainer = document.getElementById('big-animated');
+let settingsButton = document.getElementById('gear');
 
 let boardWidth = $(board).css('width');
 boardWidth = boardWidth.slice(0, boardWidth.length - 3);
 boardWidth = Number(boardWidth);
 
 /* #endregion */
+
+$(settingsButton).on('click', function() {
+
+    let containerRect = elyseContainer.getBoundingClientRect();
+    let faceRect = elyseFace.getBoundingClientRect();
+
+    elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
+    elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 35).toString() + "px";
+
+})
+
+$(window).on('resize', function() {
+    let containerRect = elyseContainer.getBoundingClientRect();
+    let faceRect = elyseFace.getBoundingClientRect();
+
+    elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
+    //elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 55).toString() + "px";
+})
+
 $(elyseToggle).on('click', function () {
 
     $(elyseFace).animate({

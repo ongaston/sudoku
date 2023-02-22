@@ -50,10 +50,43 @@ let columnIdentifiers = document.getElementById('column-identifiers');
 let rowIdentifiers = document.getElementById('row-identifiers');
 let identifiersContainer = document.getElementById('identifiers');
 let identifierSetting = document.getElementById('identifier-container');
+
+let flipToggle = document.getElementById('flip');
 /* #endregion */
 
 $(window).on('load', function() {
 
+    $(rowIdentifiers).css('height', boardHeight);
+
+    if ($(mobileCheck).css('display') !== 'block') {
+
+        let identifiersRight = (board.offsetLeft - 30).toString() + 'px';
+        identifiersContainer.style.left = identifiersRight;
+
+        let columnTop = (board.offsetTop - 30).toString() + 'px';
+        columnIdentifiers.style.marginBottom = columnTop;
+
+        let cellWidth = $(cellArray[0]).css('width');
+        cellWidth = Number(cellWidth.slice(0, cellWidth.length - 3));
+
+        let rowAWidth = $(rowAObject).css('width');
+        $(columnIdentifiers).css('width', rowAWidth);
+
+        let fullBoardWidth = board.getBoundingClientRect();
+        fullBoardWidth = fullBoardWidth.width;
+        columnIdentifiers.style.marginLeft = ((fullBoardWidth - rowAWidth.slice(0, rowAWidth.length - 3)) / 2 + cellWidth / 2).toString() + 'px';
+
+        rowIdentifiers.style.marginTop = ((fullBoardWidth - rowAWidth.slice(0, rowAWidth.length - 3)) / 2 + cellWidth / 2).toString() + 'px';
+
+        let identifiersTop = (board.offsetTop - 30).toString() + 'px';
+        identifiersContainer.style.top = identifiersTop;
+
+    } else {
+        identifierSetting.remove();
+    }
+})
+
+$(window).on('resize', function() {
     $(rowIdentifiers).css('height', boardHeight);
 
     if ($(mobileCheck).css('display') !== 'block') {
@@ -121,6 +154,28 @@ $(identifierToggle).on('click', function() {
             bottom: '93%'
         });
     }
+})
+
+$(flipToggle).on('click', function() {
+
+    if (flipToggle.checked) {
+
+        for (let i = 0; i < rowIdentifiers.children.length; i++) {
+            columnIdentifiers.children[i].innerText = rowIdentifiers.children[i].innerText;
+            rowIdentifiers.children[i].innerText = (i + 1).toString();
+        }
+
+    } else {
+
+        for (let i = 0; i < rowIdentifiers.children.length; i++) {
+
+            rowIdentifiers.children[i].innerText = columnIdentifiers.children[i].innerText;
+            columnIdentifiers.children[i].innerText = (i + 1).toString();
+
+        }
+
+    }
+
 })
 
 function timerFunction() {

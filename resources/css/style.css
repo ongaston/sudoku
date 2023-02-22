@@ -272,8 +272,9 @@ label:hover,
 #blue-container,
 #highlight-container,
 #note-highlight-container,
-#elyse-container, 
-#identifier-container {
+#elyse-container,
+#identifier-container,
+#flip-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -299,7 +300,9 @@ label:hover,
 #elyse-container:hover,
 #elyse:hover,
 #identifier-container:hover,
-#cell-identifiers {
+#cell-identifiers,
+#flip-container:hover,
+#flip:hover {
     cursor: pointer;
     color: var(--light-antique);
 }
@@ -318,7 +321,8 @@ label:hover,
 #highlight,
 #note-highlight,
 #elyse,
-#cell-identifiers {
+#cell-identifiers,
+#flip {
     margin-right: 0.5rem;
 }
 
@@ -327,8 +331,8 @@ label:hover,
     height: auto;
     vertical-align: sub;
     position: absolute;
-    margin-bottom: 6rem;
-    margin-left: 6rem;
+   /*margin-bottom: 6rem;
+    margin-left: 6rem;*/
 }
 
 #blue-info {
@@ -373,6 +377,7 @@ label:hover,
 
 /* #endregion */
 
+/* #region identifiers */
 #identifiers {
     position: absolute;
     display: none;
@@ -399,6 +404,8 @@ label:hover,
     font-size: 18px;
     color: antiquewhite;
 }
+
+/* #endregion */
 
 /* #region gameboard */
 #board {
@@ -669,7 +676,9 @@ label:hover,
     #blue-container,
     #highlight-container,
     #note-highlight-container,
-    #elyse-container {
+    #elyse-container,
+    #identifier-container,
+    #flip-container {
         font-size: 1.8rem;
     }
 
