@@ -16,6 +16,7 @@ html {
     --lighter-cornflower: rgb(211, 219, 236);
     --light-antique: rgb(250, 242, 231);
     --lighter-teal: rgb(10, 51, 58);
+    --wrong: rgb(213, 38, 38);
 }
 
 main,
@@ -44,6 +45,12 @@ label:hover,
 .note-highlight {
     color: cornflowerblue;
     font-weight: bold;
+}
+
+.conflict-answer {
+
+    color: var(--wrong) !important;
+
 }
 
 /* #region elyse */

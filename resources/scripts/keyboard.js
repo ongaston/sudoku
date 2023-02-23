@@ -20,6 +20,9 @@ let boardCollection = [];
 let highlightToggle = document.getElementById('highlight');
 let previousKey;
 let noteArray = document.getElementsByClassName('note');
+let conflict = false;
+let answer = document.getElementsByClassName('answer');
+answer = Array.from(answer);
 /* #endregion */
 
 $(window).on('load', function() {
@@ -190,6 +193,18 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
+        conflictCheck();
+
+        /*for (let i = 0; i < cellArray.length; i++) {
+
+            if (cellArray[i].dataset.isFilled == 'false') {
+                break;
+            } else if (i == cellArray.length - 1) {
+
+            }
+
+        }*/
+
         //remove answer and show notes again
     } else if (num.toString() == answerSpot[0].innerText) {
 
@@ -202,7 +217,7 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = '';
 
-        replaceNote(num);
+        conflictCheck();
 
         //change answer if answer is already inputted
     } else if (num.toString() !== answerSpot[0].innerText) {
@@ -215,6 +230,7 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
+        conflictCheck();
     }
 
 }
@@ -446,6 +462,127 @@ function noteCheck() {
             }
 
         }
+    }
+
+}
+
+function conflictCheck() {
+
+    for (let i = 0; i < answer.length; i++) {
+
+        $(answer[i]).removeClass('conflict-answer');
+
+    }
+
+    for (let i = 0; i < columnArray.length; i++) {
+
+        let currentColumn = columnArray[i];
+
+        for (let j = 0; j < currentColumn.length; j++) {
+
+            let currentNum = j + 1;
+            let answerSpots = Array.from($(currentColumn).find('.answer'));
+            answerSpots = answerSpots.filter(function(e) {
+
+                if (e.innerText == '') {
+                    return false;
+                }
+
+                return e;
+
+            })
+            
+            let answerInputs = answerSpots.map(function (e) {
+
+                return e.innerText;
+
+            })
+
+            answerInputs.forEach(function(e) {
+
+                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
+                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+                }
+
+            })
+
+        }
+
+    }
+
+    for (let i = 0; i < rowArray.length; i++) {
+
+        let currentRow = rowArray[i];
+
+        for (let j = 0; j < currentRow.length; j++) {
+
+            let currentNum = j + 1;
+            let answerSpots = Array.from($(currentRow).find('.answer'));
+            answerSpots = answerSpots.filter(function(e) {
+
+                if (e.innerText == '') {
+                    return false;
+                }
+
+                return e;
+
+            })
+            
+            let answerInputs = answerSpots.map(function (e) {
+
+                return e.innerText;
+
+            })
+
+            answerInputs.forEach(function(e) {
+
+                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
+                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+                }
+
+            })
+
+        }
+
+    }
+
+    for (let i = 0; i < blockArray.length; i++) {
+
+        let currentBlock = blockArray[i];
+
+        for (let j = 0; j < currentBlock.length; j++) {
+
+            let currentNum = j + 1;
+            let answerSpots = Array.from($(currentBlock).find('.answer'));
+            answerSpots = answerSpots.filter(function(e) {
+
+                if (e.innerText == '') {
+                    return false;
+                }
+
+                return e;
+
+            })
+            
+            let answerInputs = answerSpots.map(function (e) {
+
+                return e.innerText;
+
+            })
+
+            answerInputs.forEach(function(e) {
+
+                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
+                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+                }
+
+            })
+
+        }
+
     }
 
 }
