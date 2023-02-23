@@ -230,6 +230,34 @@ function noteCheck() {
 
     }
 
+    for (let i = 0; i < cellArray.length; i++) {
+
+        if (cellArray[i].dataset.isFilled == 'true') {
+            continue;
+        } else {
+
+            let noteArrayCheck = Array.from($(cellArray[i]).find('.note'));
+
+            noteArrayCheck = noteArrayCheck.filter(function(e) {
+
+                if (e.innerHTML == "<p></p>") {
+                    return false;
+                }
+                return e;
+
+            })
+
+            if (noteArrayCheck.length == 1) {
+
+                console.log(noteArrayCheck)
+                $(noteArrayCheck[0].children[0]).addClass('note-highlight');
+
+            }
+
+        }
+
+    }
+
     for (let i = 0; i < columnArray.length; i++) {
 
         let currentColumn = columnArray[i];
@@ -282,7 +310,33 @@ function noteCheck() {
 
                 }
 
-            }
+            } /*else if (remainingNote.length == 3) {
+
+                for (let p = 0; p < currentColumn.length; p++) {
+
+                    let secondNum = p + 1;
+                    let secondCheck = '.note' + secondNum.toString();
+                    let secondRemaining = $(currentColumn).find(secondCheck);
+                    let secondFilled = 'p:contains(' + secondNum.toString() + ')';
+                    secondRemaining = Array.from($(secondRemaining).find(secondFilled));
+                    secondRemaining = secondRemaining.filter(function(e) {
+
+                        if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                            return false;
+                        }
+                        return e;
+
+                    })
+
+                    if ((secondRemaining.length == 2 && secondNum !== currentNum) && (((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id)) || ((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id)))) {
+
+
+
+                    }
+
+                }
+
+            }*/
 
         }
 
@@ -309,6 +363,33 @@ function noteCheck() {
 
             if (remainingNote.length == 1) {
                 $(remainingNote[0]).addClass('note-highlight');
+            } else if (remainingNote.length == 2) {
+
+                for (let p = 0; p < currentRow.length; p++) {
+
+                    let secondNum = p + 1;
+                    let secondCheck = '.note' + secondNum.toString();
+                    let secondRemaining = $(currentRow).find(secondCheck);
+                    let secondFilled = 'p:contains(' + secondNum.toString() + ')';
+                    secondRemaining = Array.from($(secondRemaining).find(secondFilled));
+                    secondRemaining = secondRemaining.filter(function(e) {
+
+                        if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                            return false;
+                        }
+                        return e;
+
+                    })
+
+                    if ((secondRemaining.length == 2 && secondNum !== currentNum) && (((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id)) || ((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id)))) {
+                        $(remainingNote[0]).addClass('note-highlight');
+                        $(remainingNote[1]).addClass('note-highlight');
+                        $(secondRemaining[0]).addClass('note-highlight');
+                        $(secondRemaining[1]).addClass('note-highlight');
+                    }
+
+                }
+
             }
 
         }
@@ -335,6 +416,33 @@ function noteCheck() {
 
             if (remainingNote.length == 1) {
                 $(remainingNote[0]).addClass('note-highlight');
+            } else if (remainingNote.length == 2) {
+
+                for (let p = 0; p < currentBlock.length; p++) {
+
+                    let secondNum = p + 1;
+                    let secondCheck = '.note' + secondNum.toString();
+                    let secondRemaining = $(currentBlock).find(secondCheck);
+                    let secondFilled = 'p:contains(' + secondNum.toString() + ')';
+                    secondRemaining = Array.from($(secondRemaining).find(secondFilled));
+                    secondRemaining = secondRemaining.filter(function(e) {
+
+                        if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                            return false;
+                        }
+                        return e;
+
+                    })
+
+                    if ((secondRemaining.length == 2 && secondNum !== currentNum) && (((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id)) || ((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id)))) {
+                        $(remainingNote[0]).addClass('note-highlight');
+                        $(remainingNote[1]).addClass('note-highlight');
+                        $(secondRemaining[0]).addClass('note-highlight');
+                        $(secondRemaining[1]).addClass('note-highlight');
+                    }
+
+                }
+
             }
 
         }
@@ -549,8 +657,6 @@ function replaceNote(num, cell = selectedCell[0]) {
     for (let i = 0; i < removedArray.length; i++) {
         removedArray[i] = removedArray[i].toString().split(',');
     }
-
-    console.log(removedArray);
 
     for (let i = 0; i < cellArray.length; i++) {
 
