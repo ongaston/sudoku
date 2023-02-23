@@ -250,6 +250,20 @@ function timerFunction() {
 
 timerInterval = setInterval(timerFunction, 1000);
 
+function modifyTimerInterval(value) {
+
+    if (value == 'start') {
+
+        timerInterval = setInterval(timerFunction, 1000);
+
+    } else if (value == 'stop') {
+
+        clearInterval(timerInterval);
+
+    }
+
+}
+
 $(pauseButton).on('click', function() {
 
     clearInterval(timerInterval);
@@ -394,3 +408,5 @@ if ($(mobileCheck).css('display') == 'block') {
     })
 
 }
+
+export { timerInterval, modifyTimerInterval };

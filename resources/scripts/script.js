@@ -116,13 +116,11 @@ function highlightSame() {
     } else {
         for (let i = 0; i < cellArray.length; i++) {
             let cellAnswer = $(cellArray[i]).find('h1');
-            cellAnswer[0].style.color = 'black';
-            cellAnswer[0].style.fontWeight = 'normal';
+            $(cellAnswer[0]).removeClass('note-highlight');
         }
 
         for (let i = 0; i < noteArray.length; i++) {
-            noteArray[i].style.color = 'black';
-            noteArray[i].style.fontWeight = 'normal';
+            $(noteArray[i]).removeClass('note-highlight');
         }
         return;
     }
@@ -132,12 +130,10 @@ function highlightSame() {
         let cellAnswer = $(cellArray[i]).find('h1');
         if (cellAnswer[0].innerText == currentNum) {
 
-            cellAnswer[0].style.color = 'cornflowerblue';
-            cellAnswer[0].style.fontWeight = 'bold';
+            $(cellAnswer[0]).addClass('note-highlight');
 
         } else {
-            cellAnswer[0].style.color = 'black';
-            cellAnswer[0].style.fontWeight = 'normal';
+            $(cellAnswer[0]).removeClass('note-highlight');
         }
 
     }
@@ -147,11 +143,9 @@ function highlightSame() {
         for (let i = 0; i < noteArray.length; i++) {
 
             if (noteArray[i].innerText == currentNum) {
-                noteArray[i].style.color = 'cornflowerblue';
-                noteArray[i].style.fontWeight = 'bold';
+                $(noteArray[i]).addClass('note-highlight');
             } else {
-                noteArray[i].style.color = 'black';
-                noteArray[i].style.fontWeight = 'normal';
+                $(noteArray[i]).removeClass('note-highlight');
             }
     
         }

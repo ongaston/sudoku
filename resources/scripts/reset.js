@@ -51,6 +51,10 @@ $(resetButton).on('click', function () {
     hoursElement.innerText = '00';
     /* #endregion */
 
+    for (let i = 0; i < cellArray.length; i++) {
+        $(cellArray[i].children[0]).removeClass('conflict-answer');
+    }
+
     //removes filled in answers and shows hidden note objects again
     for (let i = 0; i < blankCells.length; i++) {
 

@@ -1,5 +1,6 @@
 import { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 import { undo, getBoard } from './undo.js';
+import { checkComplete } from "./complete.js";
 
 /* #region  declarations */
 let cellsArray = document.getElementsByClassName('cell');
@@ -247,6 +248,8 @@ function answerInput(num, notesCollection) {
         }
     }
 
+    checkComplete();
+
 }
 
 //check notes for conflicts
@@ -480,6 +483,8 @@ function noteCheck() {
 
 }
 
+//check inputted answers for conflicts
+
 function conflictCheck() {
 
     for (let i = 0; i < answer.length; i++) {
@@ -515,8 +520,12 @@ function conflictCheck() {
             answerInputs.forEach(function(e) {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
-                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
-                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+
+                    answerSpots.forEach(function(k) {
+                        if (k.innerText == e) {
+                            $(k).addClass('conflict-answer');
+                        }
+                    })
                 }
 
             })
@@ -552,8 +561,11 @@ function conflictCheck() {
             answerInputs.forEach(function(e) {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
-                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
-                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+                    answerSpots.forEach(function(k) {
+                        if (k.innerText == e) {
+                            $(k).addClass('conflict-answer');
+                        }
+                    })
                 }
 
             })
@@ -589,8 +601,11 @@ function conflictCheck() {
             answerInputs.forEach(function(e) {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
-                    $(answerSpots[answerInputs.indexOf(e)]).addClass('conflict-answer');
-                    $(answerSpots[answerInputs.lastIndexOf(e)]).addClass('conflict-answer');
+                    answerSpots.forEach(function(k) {
+                        if (k.innerText == e) {
+                            $(k).addClass('conflict-answer');
+                        }
+                    })
                 }
 
             })
@@ -599,8 +614,19 @@ function conflictCheck() {
 
     }
 
+    if (answer.every(e => e.classList[1] !== 'conflict-answer')) {
+        conflict = false;
+    } else {
+        conflict = true;
+    }
+
 }
 
+//modify conflict value 
+
+function modifyConflict(value) {
+    conflict = value;
+}
 
 //arrow key navigation
 
@@ -799,6 +825,8 @@ function removeNotes(num, cell = selectedCell[0]) {
 
 }
 
+//replace notes when answer removed
+
 function replaceNote(num, cell = selectedCell[0]) {
 
 
@@ -838,4 +866,4 @@ function modifyBoardCollection(value) {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck };
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck, conflict, modifyConflict };
