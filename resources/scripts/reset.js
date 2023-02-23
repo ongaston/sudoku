@@ -56,7 +56,7 @@ $(resetButton).on('click', function () {
 
         let notesCollection = $(blankCells[i]).find('.note');
         let answerSpot = $(blankCells[i]).find('h1');
-        blankCells.dataset.removed = '';
+        blankCells[i].dataset.removed = '';
 
         if (blankCells[i].dataset.isFilled == 'true') {
 

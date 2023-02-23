@@ -255,6 +255,35 @@ function noteCheck() {
 
             }
 
+            if (remainingNote.length == 2) {
+
+                for (let p = 0; p < currentColumn.length; p++) {
+
+                    let secondNum = p + 1;
+                    let secondCheck = '.note' + secondNum.toString();
+                    let secondRemaining = $(currentColumn).find(secondCheck);
+                    let secondFilled = 'p:contains(' + secondNum.toString() + ')';
+                    secondRemaining = Array.from($(secondRemaining).find(secondFilled));
+                    secondRemaining = secondRemaining.filter(function(e) {
+
+                        if (e.parentElement.parentElement.parentElement.dataset.isFilled == 'true') {
+                            return false;
+                        }
+                        return e;
+
+                    })
+
+                    if ((secondRemaining.length == 2 && secondNum !== currentNum) && (((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id)) || ((secondRemaining[1].parentElement.parentElement.parentElement.id == remainingNote[0].parentElement.parentElement.parentElement.id) && (secondRemaining[0].parentElement.parentElement.parentElement.id == remainingNote[1].parentElement.parentElement.parentElement.id)))) {
+                        $(remainingNote[0]).addClass('note-highlight');
+                        $(remainingNote[1]).addClass('note-highlight');
+                        $(secondRemaining[0]).addClass('note-highlight');
+                        $(secondRemaining[1]).addClass('note-highlight');
+                    }
+
+                }
+
+            }
+
         }
 
     }
@@ -312,6 +341,7 @@ function noteCheck() {
     }
 
 }
+
 
 //arrow key navigation
 
