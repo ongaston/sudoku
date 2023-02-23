@@ -1,6 +1,6 @@
 import { inlineToggle, rotateToggle } from "./utilities.js";
 import {columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from './script.js';
-import {removeNotes, noteCheck} from './keyboard.js';
+import {removeNotes, noteCheck, conflictCheck} from './keyboard.js';
 
 /* #region  declarations */
 let cellArray = document.getElementsByClassName('cell');
@@ -52,6 +52,8 @@ let identifiersContainer = document.getElementById('identifiers');
 let identifierSetting = document.getElementById('identifier-container');
 
 let flipToggle = document.getElementById('flip');
+
+let conflictToggle = document.getElementById('conflict');
 /* #endregion */
 
 $(window).on('load', function() {
@@ -173,6 +175,26 @@ $(flipToggle).on('click', function() {
             columnIdentifiers.children[i].innerText = (i + 1).toString();
 
         }
+
+    }
+
+})
+
+$(conflictToggle).on('click', function() {
+
+
+    if (!conflictToggle.checked) {
+
+        let answer = Array.from(document.getElementsByClassName('answer'));
+        for (let i = 0; i < answer.length; i++) {
+
+            $(answer[i]).removeClass('conflict-answer');
+
+        }
+
+    } else {
+
+        conflictCheck();
 
     }
 

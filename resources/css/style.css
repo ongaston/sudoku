@@ -286,7 +286,8 @@ label:hover,
 #note-highlight-container,
 #elyse-container,
 #identifier-container,
-#flip-container {
+#flip-container,
+#conflict-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -314,7 +315,9 @@ label:hover,
 #identifier-container:hover,
 #cell-identifiers,
 #flip-container:hover,
-#flip:hover {
+#flip:hover,
+#conflict-container:hover,
+#conflict:hover {
     cursor: pointer;
     color: var(--light-antique);
 }
@@ -334,7 +337,8 @@ label:hover,
 #note-highlight,
 #elyse,
 #cell-identifiers,
-#flip {
+#flip,
+#conflict {
     margin-right: 0.5rem;
 }
 
@@ -690,7 +694,8 @@ label:hover,
     #note-highlight-container,
     #elyse-container,
     #identifier-container,
-    #flip-container {
+    #flip-container,
+    #conflict-container {
         font-size: 1.8rem;
     }
 

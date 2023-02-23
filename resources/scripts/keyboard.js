@@ -23,6 +23,8 @@ let noteArray = document.getElementsByClassName('note');
 let conflict = false;
 let answer = document.getElementsByClassName('answer');
 answer = Array.from(answer);
+
+let conflictToggle = document.getElementById('conflict');
 /* #endregion */
 
 $(window).on('load', function() {
@@ -193,7 +195,11 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
-        conflictCheck();
+        if (conflictToggle.checked) {
+
+            conflictCheck();
+
+        }
 
         /*for (let i = 0; i < cellArray.length; i++) {
 
@@ -217,7 +223,11 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = '';
 
-        conflictCheck();
+        if (conflictToggle.checked) {
+
+            conflictCheck();
+
+        }
 
         //change answer if answer is already inputted
     } else if (num.toString() !== answerSpot[0].innerText) {
@@ -230,7 +240,11 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
-        conflictCheck();
+        if (conflictToggle.checked) {
+
+            conflictCheck();
+
+        }
     }
 
 }
@@ -824,4 +838,4 @@ function modifyBoardCollection(value) {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection };
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck };
