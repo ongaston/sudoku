@@ -7,12 +7,16 @@ let cellArray = Array.from(document.getElementsByClassName('cell'));
 
 function checkComplete() {
 
-    if (!cellArray.every(e => e.dataset.isFilled == 'true')) {
+    /*if (!cellArray.every(e => e.dataset.isFilled == 'true')) {
 
         return;
 
-    } else {
+    } else*/ if (!conflict) {
+        //win
 
+
+    } else if (conflict) {
+        //wrong
         
 
     }

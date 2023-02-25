@@ -196,11 +196,11 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
-        if (conflictToggle.checked) {
 
-            conflictCheck();
 
-        }
+        conflictCheck();
+
+        
 
         /*for (let i = 0; i < cellArray.length; i++) {
 
@@ -224,11 +224,11 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = '';
 
-        if (conflictToggle.checked) {
 
-            conflictCheck();
 
-        }
+        conflictCheck();
+
+        
 
         //change answer if answer is already inputted
     } else if (num.toString() !== answerSpot[0].innerText) {
@@ -241,11 +241,10 @@ function answerInput(num, notesCollection) {
             removeNotes(num);
         }
 
-        if (conflictToggle.checked) {
 
-            conflictCheck();
 
-        }
+        conflictCheck();
+
     }
 
     checkComplete();
@@ -280,9 +279,15 @@ function noteCheck() {
 
             })
 
+            let relativeAnswers = [];
+
             if (noteArrayCheck.length == 1) {
 
-                console.log(noteArrayCheck)
+                relativeAnswers.push($(selectedCell[0].dataset.column).find('.answer'));
+                console.log(relativeAnswers)
+                console.log(eval(selectedCell[0].dataset.column))
+
+                //console.log(noteArrayCheck)
                 $(noteArrayCheck[0].children[0]).addClass('note-highlight');
 
             }
@@ -489,7 +494,7 @@ function conflictCheck() {
 
     for (let i = 0; i < answer.length; i++) {
 
-        $(answer[i]).removeClass('conflict-answer');
+        $(answer[i]).removeClass('conflict-answer hidden-conflict');
 
     }
 
@@ -521,9 +526,12 @@ function conflictCheck() {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
 
+                    
                     answerSpots.forEach(function(k) {
-                        if (k.innerText == e) {
+                        if (k.innerText == e && conflictToggle.checked) {
                             $(k).addClass('conflict-answer');
+                        } else if (k.innerText == e) {
+                            $(k).addClass('hidden-conflict');
                         }
                     })
                 }
@@ -562,8 +570,10 @@ function conflictCheck() {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
                     answerSpots.forEach(function(k) {
-                        if (k.innerText == e) {
+                        if (k.innerText == e && conflictToggle.checked) {
                             $(k).addClass('conflict-answer');
+                        } else if (k.innerText == e) {
+                            $(k).addClass('hidden-conflict');
                         }
                     })
                 }
@@ -602,8 +612,10 @@ function conflictCheck() {
 
                 if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
                     answerSpots.forEach(function(k) {
-                        if (k.innerText == e) {
+                        if (k.innerText == e && conflictToggle.checked) {
                             $(k).addClass('conflict-answer');
+                        } else if (k.innerText == e) {
+                            $(k).addClass('hidden-conflict');
                         }
                     })
                 }
@@ -614,7 +626,7 @@ function conflictCheck() {
 
     }
 
-    if (answer.every(e => e.classList[1] !== 'conflict-answer')) {
+    if (answer.every(e => e.classList[1] !== 'conflict-answer') && answer.every(e => e.classList[1] !== 'hidden-conflict')) {
         conflict = false;
     } else {
         conflict = true;
