@@ -709,6 +709,7 @@ label:hover,
     border: 1px solid var(--light-teal);
     border-radius: 50px;
     box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
+    display: block;
 }
 
 .board-name:hover {

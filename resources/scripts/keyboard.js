@@ -491,19 +491,17 @@ function noteCheck() {
 
 function conflictCheck() {
 
-    for (let i = 0; i < answer.length; i++) {
+    /*for (let i = 0; i < answer.length; i++) {
 
         $(answer[i]).removeClass('conflict-answer hidden-conflict');
 
     }
 
+
     for (let i = 0; i < columnArray.length; i++) {
 
         let currentColumn = columnArray[i];
 
-
-
-        //let currentNum = j + 1;
         let answerSpots = Array.from($(currentColumn).find('.answer'));
         answerSpots = answerSpots.filter(function(e) {
 
@@ -546,9 +544,6 @@ function conflictCheck() {
 
         let currentRow = rowArray[i];
 
-
-
-        let currentNum = j + 1;
         let answerSpots = Array.from($(currentRow).find('.answer'));
         answerSpots = answerSpots.filter(function(e) {
 
@@ -588,9 +583,6 @@ function conflictCheck() {
 
         let currentBlock = blockArray[i];
 
-
-
-        let currentNum = j + 1;
         let answerSpots = Array.from($(currentBlock).find('.answer'));
         answerSpots = answerSpots.filter(function(e) {
 
@@ -630,7 +622,7 @@ function conflictCheck() {
         conflict = false;
     } else {
         conflict = true;
-    }
+    }*/
 
 }
 

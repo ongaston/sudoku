@@ -450,7 +450,7 @@ $(otherContainer).on('click', function() {
 $(closeOther).on('click', function() {
 
     inlineToggle(otherMenu);
-    otherMenu.style.display = 'none';
+    otherUnderlay.style.display = 'none';
 
 })
 

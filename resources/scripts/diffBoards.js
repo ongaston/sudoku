@@ -7,6 +7,8 @@ let board1Link = document.getElementById('board-1');
 let board2Link = document.getElementById('board-2');
 
 let board = document.getElementById('board');
+let board2 = '';
+
 
 $(window).on('load', function() {
 
@@ -16,8 +18,13 @@ $(window).on('load', function() {
 
 $(board1Link).on('click', function() {
     board.innerHTML = board1;
-    resetGrid();
+
+    setInterval(resetGrid, 500);
+
 })
+
+//console.log($.get())
+console.log(document.fil)
 
 
 

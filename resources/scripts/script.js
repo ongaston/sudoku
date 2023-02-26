@@ -158,7 +158,7 @@ function highlightSame() {
 function resetGrid() {
 
     cellArray = document.getElementsByClassName('cell');
-    //modifyAnswerVariable();
+    modifyAnswerVariable();
 
     for (let i = 0; i < cellArray.length; i++) {
 

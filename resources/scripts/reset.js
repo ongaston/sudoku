@@ -1,4 +1,5 @@
 import { resetGrid, cellArray } from "./script.js";
+import { getBoard } from "./undo.js";
 
 let resetButton = document.getElementById('reset-button');
 let board = document.getElementById('board');
@@ -14,9 +15,9 @@ let defaultNotes = [];
 
 $(window).on('load', function () {
 
-    //defaultBoard = board.innerHTML;
+    defaultBoard = getBoard();
 
-    for (let i = 0; i < blankCells.length; i++) {
+    /*for (let i = 0; i < blankCells.length; i++) {
 
         let noteArray = [blankCells[i].id];
 
@@ -30,14 +31,14 @@ $(window).on('load', function () {
         }
 
         defaultNotes.push(noteArray);
-    }
+    }*/
 
 })
 
 $(resetButton).on('click', function () {
 
-    //board.innerHTML = defaultBoard;
-    //resetGrid();
+    board.innerHTML = defaultBoard;
+    resetGrid();
 
     /* #region  timer stuff */
     let secondsElement = document.getElementById('seconds');
@@ -54,7 +55,7 @@ $(resetButton).on('click', function () {
     }
 
     //removes filled in answers and shows hidden note objects again
-    for (let i = 0; i < blankCells.length; i++) {
+    /*for (let i = 0; i < blankCells.length; i++) {
 
         let notesCollection = $(blankCells[i]).find('.note');
         let answerSpot = $(blankCells[i]).find('h1');
@@ -89,7 +90,7 @@ $(resetButton).on('click', function () {
 
         }
 
-    }
+    }*/
 
 })
 
