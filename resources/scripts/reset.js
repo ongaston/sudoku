@@ -1,10 +1,8 @@
-import { resetGrid } from "./script.js";
+import { resetGrid, cellArray } from "./script.js";
 
 let resetButton = document.getElementById('reset-button');
 let board = document.getElementById('board');
 let defaultBoard;
-let cellArrayDOM = document.getElementsByClassName('cell');
-let cellArray = Array.from(cellArrayDOM);
 let blankCells = cellArray.filter(function (e) {
     if (e.classList[1] == 'given') {
         return false;

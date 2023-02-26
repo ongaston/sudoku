@@ -1,10 +1,8 @@
 import { inlineToggle, rotateToggle } from "./utilities.js";
-import {columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from './script.js';
+import {cellArray, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from './script.js';
 import {removeNotes, noteCheck, conflictCheck} from './keyboard.js';
 
 /* #region  declarations */
-let cellArray = document.getElementsByClassName('cell');
-cellArray = Array.from(cellArray);
 
 let mobileCheck = document.getElementById('mobile-check');
 
@@ -54,6 +52,13 @@ let identifierSetting = document.getElementById('identifier-container');
 let flipToggle = document.getElementById('flip');
 
 let conflictToggle = document.getElementById('conflict');
+
+let otherLink = document.getElementById('other-boards-click');
+let moreSymbol = document.getElementById('more');
+let otherContainer = document.getElementById('other-boards-link');
+let closeOther = document.getElementById('close-other-span');
+let otherMenu = document.getElementById('other-menu');
+let otherUnderlay = document.getElementById('other-menu-overlay');
 /* #endregion */
 
 $(window).on('load', function() {
@@ -408,5 +413,48 @@ if ($(mobileCheck).css('display') == 'block') {
     })
 
 }
+
+$(otherContainer).on('mousedown', function() {
+
+    otherLink.style.color = 'rgb(214, 202, 185)';
+    moreSymbol.children[0].children[0].style.color = 'rgb(214, 202, 185)';
+
+});
+
+$(otherContainer).on('mouseup', function() {
+
+    otherLink.style.color = 'antiquewhite';
+    moreSymbol.children[0].children[0].style.color = 'antiquewhite';
+
+})
+
+$(otherContainer).hover( 
+    function() {
+
+        otherLink.style.color = 'rgb(250, 242, 231)';
+        moreSymbol.style.color = 'rgb(250, 242, 231)';
+
+
+    }, function() {
+        otherLink.style.color = 'antiquewhite';
+        moreSymbol.children[0].children[0].style.color = 'antiquewhite';
+})
+
+$(otherContainer).on('click', function() {
+
+    inlineToggle(otherMenu);
+    otherUnderlay.style.display = 'block';
+
+})
+
+$(closeOther).on('click', function() {
+
+    inlineToggle(otherMenu);
+    otherMenu.style.display = 'none';
+
+})
+
+
+
 
 export { timerInterval, modifyTimerInterval };

@@ -1,10 +1,9 @@
-import { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
+import { cellArray, highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowArray, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray } from "./script.js";
 import { undo, getBoard } from './undo.js';
 import { checkComplete } from "./complete.js";
 
 /* #region  declarations */
 let cellsArray = document.getElementsByClassName('cell');
-let cellArray = Array.from(cellsArray);
 let selectedCell = document.getElementsByClassName('selected');
 let selectedGiven = document.getElementsByClassName('selected-given');
 
@@ -284,8 +283,8 @@ function noteCheck() {
             if (noteArrayCheck.length == 1) {
 
                 relativeAnswers.push($(selectedCell[0].dataset.column).find('.answer'));
-                console.log(relativeAnswers)
-                console.log(eval(selectedCell[0].dataset.column))
+                //console.log(relativeAnswers)
+                //console.log(eval(selectedCell[0].dataset.column))
 
                 //console.log(noteArrayCheck)
                 $(noteArrayCheck[0].children[0]).addClass('note-highlight');
@@ -502,85 +501,86 @@ function conflictCheck() {
 
         let currentColumn = columnArray[i];
 
-        for (let j = 0; j < currentColumn.length; j++) {
 
-            let currentNum = j + 1;
-            let answerSpots = Array.from($(currentColumn).find('.answer'));
-            answerSpots = answerSpots.filter(function(e) {
 
-                if (e.innerText == '') {
-                    return false;
-                }
+        //let currentNum = j + 1;
+        let answerSpots = Array.from($(currentColumn).find('.answer'));
+        answerSpots = answerSpots.filter(function(e) {
 
-                return e;
+            if (e.innerText == '') {
+                return false;
+            }
 
-            })
-            
-            let answerInputs = answerSpots.map(function (e) {
+            return e;
 
-                return e.innerText;
+        })
+        console.log(answerSpots)
+        
+        let answerInputs = answerSpots.map(function (e) {
 
-            })
+            return e.innerText;
 
-            answerInputs.forEach(function(e) {
+        })
 
-                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+        answerInputs.forEach(function(e) {
 
-                    
-                    answerSpots.forEach(function(k) {
-                        if (k.innerText == e && conflictToggle.checked) {
-                            $(k).addClass('conflict-answer');
-                        } else if (k.innerText == e) {
-                            $(k).addClass('hidden-conflict');
-                        }
-                    })
-                }
+            if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
 
-            })
+                
+                answerSpots.forEach(function(k) {
+                    if (k.innerText == e && conflictToggle.checked) {
+                        $(k).addClass('conflict-answer');
+                    } else if (k.innerText == e) {
+                        $(k).addClass('hidden-conflict');
+                    }
+                })
+            }
 
-        }
+        })
+
+    
 
     }
 
-    for (let i = 0; i < rowArray.length; i++) {
+    /*for (let i = 0; i < rowArray.length; i++) {
 
         let currentRow = rowArray[i];
 
-        for (let j = 0; j < currentRow.length; j++) {
 
-            let currentNum = j + 1;
-            let answerSpots = Array.from($(currentRow).find('.answer'));
-            answerSpots = answerSpots.filter(function(e) {
 
-                if (e.innerText == '') {
-                    return false;
-                }
+        let currentNum = j + 1;
+        let answerSpots = Array.from($(currentRow).find('.answer'));
+        answerSpots = answerSpots.filter(function(e) {
 
-                return e;
+            if (e.innerText == '') {
+                return false;
+            }
 
-            })
-            
-            let answerInputs = answerSpots.map(function (e) {
+            return e;
 
-                return e.innerText;
+        })
+        
+        let answerInputs = answerSpots.map(function (e) {
 
-            })
+            return e.innerText;
 
-            answerInputs.forEach(function(e) {
+        })
 
-                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
-                    answerSpots.forEach(function(k) {
-                        if (k.innerText == e && conflictToggle.checked) {
-                            $(k).addClass('conflict-answer');
-                        } else if (k.innerText == e) {
-                            $(k).addClass('hidden-conflict');
-                        }
-                    })
-                }
+        answerInputs.forEach(function(e) {
 
-            })
+            if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+                answerSpots.forEach(function(k) {
+                    if (k.innerText == e && conflictToggle.checked) {
+                        $(k).addClass('conflict-answer');
+                    } else if (k.innerText == e) {
+                        $(k).addClass('hidden-conflict');
+                    }
+                })
+            }
 
-        }
+        })
+
+    
 
     }
 
@@ -588,43 +588,43 @@ function conflictCheck() {
 
         let currentBlock = blockArray[i];
 
-        for (let j = 0; j < currentBlock.length; j++) {
 
-            let currentNum = j + 1;
-            let answerSpots = Array.from($(currentBlock).find('.answer'));
-            answerSpots = answerSpots.filter(function(e) {
 
-                if (e.innerText == '') {
-                    return false;
-                }
+        let currentNum = j + 1;
+        let answerSpots = Array.from($(currentBlock).find('.answer'));
+        answerSpots = answerSpots.filter(function(e) {
 
-                return e;
+            if (e.innerText == '') {
+                return false;
+            }
 
-            })
-            
-            let answerInputs = answerSpots.map(function (e) {
+            return e;
 
-                return e.innerText;
+        })
+        
+        let answerInputs = answerSpots.map(function (e) {
 
-            })
+            return e.innerText;
 
-            answerInputs.forEach(function(e) {
+        })
 
-                if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
-                    answerSpots.forEach(function(k) {
-                        if (k.innerText == e && conflictToggle.checked) {
-                            $(k).addClass('conflict-answer');
-                        } else if (k.innerText == e) {
-                            $(k).addClass('hidden-conflict');
-                        }
-                    })
-                }
+        answerInputs.forEach(function(e) {
 
-            })
+            if (answerInputs.indexOf(e) !== answerInputs.lastIndexOf(e)) {
+                answerSpots.forEach(function(k) {
+                    if (k.innerText == e && conflictToggle.checked) {
+                        $(k).addClass('conflict-answer');
+                    } else if (k.innerText == e) {
+                        $(k).addClass('hidden-conflict');
+                    }
+                })
+            }
 
-        }
+        })
 
-    }
+    
+
+    }*/
 
     if (answer.every(e => e.classList[1] !== 'conflict-answer') && answer.every(e => e.classList[1] !== 'hidden-conflict')) {
         conflict = false;
@@ -878,4 +878,10 @@ function modifyBoardCollection(value) {
 
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck, conflict, modifyConflict };
+//modify answer
+
+function modifyAnswerVariable() {
+    answer = Array.from(document.getElementsByClassName('answer'));
+}
+
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck, conflict, modifyConflict, answer, modifyAnswerVariable };

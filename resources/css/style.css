@@ -257,7 +257,8 @@ label:hover,
 }
 
 #settings-title,
-#pause-title {
+#pause-title,
+#other-title {
     color: antiquewhite;
     font-size: 2rem;
     padding-bottom: 1.5rem;
@@ -347,7 +348,7 @@ label:hover,
     height: auto;
     vertical-align: sub;
     position: absolute;
-   /*margin-bottom: 6rem;
+    /*margin-bottom: 6rem;
     margin-left: 6rem;*/
 }
 
@@ -636,6 +637,95 @@ label:hover,
 }
 
 /* #endregion */
+
+/* #region other boards menu */
+#other-boards-link {
+    display: inline-flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+#other-boards-link:hover {
+    cursor: pointer;
+}
+
+#other-boards-click,
+#more {
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
+    margin: 0 0.25rem;
+    color: antiquewhite;
+}
+
+#other-menu-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--light-teal);
+    opacity: 0.2;
+    z-index: 11;
+    display: none;
+}
+
+#other-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    min-width: 25%;
+    padding: 0 3rem 3rem;
+    background-color: var(--dark-teal);
+    z-index: 12;
+    opacity: 100%;
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
+}
+
+#close-other {
+    color: antiquewhite;
+    position: relative;
+    left: 55%;
+    padding-top: 1rem;
+}
+
+#close-other-span {
+    position: relative;
+    width: 100%;
+}
+
+#close-other-span:hover {
+    cursor: pointer;
+}
+
+#board-links {
+    width: 50%;
+}
+
+.board-name {
+    color: antiquewhite;
+    background-color: var(--main-teal);
+    width: 100%;
+    margin: 1.5rem auto 0;
+    padding: 0.7rem 0;
+    border: 1px solid var(--light-teal);
+    border-radius: 50px;
+    box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
+}
+
+.board-name:hover {
+    cursor: pointer;
+    color: var(--light-antique);
+    background-color: var(--light-teal);
+    border: 1px solid var(--main-teal);
+}
+
+.board-name:active {
+    color: var(--light-antique);
+    background-color: var(--dark-teal);
+    border: 1px solid var(--light-teal);
+}
+
+/* #endregion */
+
 
 @media only screen and (max-width: 480px) {
 

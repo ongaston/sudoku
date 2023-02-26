@@ -1,12 +1,12 @@
 
+import { cellArray } from "./script.js";
+
 /* #region  declarations */
 let elyseToggle = document.getElementById('elyse');
 let elyseFace = document.getElementById('elyse-face');
 let elyseBackground = document.getElementById('elyse-background');
 let elyseContainer = document.getElementById('elyse-container');
 let board = document.getElementById('board');
-let cellArray = document.getElementsByClassName('cell');
-cellArray = Array.from(cellArray);
 let html = document.getElementsByTagName('html');
 let animatedContainer = document.getElementById('animated-elyse');
 let animationTimer;

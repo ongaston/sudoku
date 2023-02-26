@@ -1,4 +1,4 @@
-import { globalToggle, noteInput, answerInput, selectedCell, noteCheck, modifyBoardCollection } from "./keyboard.js";
+import { globalToggle, noteInput, answerInput, selectedCell, noteCheck, modifyBoardCollection, answer, modifyAnswerVariable } from "./keyboard.js";
 import { getBoard } from "./undo.js";
 import { rotateToggle } from "./utilities.js";
 
@@ -157,116 +157,117 @@ function highlightSame() {
 
 function resetGrid() {
 
-    cellsArray = document.getElementsByClassName('cell');
+    cellArray = document.getElementsByClassName('cell');
+    //modifyAnswerVariable();
 
-    for (let i = 0; i < cellsArray.length; i++) {
+    for (let i = 0; i < cellArray.length; i++) {
 
         //adds cells into appropriate column arrays
-        switch (cellsArray[i].id[1]) {
+        switch (cellArray[i].id[1]) {
             case '1':
-                column1.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column1');
+                column1.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column1');
                 break;
             case '2':
-                column2.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column2');
+                column2.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column2');
                 break;
             case '3':
-                column3.push(cellsArray[i]);
-                cellsArray[i].style.borderRight = '6px solid black';
-                cellsArray[i].setAttribute('data-column', 'column3');
+                column3.push(cellArray[i]);
+                cellArray[i].style.borderRight = '6px solid black';
+                cellArray[i].setAttribute('data-column', 'column3');
                 break;
             case '4':
-                column4.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column4');
+                column4.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column4');
                 break;
             case '5':
-                column5.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column5');
+                column5.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column5');
                 break;
             case '6':
-                column6.push(cellsArray[i]);
-                cellsArray[i].style.borderRight = '6px solid black';
-                cellsArray[i].setAttribute('data-column', 'column6');
+                column6.push(cellArray[i]);
+                cellArray[i].style.borderRight = '6px solid black';
+                cellArray[i].setAttribute('data-column', 'column6');
                 break;
             case '7':
-                column7.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column7');
+                column7.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column7');
                 break;
             case '8':
-                column8.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column8');
+                column8.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column8');
                 break;
             case '9':
-                column9.push(cellsArray[i]);
-                cellsArray[i].setAttribute('data-column', 'column9');
+                column9.push(cellArray[i]);
+                cellArray[i].setAttribute('data-column', 'column9');
                 break;
         }
 
-        switch (cellsArray[i].id[0]) {
+        switch (cellArray[i].id[0]) {
             case 'a':
-                cellsArray[i].setAttribute('data-row', 'rowA');
+                cellArray[i].setAttribute('data-row', 'rowA');
                 break;
             case 'b':
-                cellsArray[i].setAttribute('data-row', 'rowB');
+                cellArray[i].setAttribute('data-row', 'rowB');
                 break;
             case 'c':
-                cellsArray[i].setAttribute('data-row', 'rowC');
+                cellArray[i].setAttribute('data-row', 'rowC');
                 break;
             case 'd':
-                cellsArray[i].setAttribute('data-row', 'rowD');
+                cellArray[i].setAttribute('data-row', 'rowD');
                 break;
             case 'e':
-                cellsArray[i].setAttribute('data-row', 'rowE');
+                cellArray[i].setAttribute('data-row', 'rowE');
                 break;
             case 'f':
-                cellsArray[i].setAttribute('data-row', 'rowF');
+                cellArray[i].setAttribute('data-row', 'rowF');
                 break;
             case 'g':
-                cellsArray[i].setAttribute('data-row', 'rowG');
+                cellArray[i].setAttribute('data-row', 'rowG');
                 break;
             case 'h':
-                cellsArray[i].setAttribute('data-row', 'rowH');
+                cellArray[i].setAttribute('data-row', 'rowH');
                 break;
             case 'i':
-                cellsArray[i].setAttribute('data-row', 'rowI');
+                cellArray[i].setAttribute('data-row', 'rowI');
                 break;
         }
 
         //sorts cells into appropriate block arrays
-        let blockNumber = cellsArray[i].dataset.block;
+        let blockNumber = cellArray[i].dataset.block;
         blockNumber = eval(blockNumber);
         for (let j = 0; j < blockArray.length; j++) {
 
             if (blockNumber == blockArray[j]) {
-                blockArray[j].push(cellsArray[i]);
+                blockArray[j].push(cellArray[i]);
             }
 
         }
 
         //toggles selected class for cells on click
-        if (cellsArray[i].classList[1] !== 'given') {
-            $(cellsArray[i]).on('click', function () {
+        if (cellArray[i].classList[1] !== 'given') {
+            $(cellArray[i]).on('click', function () {
 
-                for (let j = 0; j < cellsArray.length; j++) {
-                    if (cellsArray[j].dataset.isSelected == 'true') {
-                        cellsArray[j].dataset.isSelected = 'false';
-                        cellsArray[j].classList.remove('selected');
-                        cellsArray[j].classList.remove('selected-given');
+                for (let j = 0; j < cellArray.length; j++) {
+                    if (cellArray[j].dataset.isSelected == 'true') {
+                        cellArray[j].dataset.isSelected = 'false';
+                        cellArray[j].classList.remove('selected');
+                        cellArray[j].classList.remove('selected-given');
 
-                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
+                        if ((cellArray[j].dataset.column == 'column3' || cellArray[j].dataset.column == 'column6') && (cellArray[j].classList[1] !== 'selected' && cellArray[j].classList[2] !== 'selected-given')) {
 
-                            cellsArray[j].style.borderRight = '6px solid black';
+                            cellArray[j].style.borderRight = '6px solid black';
 
                         }
                     }
                 }
-                cellsArray[i].classList.add('selected');
-                cellsArray[i].dataset.isSelected = 'true';
+                cellArray[i].classList.add('selected');
+                cellArray[i].dataset.isSelected = 'true';
 
-                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
+                if ((cellArray[i].dataset.column == 'column3' || cellArray[i].dataset.column == 'column6') && (cellArray[i].classList[1] == 'selected' || cellArray[i].classList[2] == 'selected-given')) {
 
-                    cellsArray[i].style.borderRight = '8px solid black';
+                    cellArray[i].style.borderRight = '8px solid black';
 
 
                 }
@@ -277,27 +278,27 @@ function resetGrid() {
 
             })
         } else {
-            $(cellsArray[i]).on('click', function () {
+            $(cellArray[i]).on('click', function () {
 
-                for (let j = 0; j < cellsArray.length; j++) {
-                    if (cellsArray[j].dataset.isSelected == 'true') {
-                        cellsArray[j].dataset.isSelected = 'false';
-                        cellsArray[j].classList.remove('selected');
-                        cellsArray[j].classList.remove('selected-given');
+                for (let j = 0; j < cellArray.length; j++) {
+                    if (cellArray[j].dataset.isSelected == 'true') {
+                        cellArray[j].dataset.isSelected = 'false';
+                        cellArray[j].classList.remove('selected');
+                        cellArray[j].classList.remove('selected-given');
 
-                        if ((cellsArray[j].dataset.column == 'column3' || cellsArray[j].dataset.column == 'column6') && (cellsArray[j].classList[1] !== 'selected' && cellsArray[j].classList[2] !== 'selected-given')) {
+                        if ((cellArray[j].dataset.column == 'column3' || cellArray[j].dataset.column == 'column6') && (cellArray[j].classList[1] !== 'selected' && cellArray[j].classList[2] !== 'selected-given')) {
 
-                            cellsArray[j].style.borderRight = '6px solid black';
+                            cellArray[j].style.borderRight = '6px solid black';
 
                         }
                     }
                 }
-                cellsArray[i].classList.add('selected-given');
-                cellsArray[i].dataset.isSelected = 'true';
+                cellArray[i].classList.add('selected-given');
+                cellArray[i].dataset.isSelected = 'true';
 
-                if ((cellsArray[i].dataset.column == 'column3' || cellsArray[i].dataset.column == 'column6') && (cellsArray[i].classList[1] == 'selected' || cellsArray[i].classList[2] == 'selected-given')) {
+                if ((cellArray[i].dataset.column == 'column3' || cellArray[i].dataset.column == 'column6') && (cellArray[i].classList[1] == 'selected' || cellArray[i].classList[2] == 'selected-given')) {
 
-                    cellsArray[i].style.borderRight = '8px solid black';
+                    cellArray[i].style.borderRight = '8px solid black';
 
 
                 }
@@ -437,4 +438,4 @@ for (let i = 0; i < numberButtons.length; i++) {
 
 }
 
-export { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray };
+export { highlightSame, resetGrid, columnArray, column1, column2, column3, column4, column5, column6, column7, column8, column9, rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI, rowArray, block1, block2, block3, block4, block5, block6, block7, block8, block9, blockArray, cellArray };
