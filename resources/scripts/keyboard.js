@@ -542,7 +542,7 @@ function conflictCheck() {
 
     }
 
-    /*for (let i = 0; i < rowArray.length; i++) {
+    for (let i = 0; i < rowArray.length; i++) {
 
         let currentRow = rowArray[i];
 
@@ -624,7 +624,7 @@ function conflictCheck() {
 
     
 
-    }*/
+    }
 
     if (answer.every(e => e.classList[1] !== 'conflict-answer') && answer.every(e => e.classList[1] !== 'hidden-conflict')) {
         conflict = false;

@@ -1,280 +1,10 @@
-<!DOCTYPE html>
-<html lang='eng'>
-
-<head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta http-equiv="x-ua-compatible" content='ie=edge'>
-    <title>Sudoku</title>
-    <link rel='stylesheet' type='text/css' href='resources/css/reset.css'>
-    <link rel='stylesheet' type='text/css' href='resources/css/style.css'>
-    <script src="https://kit.fontawesome.com/a230460b96.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-
-    <!-- #region menus -->
-    <div id='settings-overlay'></div>
-    <div id='pause-overlay'></div>
-    <div id='other-menu-overlay'></div>
-
-    <div id='other-menu'>
-
-        <span id='close-other-span'><i class='fa-solid fa-times fa-xl' id='close-other'></i></span>
-
-        <h1 id='other-title'> Other Available Boards </h1>
-
-        <div id='board-links'>
-
-            <p class='board-name' id='board-1'>Board 1</p>
-            <p class='board-name' id='board-2'>Board 2</p>
-
-        </div>
-
-    </div>
-
-    <div id='pause-menu'>
-
-        <h1 id='pause-title'>Paused</h1>
-
-        <p id='resume'>Resume</p>
-
-    </div>
-
-    <div id='settings-menu'>
-
-        <span id='close'><i class='fa-solid fa-times fa-xl' id='close-settings'></i></span>
-
-        <h1 id='settings-title'> Settings </h1>
-
-        <!--<div id='color-notes'>
-
-                <input id='color-toggle' type='checkbox'>
-                <label for='color-toggle'>Color Notes</label>
-
-            </div>-->
-
-        <div id='elyse-container'>
-
-            <label for='elyse' class='container'>Elyse Mode
-                <input id='elyse' type='checkbox'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <img src='./resources/media/Elyse.png' id='elyse-face' alt="elyse's face">
-
-        <div id='highlight-container'>
-
-
-            <label for='highlight' class='container'>Highlight Instances of Selected Number
-                <input id='highlight' type='checkbox' checked='true'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-
-        <div id='note-highlight-container'>
-
-
-            <label for='note-highlight' class='container'>Highlight Notes of Selected Number
-                <input id='note-highlight' type='checkbox' checked='true'>
-                <span class='checkmark' id='note-highlight-span'></span>
-            </label>
-
-        </div>
-
-        <div id='identifier-container'>
-
-            <label for='cell-identifiers' class='container'>Show Cell Identifiers
-                <input id='cell-identifiers' type='checkbox'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <div id='flip-container'>
-
-            <label for='flip' class='container'>Flip Labels
-                <input id='flip' type='checkbox'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <div id='conflict-container'>
-
-            <label for='conflict' class='container'>Highlight Conflicts
-                <input id='conflict' type='checkbox' checked='true'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <div id='timer-container'>
-
-
-            <label for='timer' class='container'>Show Timer
-                <input id='timer' type='checkbox' checked='true'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <div id='note-removal-container'>
-
-
-            <label for='note-removal' class='container'>Auto Note Removal
-                <input id='note-removal' type='checkbox' checked='true'>
-                <span class='checkmark'></span>
-            </label>
-
-        </div>
-
-        <div id='blue-container'>
-
-            <div id='blue-check'>
-
-
-                <label for='blue-highlight' class='container'>Highlight Answers
-                    <input id='blue-highlight' type='checkbox' checked='true'>
-                    <span class='checkmark'></span>
-                </label>
-
-            </div>
-
-            <div id='blue-info'>
-
-                <p>Turn this on to highlight</p>
-                <p>notes that have to be in</p>
-                <p>a given cell based on other</p>
-                <p>answers in the row, column,</p>
-                <p>or block.</p>
-
-            </div>
-
-            <span id='info-sign-container'><i class='fa-solid fa-info-circle fa-sm'></i></span>
-
-        </div>
-
-    </div>
-    <!-- #endregion -->
-
-    <main>
-
-        <div id='counter-container'>
-
-            <p id='timer-p'><span id='hours'>00</span>:<span id='minutes'>00</span>:<span id='seconds'>00</span></p>
-
-            <span id='pause'><i class='fa-solid fa-pause fa-sm'></i></span>
-
-        </div>
-
-        <img src='./resources/media/background.JPG' id='elyse-background' alt='elyse'>
-
-        <div id='animated-elyse'>
-
-            <div id='container-left' class='animated-container'>
-
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-            </div>
-
-            <div id='container-right' class='animated-container'>
-
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-            </div>
-
-        </div>
-        <div id='big-animated'>
-            <div class='side-elyse'>
-
-                <div class='animated-container side'>
-
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-                </div>
-
-                <div class='animated-container side'>
-
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-                </div>
-
-            </div>
-            <div class='side-elyse'>
-
-                <div class='animated-container side'>
-
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-                </div>
-
-                <div class='animated-container side'>
-
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-                    <img src='./resources/media/border.png' class='animated' alt='elyse'>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div id='identifiers'>
-
-            <div id='row-identifiers'>
-
-                <p class='identifier'>A</p>
-                <p class='identifier'>B</p>
-                <p class='identifier'>C</p>
-                <p class='identifier'>D</p>
-                <p class='identifier'>E</p>
-                <p class='identifier'>F</p>
-                <p class='identifier'>G</p>
-                <p class='identifier'>H</p>
-                <p class='identifier'>I</p>
-
-            </div>
-
-            <div id='column-identifiers'>
-
-                <p class='identifier'>1</p>
-                <p class='identifier'>2</p>
-                <p class='identifier'>3</p>
-                <p class='identifier'>4</p>
-                <p class='identifier'>5</p>
-                <p class='identifier'>6</p>
-                <p class='identifier'>7</p>
-                <p class='identifier'>8</p>
-                <p class='identifier'>9</p>
-
-            </div>
-
-        </div>
-
-
-        <div id='board'>
 
             <div class='row' id='rowA'>
 
-                <div class='cell given' id='a1' data-is-selected='false' data-is-filled='true' data-value='8'
+                <div class='cell given' id='a1' data-is-selected='false' data-is-filled='true' data-value='1'
                     data-block='block1'>
 
-                    <h1 class='answer'>8</h1>
+                    <h1 class='answer'>1</h1>
 
                 </div>
 
@@ -285,10 +15,10 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p>1</p>
+                            <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -299,21 +29,21 @@
                             <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
                 </div>
@@ -328,7 +58,7 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -336,7 +66,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -347,18 +77,25 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
 
-                <div class='cell' id='a4' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='a4' data-is-selected='false' data-is-filled="true" data-value="2"
+                    data-block='block2'>
+
+                    <h1 class='answer'>2</h1>
+
+                </div>
+
+                <div class='cell' id='a5' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block2'>
 
                     <h1 class='answer'></h1>
@@ -368,10 +105,10 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -382,7 +119,7 @@
                             <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -390,50 +127,10 @@
                             <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='a5' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block2'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
                 </div>
@@ -445,13 +142,13 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p>1</p>
+                            <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -462,15 +159,15 @@
                             <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
@@ -485,13 +182,13 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p>1</p>
+                            <p></p>
                         </div>
                         <div class='note2 note'>
                             <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -499,18 +196,18 @@
                             <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
                             <p>9</p>
@@ -536,7 +233,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -550,7 +247,7 @@
                             <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
                             <p>9</p>
@@ -558,8 +255,108 @@
                     </div>
                 </div>
 
-                <div class='cell' id='a9' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='a9' data-is-selected='false' data-is-filled="true" data-value="3"
                     data-block='block3'>
+
+                    <h1 class='answer'>3</h1>
+
+                </div>
+
+
+
+            </div>
+            <div class='row' id='rowB'>
+
+                <div class='cell' id='b1' data-is-selected='false' data-is-filled='false' data-value=''
+                    data-block='block1'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p>6</p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell given' id='b2' data-is-selected='false' data-is-filled="true" data-value="2"
+                    data-block='block1'>
+
+                    <h1 class='answer'>2</h1>
+
+                </div>
+
+                <div class='cell' id='b3' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block1'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p>6</p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='cell' id='b4' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block2'>
 
                     <h1 class='answer'></h1>
 
@@ -571,15 +368,15 @@
                             <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -596,108 +393,17 @@
                             <p>9</p>
                         </div>
                     </div>
+
                 </div>
 
-
-
-            </div>
-            <div class='row' id='rowB'>
-
-                <div class='cell' id='b1' data-is-selected='false' data-is-filled='false' data-value=''
-                    data-block='block1'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='b2' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block1'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell given' id='b3' data-is-selected='false' data-is-filled="true" data-value="3"
-                    data-block='block1'>
+                <div class='cell given' id='b5' data-is-selected='false' data-is-filled="true" data-value="3"
+                    data-block='block2'>
 
                     <h1 class='answer'>3</h1>
 
                 </div>
 
-                <div class='cell given' id='b4' data-is-selected='false' data-is-filled="true" data-value="6"
-                    data-block='block2'>
-
-                    <h1 class='answer'>6</h1>
-
-                </div>
-
-                <div class='cell' id='b5' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell' id='b6' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block2'>
 
                     <h1 class='answer'></h1>
@@ -707,7 +413,7 @@
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -718,10 +424,10 @@
                             <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -737,84 +443,11 @@
                     </div>
                 </div>
 
-                <div class='cell' id='b6' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block2'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='b7' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='b7' data-is-selected='false' data-is-filled="true" data-value="4"
                     data-block='block3'>
 
-                    <h1 class='answer'></h1>
+                    <h1 class='answer'>4</h1>
 
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p></p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class='cell' id='b8' data-is-selected='false' data-is-filled="false" data-value=""
@@ -824,7 +457,7 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
                             <p></p>
@@ -835,7 +468,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -875,7 +508,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -886,7 +519,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p>7</p>
+                            <p></p>
                         </div>
                         <div class='note8 note'>
                             <p></p>
@@ -909,7 +542,7 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p>1</p>
+                            <p></p>
                         </div>
                         <div class='note2 note'>
                             <p></p>
@@ -923,10 +556,10 @@
                             <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -934,7 +567,7 @@
                             <p></p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
@@ -942,17 +575,10 @@
                     </div>
                 </div>
 
-                <div class='cell given' id='c2' data-is-selected='false' data-is-filled="true" data-value="7"
+                <div class='cell' id='c2' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block1'>
 
                     <h1 class='answer'>7</h1>
-
-                </div>
-
-                <div class='cell' id='c3' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block1'>
-
-                    <h1 class='answer'></h1>
 
                     <div class='note-row'>
                         <div class='note1 note'>
@@ -970,23 +596,31 @@
                             <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
+
+                </div>
+
+                <div class='cell given' id='c3' data-is-selected='false' data-is-filled="true" data-value="3"
+                    data-block='block1'>
+
+                    <h1 class='answer'>3</h1>
+
                 </div>
 
                 <div class='cell' id='c4' data-is-selected='false' data-is-filled="false" data-value=""
@@ -996,13 +630,13 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
                             <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -1018,10 +652,10 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
+                            <p></p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
@@ -1029,15 +663,56 @@
                     </div>
                 </div>
 
-                <div class='cell given' id='c5' data-is-selected='false' data-is-filled="true" data-value="9"
+                <div class='cell' id='c5' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block2'>
 
-                    <h1 class='answer'>9</h1>
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p></p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
 
                 </div>
 
-                <div class='cell' id='c6' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='c6' data-is-selected='false' data-is-filled="true" data-value="5"
                     data-block='block2'>
+
+                    <h1 class='answer'>5</h1>
+
+                </div>
+
+                <div class='cell' id='c7' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block3'>
 
                     <h1 class='answer'></h1>
 
@@ -1046,15 +721,15 @@
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p></p>
+                            <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p></p>
@@ -1065,62 +740,23 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
                             <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='c7' data-is-selected='false' data-is-filled="true" data-value="2"
-                    data-block='block3'>
-
-                    <h1 class='answer'>2</h1>
 
                 </div>
 
-                <div class='cell' id='c8' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='c8' data-is-selected='false' data-is-filled="true" data-value="6"
                     data-block='block3'>
 
-                    <h1 class='answer'></h1>
+                    <h1 class='answer'>6</h1>
 
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p></p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class='cell' id='c9' data-is-selected='false' data-is-filled="false" data-value=""
@@ -1133,15 +769,108 @@
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p></p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class='row' id='rowD'>
+
+                <div class='cell given' id='d1' data-is-selected='false' data-is-filled='true' data-value='7'
+                    data-block='block4'>
+
+                    <h1 class='answer'>7</h1>
+
+                </div>
+
+                <div class='cell' id='d2' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block4'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
                             <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
                             <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='cell' id='d3' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block4'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -1163,136 +892,11 @@
                     </div>
                 </div>
 
-
-
-            </div>
-            <div class='row' id='rowD'>
-
-                <div class='cell' id='d1' data-is-selected='false' data-is-filled='false' data-value=''
-                    data-block='block4'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell given' id='d2' data-is-selected='false' data-is-filled="true" data-value="5"
-                    data-block='block4'>
-
-                    <h1 class='answer'>5</h1>
-
-                </div>
-
-                <div class='cell' id='d3' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block4'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='d4' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='d4' data-is-selected='false' data-is-filled="true" data-value="8"
                     data-block='block5'>
 
-                    <h1 class='answer'></h1>
+                    <h1 class='answer'>8</h1>
 
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class='cell' id='d5' data-is-selected='false' data-is-filled="false" data-value=""
@@ -1305,15 +909,55 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
                             <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell' id='d6' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block5'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
                             <p></p>
@@ -1327,18 +971,12 @@
                             <p></p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
+                            <p></p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='d6' data-is-selected='false' data-is-filled="true" data-value="7"
-                    data-block='block5'>
-
-                    <h1 class='answer'>7</h1>
 
                 </div>
 
@@ -1352,7 +990,7 @@
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p></p>
+                            <p>2</p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -1374,7 +1012,7 @@
                             <p></p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
+                            <p></p>
                         </div>
                         <div class='note9 note'>
                             <p>9</p>
@@ -1382,44 +1020,11 @@
                     </div>
                 </div>
 
-                <div class='cell' id='d8' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='d8' data-is-selected='false' data-is-filled="true" data-value="3"
                     data-block='block6'>
 
-                    <h1 class='answer'></h1>
+                    <h1 class='answer'>3</h1>
 
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class='cell' id='d9' data-is-selected='false' data-is-filled="false" data-value=""
@@ -1474,61 +1079,21 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p>1</p>
+                            <p></p>
                         </div>
                         <div class='note2 note'>
                             <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='e2' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block4'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -1545,6 +1110,13 @@
                             <p></p>
                         </div>
                     </div>
+                </div>
+
+                <div class='cell given' id='e2' data-is-selected='false' data-is-filled="true" data-value="3"
+                    data-block='block4'>
+
+                    <h1 class='answer'>3</h1>
+
                 </div>
 
                 <div class='cell' id='e3' data-is-selected='false' data-is-filled="false" data-value=""
@@ -1568,7 +1140,7 @@
                             <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -1579,10 +1151,10 @@
                             <p></p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -1597,10 +1169,98 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell given' id='e5' data-is-selected='false' data-is-filled="true" data-value="1"
+                    data-block='block5'>
+
+                    <h1 class='answer'>1</h1>
+
+                </div>
+
+                <div class='cell' id='e6' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block5'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
                             <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p></p>
+                        </div>
+                        <div class='note6 note'>
+                            <p>6</p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='cell' id='e7' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block6'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p></p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -1611,7 +1271,7 @@
                             <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -1625,26 +1285,6 @@
                             <p>9</p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='e5' data-is-selected='false' data-is-filled="true" data-value="4"
-                    data-block='block5'>
-
-                    <h1 class='answer'>4</h1>
-
-                </div>
-
-                <div class='cell given' id='e6' data-is-selected='false' data-is-filled="true" data-value="5"
-                    data-block='block5'>
-
-                    <h1 class='answer'>5</h1>
-
-                </div>
-
-                <div class='cell given' id='e7' data-is-selected='false' data-is-filled="true" data-value="7"
-                    data-block='block6'>
-
-                    <h1 class='answer'>7</h1>
 
                 </div>
 
@@ -1666,7 +1306,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
                             <p></p>
@@ -1688,44 +1328,11 @@
                     </div>
                 </div>
 
-                <div class='cell' id='e9' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='e9' data-is-selected='false' data-is-filled="true" data-value="7"
                     data-block='block6'>
 
-                    <h1 class='answer'></h1>
+                    <h1 class='answer'>7</h1>
 
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p>1</p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
                 </div>
 
 
@@ -1762,13 +1369,13 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
                             <p></p>
                         </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -1780,10 +1387,10 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -1797,7 +1404,7 @@
                             <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -1813,8 +1420,15 @@
                     </div>
                 </div>
 
-                <div class='cell' id='f3' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='f3' data-is-selected='false' data-is-filled="true" data-value="9"
                     data-block='block4'>
+
+                    <h1 class='answer'>9</h1>
+
+                </div>
+
+                <div class='cell' id='f4' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block5'>
 
                     <h1 class='answer'></h1>
 
@@ -1823,7 +1437,7 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -1848,15 +1462,9 @@
                             <p></p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='f4' data-is-selected='false' data-is-filled="true" data-value="1"
-                    data-block='block5'>
-
-                    <h1 class='answer'>1</h1>
 
                 </div>
 
@@ -1870,7 +1478,7 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -1878,7 +1486,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
                             <p></p>
@@ -1889,10 +1497,10 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
+                            <p></p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
@@ -1900,101 +1508,28 @@
                     </div>
                 </div>
 
-                <div class='cell' id='f6' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='f6' data-is-selected='false' data-is-filled="true" data-value="3"
                     data-block='block5'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='f7' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block6'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p></p>
-                        </div>
-                        <div class='note3 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p>6</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell given' id='f8' data-is-selected='false' data-is-filled="true" data-value="3"
-                    data-block='block6'>
 
                     <h1 class='answer'>3</h1>
 
                 </div>
 
-                <div class='cell' id='f9' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='f7' data-is-selected='false' data-is-filled="true" data-value="5"
+                    data-block='block6'>
+
+                    <h1 class='answer'>5</h1>
+
+                </div>
+
+                <div class='cell' id='f8' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block6'>
 
                     <h1 class='answer'></h1>
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
                             <p>2</p>
@@ -2008,7 +1543,48 @@
                             <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p>5</p>
+                            <p></p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='cell' id='f9' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block6'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p></p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -2022,7 +1598,7 @@
                             <p></p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -2045,7 +1621,95 @@
                             <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p></p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell given' id='g2' data-is-selected='false' data-is-filled="true" data-value="6"
+                    data-block='block7'>
+
+                    <h1 class='answer'>6</h1>
+
+                </div>
+
+                <div class='cell' id='g3' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block7'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='cell' id='g4' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block8'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2061,46 +1725,6 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='g2' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block7'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
                             <p></p>
                         </div>
                         <div class='note8 note'>
@@ -2108,53 +1732,6 @@
                         </div>
                         <div class='note9 note'>
                             <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell given' id='g3' data-is-selected='false' data-is-filled="true" data-value="1"
-                    data-block='block7'>
-
-                    <h1 class='answer'>1</h1>
-
-                </div>
-
-                <div class='cell' id='g4' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block8'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
                         </div>
                     </div>
                 </div>
@@ -2169,18 +1746,72 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
                             <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p>8</p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell given' id='g6' data-is-selected='false' data-is-filled="true" data-value="9"
+                    data-block='block8'>
+
+                    <h1 class='answer'>9</h1>
+
+                </div>
+
+                <div class='cell given' id='g7' data-is-selected='false' data-is-filled="true" data-value="3"
+                    data-block='block9'>
+
+                    <h1 class='answer'>3</h1>
+
+                </div>
+
+                <div class='cell' id='g8' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block9'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
                             <p></p>
@@ -2197,67 +1828,28 @@
                             <p></p>
                         </div>
                     </div>
+
                 </div>
 
-                <div class='cell' id='g6' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block8'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p></p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p>9</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='g7' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell' id='g9' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block9'>
 
                     <h1 class='answer'></h1>
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p></p>
+                            <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -2274,22 +1866,9 @@
                             <p></p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='g8' data-is-selected='false' data-is-filled="true" data-value="6"
-                    data-block='block9'>
-
-                    <h1 class='answer'>6</h1>
-
-                </div>
-
-                <div class='cell given' id='g9' data-is-selected='false' data-is-filled="true" data-value="8"
-                    data-block='block9'>
-
-                    <h1 class='answer'>8</h1>
 
                 </div>
 
@@ -2311,29 +1890,29 @@
                             <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
                             <p></p>
                         </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p>7</p>
+                            <p></p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
                 </div>
@@ -2345,50 +1924,50 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
-                        </div>
-                        <div class='note5 note'>
                             <p></p>
                         </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
                 </div>
 
-                <div class='cell given' id='h3' data-is-selected='false' data-is-filled="true" data-value="8"
+                <div class='cell given' id='h3' data-is-selected='false' data-is-filled="true" data-value="4"
                     data-block='block7'>
 
-                    <h1 class='answer'>8</h1>
+                    <h1 class='answer'>4</h1>
 
                 </div>
 
-                <div class='cell given' id='h4' data-is-selected='false' data-is-filled="true" data-value="5"
+                <div class='cell given' id='h4' data-is-selected='false' data-is-filled="true" data-value="3"
                     data-block='block8'>
 
-                    <h1 class='answer'>5</h1>
+                    <h1 class='answer'>3</h1>
 
                 </div>
 
@@ -2402,10 +1981,10 @@
                             <p></p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2413,7 +1992,7 @@
                             <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -2424,7 +2003,7 @@
                             <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
@@ -2439,18 +2018,18 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p>4</p>
+                            <p></p>
                         </div>
                         <div class='note5 note'>
                             <p></p>
@@ -2461,13 +2040,13 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p></p>
+                            <p>8</p>
                         </div>
                         <div class='note9 note'>
-                            <p>9</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -2479,13 +2058,13 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p></p>
+                            <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2496,12 +2075,12 @@
                             <p></p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
                             <p></p>
@@ -2512,10 +2091,44 @@
                     </div>
                 </div>
 
-                <div class='cell given' id='h8' data-is-selected='false' data-is-filled="true" data-value="1"
+                <div class='cell' id='h8' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block9'>
 
-                    <h1 class='answer'>1</h1>
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p>2</p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p></p>
+                        </div>
+                        <div class='note5 note'>
+                            <p>5</p>
+                        </div>
+                        <div class='note6 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -2526,13 +2139,13 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
                             <p>2</p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2540,15 +2153,15 @@
                             <p></p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
-                            <p></p>
+                            <p>6</p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p>7</p>
+                            <p></p>
                         </div>
                         <div class='note8 note'>
                             <p></p>
@@ -2564,20 +2177,27 @@
             </div>
             <div class='row' id='rowI'>
 
-                <div class='cell' id='i1' data-is-selected='false' data-is-filled='false' data-value=''
+                <div class='cell given' id='i1' data-is-selected='false' data-is-filled='true' data-value='3'
+                    data-block='block7'>
+
+                    <h1 class='answer'>3</h1>
+
+                </div>
+
+                <div class='cell' id='i2' data-is-selected='false' data-is-filled="false" data-value=""
                     data-block='block7'>
 
                     <h1 class='answer'></h1>
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2588,7 +2208,7 @@
                             <p>5</p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2599,15 +2219,9 @@
                             <p></p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='i2' data-is-selected='false' data-is-filled="true" data-value="9"
-                    data-block='block7'>
-
-                    <h1 class='answer'>9</h1>
 
                 </div>
 
@@ -2618,10 +2232,10 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -2635,7 +2249,7 @@
                             <p>5</p>
                         </div>
                         <div class='note6 note'>
-                            <p>6</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2658,61 +2272,21 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p></p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='cell' id='i5' data-is-selected='false' data-is-filled="false" data-value=""
-                    data-block='block8'>
-
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
-                            <p>3</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
-                            <p></p>
+                            <p>5</p>
                         </div>
                         <div class='note6 note'>
                             <p>6</p>
@@ -2723,12 +2297,19 @@
                             <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
+                            <p></p>
                         </div>
                         <div class='note9 note'>
                             <p></p>
                         </div>
                     </div>
+                </div>
+
+                <div class='cell given' id='i5' data-is-selected='false' data-is-filled="true" data-value="2"
+                    data-block='block8'>
+
+                    <h1 class='answer'>2</h1>
+
                 </div>
 
                 <div class='cell' id='i6' data-is-selected='false' data-is-filled="false" data-value=""
@@ -2741,10 +2322,50 @@
                             <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p>3</p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note4 note'>
+                            <p>4</p>
+                        </div>
+                        <div class='note5 note'>
+                            <p></p>
+                        </div>
+                        <div class='note6 note'>
+                            <p>6</p>
+                        </div>
+                    </div>
+                    <div class='note-row'>
+                        <div class='note7 note'>
+                            <p>7</p>
+                        </div>
+                        <div class='note8 note'>
+                            <p></p>
+                        </div>
+                        <div class='note9 note'>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='cell' id='i7' data-is-selected='false' data-is-filled="false" data-value=""
+                    data-block='block9'>
+
+                    <h1 class='answer'></h1>
+
+                    <div class='note-row'>
+                        <div class='note1 note'>
+                            <p>1</p>
+                        </div>
+                        <div class='note2 note'>
+                            <p></p>
+                        </div>
+                        <div class='note3 note'>
+                            <p></p>
                         </div>
                     </div>
                     <div class='note-row'>
@@ -2760,21 +2381,15 @@
                     </div>
                     <div class='note-row'>
                         <div class='note7 note'>
-                            <p></p>
+                            <p>7</p>
                         </div>
                         <div class='note8 note'>
-                            <p>8</p>
-                        </div>
-                        <div class='note9 note'>
                             <p></p>
                         </div>
+                        <div class='note9 note'>
+                            <p>9</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class='cell given' id='i7' data-is-selected='false' data-is-filled="true" data-value="4"
-                    data-block='block9'>
-
-                    <h1 class='answer'>4</h1>
 
                 </div>
 
@@ -2785,10 +2400,10 @@
 
                     <div class='note-row'>
                         <div class='note1 note'>
-                            <p></p>
+                            <p>1</p>
                         </div>
                         <div class='note2 note'>
-                            <p>2</p>
+                            <p></p>
                         </div>
                         <div class='note3 note'>
                             <p></p>
@@ -2796,7 +2411,7 @@
                     </div>
                     <div class='note-row'>
                         <div class='note4 note'>
-                            <p></p>
+                            <p>4</p>
                         </div>
                         <div class='note5 note'>
                             <p>5</p>
@@ -2813,121 +2428,18 @@
                             <p></p>
                         </div>
                         <div class='note9 note'>
-                            <p></p>
+                            <p>9</p>
                         </div>
                     </div>
                 </div>
 
-                <div class='cell' id='i9' data-is-selected='false' data-is-filled="false" data-value=""
+                <div class='cell given' id='i9' data-is-selected='false' data-is-filled="true" data-value="8"
                     data-block='block9'>
 
-                    <h1 class='answer'></h1>
-
-                    <div class='note-row'>
-                        <div class='note1 note'>
-                            <p></p>
-                        </div>
-                        <div class='note2 note'>
-                            <p>2</p>
-                        </div>
-                        <div class='note3 note'>
-                            <p>3</p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note4 note'>
-                            <p></p>
-                        </div>
-                        <div class='note5 note'>
-                            <p>5</p>
-                        </div>
-                        <div class='note6 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class='note-row'>
-                        <div class='note7 note'>
-                            <p>7</p>
-                        </div>
-                        <div class='note8 note'>
-                            <p></p>
-                        </div>
-                        <div class='note9 note'>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-        <div id='controls'>
-
-            <div id='numbers-container'>
-
-                <h1 class='number-input'>1</h1>
-                <h1 class='number-input'>2</h1>
-                <h1 class='number-input'>3</h1>
-                <h1 class='number-input'>4</h1>
-                <h1 class='number-input'>5</h1>
-                <h1 class='number-input'>6</h1>
-                <h1 class='number-input'>7</h1>
-                <h1 class='number-input'>8</h1>
-                <h1 class='number-input'>9</h1>
-
-            </div>
-
-            <div id='other-controls'>
-
-                <p id='reset-button'>Reset</p>
-
-                <div id='note-mode'>
-
-                    <label for='note-toggle' class='container' id='note-mode-label'>Note Mode
-                        <input id='note-toggle' type='checkbox'>
-                        <span class='checkmark' id='note-toggle-checkbox'></span>
-                    </label>
+                    <h1 class='answer'>8</h1>
 
                 </div>
 
-                <span id='frog'><i class='fa-solid fa-frog fa-xl'></i></span>
-                <span id='drink'><i class='fa-solid fa-glass-martini fa-xl'></i></span>
 
-                <span id='undo'><i class='fa-solid fa-undo fa-xl'></i></span>
-
-                <span id='gear'><i class='fa-solid fa-gear fa-xl' id='settings-button'></i></span>
 
             </div>
-
-        </div>
-
-        <div id='other-boards-link'>
-
-            <p id='other-boards-click'>Other boards</p>
-            <span id='more'><i class='fa-solid fa-clone'></i></span>
-
-        </div>
-
-        <p id='mobile-check'></p>
-    </main>
-
-    <!-- #region scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='./resources/scripts/utilities.js' type='module'></script>
-    <script src='./resources/scripts/script.js' type='module'></script>
-    <script src='./resources/scripts/keyboard.js' type='module'></script>
-    <script src='./resources/scripts/reset.js' type='module'></script>
-    <script src='./resources/scripts/settings.js' type='module'></script>
-    <script src='./resources/scripts/undo.js' type='module'></script>
-    <script src='./resources/scripts/checkbox.js' type='module'></script>
-    <script src='./resources/scripts/elyse.js' type='module'></script>
-    <script src='./resources/scripts/complete.js' type='module'></script>
-    <script src='./resources/scripts/diffBoards.js' type='module'></script>
-    <!-- #endregion -->
-</body>
-
-</html>
