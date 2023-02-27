@@ -254,6 +254,7 @@ function answerInput(num, notesCollection) {
 
 function noteCheck() {
 
+
     for (let i = 0; i < noteArray.length; i++) {
 
         noteArray[i].children[0].removeAttribute('class');
@@ -491,7 +492,9 @@ function noteCheck() {
 
 function conflictCheck() {
 
-    /*for (let i = 0; i < answer.length; i++) {
+    answer = Array.from(document.getElementsByClassName('answer'));
+
+    for (let i = 0; i < answer.length; i++) {
 
         $(answer[i]).removeClass('conflict-answer hidden-conflict');
 
@@ -622,7 +625,7 @@ function conflictCheck() {
         conflict = false;
     } else {
         conflict = true;
-    }*/
+    }
 
 }
 
@@ -784,6 +787,12 @@ function removeNotes(num, cell = selectedCell[0]) {
 
     /* #region  remove notes in column */
     let remove = '.note' + num.toString();
+    let currentNote = $(cell).find(remove);
+    currentNote = currentNote[0].innerText;
+    let noteFilled = false;
+    if (currentNote.innerText == num.toString()) {
+        noteFilled = true;
+    }
     let columnNumber = cell.dataset.column;
     columnNumber = eval(columnNumber);
     let removeNote = $(columnNumber).find(remove);
@@ -825,8 +834,10 @@ function removeNotes(num, cell = selectedCell[0]) {
     }
     /* #endregion */
 
-    let cellNote = $(cell).find(remove);
-    cellNote[0].innerHTML = '<p>' + num.toString() + '</p>';
+    if (noteFilled) {
+        currentNote[0].innerHTML = '<p>' + num.toString() + '</p>';
+    }
+
 
     cell.setAttribute('data-removed', removedArray);
 
