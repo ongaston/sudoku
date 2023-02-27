@@ -191,8 +191,8 @@ function answerInput(num, notesCollection) {
         answerSpot[0].innerText = num.toString();
 
         if (noteRemovalToggle.checked == true) {
-            replaceNote(num);
             removeNotes(num);
+            //replaceNote(num);
         }
 
 
@@ -223,7 +223,9 @@ function answerInput(num, notesCollection) {
 
         answerSpot[0].innerText = '';
 
-
+        if (noteRemovalToggle.checked == true) {
+            replaceNote(num);
+        }
 
         conflictCheck();
 
@@ -232,15 +234,13 @@ function answerInput(num, notesCollection) {
         //change answer if answer is already inputted
     } else if (num.toString() !== answerSpot[0].innerText) {
 
-        answerSpot[0].innerText = num.toString();
-        selectedCell[0].dataset.value = num.toString();
-
         if (noteRemovalToggle.checked == true) {
-            replaceNote(num);
+            replaceNote(answerSpot[0].innerText);
             removeNotes(num);
         }
 
-
+        answerSpot[0].innerText = num.toString();
+        selectedCell[0].dataset.value = num.toString();
 
         conflictCheck();
 
@@ -788,10 +788,12 @@ function removeNotes(num, cell = selectedCell[0]) {
     columnNumber = eval(columnNumber);
     let removeNote = $(columnNumber).find(remove);
     for (let i = 0; i < removeNote.length; i++) {
-        if (removedArray.includes(removeNote[i].parentElement.parentElement.id) == false) {
-            removedArray.push(removeNote[i].parentElement.parentElement.id, removeNote[i].innerHTML + ' ');
+        if ((removedArray.includes(removeNote[i].parentElement.parentElement.id) == false) && (removeNote[i].parentElement.parentElement.id !== cell.id)) {
+
+            removedArray.push(removeNote[i].parentElement.parentElement.id, removeNote[i].innerText + ' ');
+            removeNote[i].innerHTML = '<p></p>';
+
         }
-        removeNote[i].innerHTML = '<p></p>';
     }
     /* #endregion */
 
@@ -802,10 +804,11 @@ function removeNotes(num, cell = selectedCell[0]) {
 
     for (let i = 0; i < removeRow.length; i++) {
 
-        if (removedArray.includes(removeRow[i].parentElement.parentElement.id) == false) {
-            removedArray.push(removeRow[i].parentElement.parentElement.id, removeRow[i].innerHTML + ' ');
+        if ((removedArray.includes(removeRow[i].parentElement.parentElement.id) == false) && (removeRow[i].parentElement.parentElement.id !== cell.id)) {
+            removedArray.push(removeRow[i].parentElement.parentElement.id, removeRow[i].innerText + ' ');
+            removeRow[i].innerHTML = '<p></p>';
+
         }
-        removeRow[i].innerHTML = '<p></p>';
     }
     /* #endregion */
 
@@ -814,10 +817,11 @@ function removeNotes(num, cell = selectedCell[0]) {
     blockNumber = eval(blockNumber);
     let removeBlock = $(blockNumber).find(remove);
     for (let i = 0; i < removeBlock.length; i++) {
-        if (removedArray.includes(removeBlock[i].parentElement.parentElement.id) == false) {
-            removedArray.push(removeBlock[i].parentElement.parentElement.id, removeBlock[i].innerHTML + ' ');
+        if ((removedArray.includes(removeBlock[i].parentElement.parentElement.id) == false) && (removeBlock[i].parentElement.parentElement.id !== cell.id)) {
+            removedArray.push(removeBlock[i].parentElement.parentElement.id, removeBlock[i].innerText + ' ');
+            removeBlock[i].innerHTML = '<p></p>';
+
         }
-        removeBlock[i].innerHTML = '<p></p>';
     }
     /* #endregion */
 
@@ -833,20 +837,19 @@ function removeNotes(num, cell = selectedCell[0]) {
 
 function replaceNote(num, cell = selectedCell[0]) {
 
-
+    console.log(cell.dataset.removed);
     let removedArray = cell.dataset.removed.split(" ,");
     removedArray = removedArray.map(x => new Array(x));
 
     for (let i = 0; i < removedArray.length; i++) {
         removedArray[i] = removedArray[i].toString().split(',');
     }
-
+    console.log(removedArray);
     for (let i = 0; i < cellArray.length; i++) {
 
         for (let j = 0; j < removedArray.length; j++) {
 
             if (cellArray[i].id == removedArray[j][0]) {
-
                 let remove = '.note' + num.toString();
                 $(cellArray[i]).find(remove)[0].innerHTML = '<p>' + removedArray[j][1] + '</p>';
             }
