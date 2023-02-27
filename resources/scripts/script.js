@@ -85,8 +85,7 @@ let rowArray = [rowA, rowB, rowC, rowD, rowE, rowF, rowG, rowH, rowI];
 let frog = document.getElementById('frog');
 let originalBoard;
 let board = document.getElementById('board');
-let cellsArray = document.getElementsByClassName('cell');
-let cellArray = Array.from(cellsArray);
+const cellArray = Array.from(document.getElementsByClassName('cell'));
 let highlightToggle = document.getElementById('highlight');
 let noteHighlightToggle = document.getElementById('note-highlight');
 let noteHighlightContainer = document.getElementById('note-highlight-container');
@@ -157,7 +156,7 @@ function highlightSame() {
 
 function resetGrid() {
 
-    cellArray = document.getElementsByClassName('cell');
+    //cellArray = document.getElementsByClassName('cell');
     modifyAnswerVariable();
 
     for (let i = 0; i < cellArray.length; i++) {

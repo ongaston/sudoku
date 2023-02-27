@@ -4,19 +4,12 @@ import { getBoard } from "./undo.js";
 let resetButton = document.getElementById('reset-button');
 let board = document.getElementById('board');
 let defaultBoard;
-let blankCells = cellArray.filter(function (e) {
-    if (e.classList[1] == 'given') {
-        return false;
-    }
-    return e;
-})
 
-let defaultNotes = [];
 
-$(window).on('load', function () {
+/*$(window).on('load', function () {
 
     defaultBoard = getBoard();
-
+    console.log(defaultBoard)
     /*for (let i = 0; i < blankCells.length; i++) {
 
         let noteArray = [blankCells[i].id];
@@ -33,15 +26,17 @@ $(window).on('load', function () {
         defaultNotes.push(noteArray);
     }*/
 
-})
+//})
 
 $(resetButton).on('click', function () {
 
-    board.innerHTML = defaultBoard;
+
+    location.reload();
+    /*board.innerHTML = defaultBoard;
     resetGrid();
 
     /* #region  timer stuff */
-    let secondsElement = document.getElementById('seconds');
+    /*let secondsElement = document.getElementById('seconds');
     let minutesElement = document.getElementById('minutes');
     let hoursElement = document.getElementById('hours');
 
@@ -49,7 +44,7 @@ $(resetButton).on('click', function () {
     minutesElement.innerText = '00';
     hoursElement.innerText = '00';
     /* #endregion */
-
+/*
     for (let i = 0; i < cellArray.length; i++) {
         $(cellArray[i].children[0]).removeClass('conflict-answer');
     }
@@ -94,3 +89,4 @@ $(resetButton).on('click', function () {
 
 })
 
+export {defaultBoard};

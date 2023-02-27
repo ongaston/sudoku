@@ -176,12 +176,6 @@ label:hover,
 }
 
 #pause-overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: var(--light-teal);
-    z-index: 9;
-    display: none;
     opacity: 85%;
 }
 
@@ -205,7 +199,9 @@ label:hover,
 
 }
 
-#resume {
+#resume,
+#resume-wrong,
+.button {
     color: antiquewhite;
     background-color: var(--main-teal);
     width: 50%;
@@ -216,14 +212,18 @@ label:hover,
     box-shadow: 0 3px -1px rgba(0, 0, 0, 30%);
 }
 
-#resume:hover {
+#resume:hover,
+#resume-wrong:hover,
+.button:hover {   
     cursor: pointer;
     color: var(--light-antique);
     background-color: var(--light-teal);
     border: 1px solid var(--main-teal);
 }
 
-#resume:active {
+#resume:active,
+#resume-wrong:active,
+.button:active {
     color: var(--light-antique);
     background-color: var(--dark-teal);
     border: 1px solid var(--light-teal);
@@ -232,7 +232,8 @@ label:hover,
 /* #endregion */
 
 /* #region settings menu */
-#settings-overlay {
+
+.overlays {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -242,7 +243,8 @@ label:hover,
     display: none;
 }
 
-#settings-menu {
+#settings-menu,
+#finish-menu {
     display: none;
     flex-direction: column;
     align-items: start;
@@ -258,7 +260,8 @@ label:hover,
 
 #settings-title,
 #pause-title,
-#other-title {
+#other-title,
+#finish-title {
     color: antiquewhite;
     font-size: 2rem;
     padding-bottom: 1.5rem;
@@ -393,6 +396,31 @@ label:hover,
 }
 
 /* #endregion */
+
+#win-options,
+#lose-options {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+}
+
+#finish-title {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+#play-other {
+    font-size: 20px;
+    color: antiquewhite;
+    box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
+}
+
+#reset-current {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+
 
 /* #region identifiers */
 #identifiers {
@@ -654,16 +682,6 @@ label:hover,
     box-shadow: 0 3px 12px -1px rgba(0, 0, 0, 30%);
     margin: 0 0.25rem;
     color: antiquewhite;
-}
-
-#other-menu-overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: var(--light-teal);
-    opacity: 0.2;
-    z-index: 11;
-    display: none;
 }
 
 #other-menu {

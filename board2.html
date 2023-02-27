@@ -14,9 +14,33 @@
 <body>
 
     <!-- #region menus -->
-    <div id='settings-overlay'></div>
-    <div id='pause-overlay'></div>
-    <div id='other-menu-overlay'></div>
+    <div id='settings-overlay' class='overlays'></div>
+    <div id='pause-overlay' class='overlays'></div>
+    <div id='other-menu-overlay' class='overlays'></div>
+    <div id='finish-overlay' class='overlays'></div>
+
+    <div id='finish-menu'>
+
+        <h1 id='finish-title'></h1>
+
+        <div id='win-options'>
+
+            <div id='reset-current' class='button reset'>Reset</div>
+
+            <p id='play-other'>Play other sudokus: </p>
+            <p class='board-name reset'>Board 1</p>
+            <p class='board-name reset'>Board 2</p>
+
+        </div>
+
+        <div id='lose-options'>
+
+            <div class='button reset'>Restart</div>
+            <div id='resume-wrong' class='button'>Resume</div>
+
+        </div>
+
+    </div>
 
     <div id='other-menu'>
 

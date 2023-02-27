@@ -245,7 +245,7 @@ function answerInput(num, notesCollection) {
         conflictCheck();
 
     }
-
+    
     checkComplete();
 
 }
