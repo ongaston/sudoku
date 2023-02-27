@@ -12,6 +12,7 @@ let animatedContainer = document.getElementById('animated-elyse');
 let animationTimer;
 let bigContainer = document.getElementById('big-animated');
 let settingsButton = document.getElementById('gear');
+let mobileCheck = document.getElementById('mobile-check');
 
 let boardWidth = $(board).css('width');
 boardWidth = boardWidth.slice(0, boardWidth.length - 3);
@@ -23,8 +24,14 @@ function elyseAlign() {
     let containerRect = elyseContainer.getBoundingClientRect();
     let faceRect = elyseFace.getBoundingClientRect();
 
-    elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
-    elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 35).toString() + "px";
+    if ($(mobileCheck).css('display') == 'none') {
+        elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
+        elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 35).toString() + "px";
+    } else {
+        elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
+        elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 65).toString() + "px";
+    }
+
 
     $(settingsButton).off('click', elyseAlign);
 }
