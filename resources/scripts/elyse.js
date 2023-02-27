@@ -19,15 +19,19 @@ boardWidth = Number(boardWidth);
 
 /* #endregion */
 
-$(settingsButton).on('click', function() {
-
+function elyseAlign() {
     let containerRect = elyseContainer.getBoundingClientRect();
     let faceRect = elyseFace.getBoundingClientRect();
 
     elyseFace.style.marginLeft = (containerRect.width - faceRect.width + faceRect.width + 10).toString() + "px";
     elyseFace.style.marginBottom = (faceRect.bottom - containerRect.bottom + faceRect.height + 35).toString() + "px";
 
-})
+    $(settingsButton).off('click', elyseAlign);
+}
+
+$(settingsButton).on('click', elyseAlign)
+
+
 
 $(window).on('resize', function() {
     let containerRect = elyseContainer.getBoundingClientRect();
