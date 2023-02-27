@@ -47,7 +47,8 @@ label:hover,
     font-weight: bold;
 }
 
-.conflict-answer {
+.conflict-answer,
+.incorrect-answer {
 
     color: var(--wrong) !important;
 
@@ -214,7 +215,7 @@ label:hover,
 
 #resume:hover,
 #resume-wrong:hover,
-.button:hover {   
+.button:hover {
     cursor: pointer;
     color: var(--light-antique);
     background-color: var(--light-teal);
@@ -282,16 +283,7 @@ label:hover,
     left: 97%;
 }
 
-#color-notes,
-#timer-container,
-#note-removal-container,
-#blue-container,
-#highlight-container,
-#note-highlight-container,
-#elyse-container,
-#identifier-container,
-#flip-container,
-#conflict-container {
+.setting-container {
     padding: 0.5rem 0;
     color: antiquewhite;
     font-size: 18px;
@@ -302,26 +294,8 @@ label:hover,
     width: 100%;
 }
 
-#color-notes:hover,
-#timer-container:hover,
-#note-removal-container:hover,
-#close-settings:hover,
-#color-toggle:hover,
-#timer:hover,
-#note-removal:hover,
-#blue-highlight:hover,
-#highlight:hover,
-#highlight-container:hover,
-#note-highlight:hover,
-#note-highlight-container:hover,
-#elyse-container:hover,
-#elyse:hover,
-#identifier-container:hover,
-#cell-identifiers,
-#flip-container:hover,
-#flip:hover,
-#conflict-container:hover,
-#conflict:hover {
+.setting-container:hover,
+.input-check:hover {
     cursor: pointer;
     color: var(--light-antique);
 }
@@ -333,16 +307,7 @@ label:hover,
 
 }
 
-#color-toggle,
-#timer,
-#note-removal,
-#blue-highlight,
-#highlight,
-#note-highlight,
-#elyse,
-#cell-identifiers,
-#flip,
-#conflict {
+.input-check {
     margin-right: 0.5rem;
 }
 
@@ -397,6 +362,7 @@ label:hover,
 
 /* #endregion */
 
+/* #region finish */
 #win-options,
 #lose-options {
     display: none;
@@ -420,7 +386,7 @@ label:hover,
     margin-bottom: 1.5rem;
 }
 
-
+/* #endregion */
 
 /* #region identifiers */
 #identifiers {
@@ -795,16 +761,7 @@ label:hover,
         font-size: 2.5rem;
     }
 
-    #color-notes,
-    #timer-container,
-    #note-removal-container,
-    #blue-container,
-    #highlight-container,
-    #note-highlight-container,
-    #elyse-container,
-    #identifier-container,
-    #flip-container,
-    #conflict-container {
+    .setting-container {
         font-size: 1.8rem;
     }
 

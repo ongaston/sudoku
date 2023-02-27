@@ -25,6 +25,8 @@ let answer = document.getElementsByClassName('answer');
 answer = Array.from(answer);
 
 let conflictToggle = document.getElementById('conflict');
+let answerCheckToggle = document.getElementById('check-answers');
+let board1Answers = ('a1,8 a2,1 a3,2 a4,7 a5,5 a6,3 a7,6 a8,4 a9,9 b1,9 b2,4 b3,3 b4,6 b5,8 b6,2 b7,1 b8,7 b9,5 c1,6 c2,7 c3,5 c4,4 c5,9 c6,1 c7,2 c8,8 c9,3 d1,1 d2,5 d3,4 d4,2 d5,3 d6,7 d7,8 d8,9 d9,6 e1,3 e2,6 e3,9 e4,8 e5,4 e6,5 e7,7 e8,2 e9,1 f1,2 f2,8 f3,7 f4,1 f5,6 f6,9 f7,5 f8,3 f9,4 g1,5 g2,2 g3,1 g4,9 g5,7 g6,4 g7,3 g8,6 g9,8 h1,4 h2,3 h3,8 h4,5 h5,2 h6,6 h7,9 h8,1 h9,7 i1,7 i2,9 i3,6 i4,3 i5,1 i6,8 i7,4 i8,5 i9,2').split(' ');
 /* #endregion */
 
 $(window).on('load', function() {
@@ -195,7 +197,9 @@ function answerInput(num, notesCollection) {
             //replaceNote(num);
         }
 
-
+        if (window.location.pathname == '/index.html') {
+            checkAnswers();
+        }
 
         conflictCheck();
 
@@ -242,10 +246,14 @@ function answerInput(num, notesCollection) {
         answerSpot[0].innerText = num.toString();
         selectedCell[0].dataset.value = num.toString();
 
+        if (window.location.pathname == '/index.html') {
+            checkAnswers();
+        }
+
         conflictCheck();
 
     }
-    
+
     checkComplete();
 
 }
@@ -888,4 +896,23 @@ function modifyAnswerVariable() {
     answer = Array.from(document.getElementsByClassName('answer'));
 }
 
-export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck, conflict, modifyConflict, answer, modifyAnswerVariable };
+//check answers
+
+function checkAnswers() {
+
+    for (let i = 0; i < cellArray.length; i++) {
+
+        let answerSpot = $(cellArray[i]).find('.answer')[0];
+        if (answerSpot.innerText == board1Answers[i].substring(3) || (answerSpot.innerText == '')){
+            continue;
+        } else {
+
+            $(answerSpot).addClass('incorrect-answer');
+
+        }
+
+    }
+
+}
+
+export { globalToggle, noteInput, answerInput, selectedCell, noteCheck, removeNotes, modifyBoardCollection, conflictCheck, conflict, modifyConflict, answer, modifyAnswerVariable, checkAnswers };
