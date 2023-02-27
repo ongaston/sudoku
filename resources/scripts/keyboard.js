@@ -515,7 +515,6 @@ function conflictCheck() {
             return e;
 
         })
-        console.log(answerSpots)
         
         let answerInputs = answerSpots.map(function (e) {
 
@@ -848,14 +847,13 @@ function removeNotes(num, cell = selectedCell[0]) {
 
 function replaceNote(num, cell = selectedCell[0]) {
 
-    console.log(cell.dataset.removed);
     let removedArray = cell.dataset.removed.split(" ,");
     removedArray = removedArray.map(x => new Array(x));
 
     for (let i = 0; i < removedArray.length; i++) {
         removedArray[i] = removedArray[i].toString().split(',');
     }
-    console.log(removedArray);
+
     for (let i = 0; i < cellArray.length; i++) {
 
         for (let j = 0; j < removedArray.length; j++) {
