@@ -275,7 +275,7 @@ function resetGrid() {
                     highlightSame();
                 }
 
-            }
+            })
         //toggles selected class for cells on click
         /*if (cellArray[i].classList[1] !== 'given') {
             $(cellArray[i]).on('click', function () {
@@ -332,13 +332,13 @@ function resetGrid() {
                     cellArray[i].style.borderRight = '8px solid black';
 
 
-                }*/
+                }
 
                 if (highlightToggle) {
                     highlightSame();
                 }
 
-            })
+            })*/
         }
 
     }
