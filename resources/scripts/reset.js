@@ -28,9 +28,6 @@ let defaultBoard;
 
 //})
 
-$(window).on('load', function () {
-    resetGrid();
-}
 
 $(resetButton).on('click', function () {
 
