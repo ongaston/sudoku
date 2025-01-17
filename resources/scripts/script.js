@@ -243,9 +243,41 @@ function resetGrid() {
             }
 
         }
+ $(cellArray[i]).on('click', function () {
 
+                for (let j = 0; j < cellArray.length; j++) {
+                    if (cellArray[j].dataset.isSelected == 'true') {
+                        cellArray[j].dataset.isSelected = 'false';
+                        cellArray[j].classList.remove('selected');
+                        cellArray[j].classList.remove('selected-given');
+
+                        if ((cellArray[j].dataset.column == 'column3' || cellArray[j].dataset.column == 'column6') && (cellArray[j].classList[1] !== 'selected' && cellArray[j].classList[2] !== 'selected-given')) {
+
+                            cellArray[j].style.borderRight = '6px solid black';
+
+                        }
+                    }
+                }
+                if (cellArray[i].classList[1] !== 'given'){
+                    cellArray[i].classList.add('selected');
+                } else {
+                    cellArray[i].classList.add('selected-given');
+                }
+                cellArray[i].dataset.isSelected = 'true';
+                if ((cellArray[i].dataset.column == 'column3' || cellArray[i].dataset.column == 'column6') && (cellArray[i].classList[1] == 'selected' || cellArray[i].classList[2] == 'selected-given')) {
+
+                    cellArray[i].style.borderRight = '8px solid black';
+
+
+                }
+
+                if (highlightToggle) {
+                    highlightSame();
+                }
+
+            })
         //toggles selected class for cells on click
-        if (cellArray[i].classList[1] !== 'given') {
+        /*if (cellArray[i].classList[1] !== 'given') {
             $(cellArray[i]).on('click', function () {
 
                 for (let j = 0; j < cellArray.length; j++) {
@@ -300,7 +332,7 @@ function resetGrid() {
                     cellArray[i].style.borderRight = '8px solid black';
 
 
-                }
+                }*/
 
                 if (highlightToggle) {
                     highlightSame();
